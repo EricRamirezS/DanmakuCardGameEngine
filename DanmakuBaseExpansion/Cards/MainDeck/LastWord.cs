@@ -1,12 +1,14 @@
 ﻿using System;
 using DanmakuCardGameEngine.Enums.Object;
+using DanmakuCardGameEngine.Models.Cards.Timing;
 
 namespace DanmakuBaseExpansion.Cards.MainDeck {
     [Serializable]
-    public class LastWord : BaseMainCard {
-        public LastWord(string id, ISeason season) : base(id,
+    public class LastWord : SingleModeMainCard, IActionMainMode {
+        public LastWord(int id, ISeason season) : base(id,
             "Last Word",
             season,
-            3) { }
+            3,
+            new ActionLastWord()) { }
     }
 }

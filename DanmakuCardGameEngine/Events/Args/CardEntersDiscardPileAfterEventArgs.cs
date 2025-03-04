@@ -1,7 +1,8 @@
-﻿using DanmakuCG_Data.Models.Cards;
+﻿using System.Collections.Generic;
+using DanmakuCardGameEngine.Models.Cards;
 
-namespace DanmakuCG_Data.Models.Events.Args;
-
-public class CardEntersDiscardPileAfterEventArgs : BaseEventArgs {
-    public List<Card> NewCards;
+namespace DanmakuCardGameEngine.Events.Args {
+    public class CardEntersDiscardPileAfterEventArgs : BaseEventArgs {
+        public IList<ICard> NewCards;
+    }
 }

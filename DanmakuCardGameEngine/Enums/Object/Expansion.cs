@@ -1,5 +1,5 @@
 ﻿namespace DanmakuCardGameEngine.Enums.Object {
-    public class Season : NamedObject, IExpansion {
-        public Season(string name) : base(name) { }
+    public class Expansion : NamedObject, IExpansion {
+        public Expansion(string name) : base(name) { }
     }
 }

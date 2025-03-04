@@ -1,5 +1,3 @@
 ﻿namespace DanmakuCardGameEngine.Models.Cards.Timing {
-    public class IInvocationMainMode {
-        
-    }
+    public interface IInvocationMainMode : IMainMode { }
 }

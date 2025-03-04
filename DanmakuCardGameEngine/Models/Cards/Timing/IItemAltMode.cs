@@ -1,4 +1,3 @@
 ﻿namespace DanmakuCardGameEngine.Models.Cards.Timing {
-    public interface IItemAltMode : ITiming{
-    }
+    public interface IItemAltMode : IAltMode { }
 }

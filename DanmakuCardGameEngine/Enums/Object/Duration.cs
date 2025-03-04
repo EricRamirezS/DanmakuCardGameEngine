@@ -1,7 +1,5 @@
-﻿using DanmakuCardGameEngine.Enums.Object;
-
-namespace DanmakuCardGameEngine.Models.Commons {
+﻿namespace DanmakuCardGameEngine.Enums.Object {
     public class Duration : NamedObject, IDuration {
-        protected Duration(string name) : base(name) { }
+        public Duration(string name) : base(name, "Duration") { }
     }
 }

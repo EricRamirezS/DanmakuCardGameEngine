@@ -1,3 +1,3 @@
 ﻿namespace DanmakuCardGameEngine.Enums.Object {
-    public interface ISeason : INamedObject { }
+    public interface IExpansion : INamedObject { }
 }

@@ -1,5 +1,5 @@
-﻿using DanmakuCG_Data.Models.Events.Args;
+﻿using DanmakuCardGameEngine.Events.Args;
 
-namespace DanmakuCG_Data.Models.Events;
-
-public interface ICardsCollectedAfter: IBaseEvent<CardsCollectedAfterEventArgs> { void OnCardsCollectedAfter(object? sender, CardsCollectedAfterEventArgs args); void IBaseEvent<CardsCollectedAfterEventArgs>.HandleEvent(object? sender, CardsCollectedAfterEventArgs args) { OnCardsCollectedAfter(sender, args); } }
+namespace DanmakuCardGameEngine.Events {
+    public interface ICardsCollectedAfter : IBaseEvent<CardsCollectedAfterEventArgs> { }
+}

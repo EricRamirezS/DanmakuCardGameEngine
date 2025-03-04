@@ -1,12 +1,14 @@
 ﻿using System;
 using DanmakuCardGameEngine.Enums.Object;
+using DanmakuCardGameEngine.Models.Cards.Timing;
 
 namespace DanmakuBaseExpansion.Cards.MainDeck {
     [Serializable]
-    public class Party : BaseMainCard {
-        public Party(string id, ISeason season) : base(id,
-            "Party",
+    public class Power : SingleModeMainCard, IItemMainMode {
+        public Power(int id, ISeason season) : base(id,
+            "Power",
             season,
-            3) { }
+            2,
+            new ItemPower()) { }
     }
 }

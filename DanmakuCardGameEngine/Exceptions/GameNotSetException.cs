@@ -1,5 +1,5 @@
 using System;
 
-namespace DanmakuCardGameEngine {
+namespace DanmakuCardGameEngine.Exceptions {
     public class GameNotSetException : Exception { }
 }

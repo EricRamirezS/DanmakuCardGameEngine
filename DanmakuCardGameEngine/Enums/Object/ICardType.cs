@@ -1,5 +1,5 @@
-﻿namespace DanmakuCardGameEngine.Enums {
-    public class ICardType {
+﻿namespace DanmakuCardGameEngine.Enums.Object {
+    public interface ICardType: INamedObject {
         
     }
 }

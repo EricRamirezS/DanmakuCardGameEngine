@@ -1,7 +1,7 @@
-﻿using DanmakuCG_Data.Models.PlayerController;
+﻿using DanmakuCardGameEngine.Models.Player;
 
-namespace DanmakuCG_Data.Models.Events.Args;
-
-public class DefeatAfterEventArgs : BaseEventArgs {
-    public Player DefeatedPlayer;
+namespace DanmakuCardGameEngine.Events.Args {
+    public class DefeatAfterEventArgs : BaseEventArgs {
+        public IPlayer DefeatedPlayer;
+    }
 }

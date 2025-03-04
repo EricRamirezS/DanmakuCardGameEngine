@@ -1,5 +1,6 @@
-﻿using DanmakuCG_Data.Models.Events.Args;
+﻿using DanmakuCardGameEngine.Events.Args;
 
-namespace DanmakuCG_Data.Models.Events;
-
-public interface IDrawBefore: IBaseEvent<DrawBeforeEventArgs> { void OnDrawBefore(object? sender, DrawBeforeEventArgs args); void IBaseEvent<DrawBeforeEventArgs>.HandleEvent(object? sender, DrawBeforeEventArgs args) { OnDrawBefore(sender, args); } }
+namespace DanmakuCardGameEngine.Events {
+    public interface IDrawBefore : IBaseEvent<DrawBeforeEventArgs> {
+    }
+}

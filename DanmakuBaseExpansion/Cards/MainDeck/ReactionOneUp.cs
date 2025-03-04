@@ -5,8 +5,8 @@ using DanmakuCardGameEngine.Models.Cards.Timing;
 using CardSubtypes = DanmakuCardGameEngine.Enums.CardSubtypes;
 
 namespace DanmakuBaseExpansion.Cards.MainDeck {
-    class ReactionOneUp : IReactionAltMode {
-        public IList<ICardSubtypes> AltCardTypes => new List<ICardSubtypes> { CardSubtypes.Healing };
+    internal class ReactionOneUp : IReactionAltMode {
+        public IReadOnlyList<ICardSubtypes> AltCardTypes => new List<ICardSubtypes> { CardSubtypes.Healing };
 
         public void PlayAltMode() {
             throw new NotImplementedException();

@@ -1,5 +1,5 @@
 ﻿namespace DanmakuCardGameEngine.Models.Commons {
-    public class IResolvable {
-        
+    public interface IResolvable {
+        bool ResolveEffect();
     }
 }

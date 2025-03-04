@@ -1,15 +1,15 @@
-﻿using DanmakuCG_Data.Game;
-using DanmakuCG_Data.Models.Cards;
+﻿using DanmakuCardGameEngine.Models.Cards;
+using DanmakuCardGameEngine.Models.Player;
 
-namespace DanmakuCG_Data.Models.Events.Args;
+namespace DanmakuCardGameEngine.Events.Args {
+    public class DiscardBeforeEventArgs : DiscardAfterEventArgs, IBubbleEvent {
+        public DiscardBeforeEventArgs() { }
 
-public class DiscardBeforeEventArgs : DiscardAfterEventArgs, IBubbleEvent {
-    public DiscardBeforeEventArgs() { }
-
-    public DiscardBeforeEventArgs(Card[] cards, ReadOnlyPlayer discardedBy) {
+        public DiscardBeforeEventArgs(ICard[] cards, IReadOnlyPlayer discardedBy) {
         Cards = cards;
         DiscardedBy = discardedBy;
     }
 
-    public bool BubbleEvent { get; set; } = true;
+        public bool BubbleEvent { get; set; } = true;
+    }
 }

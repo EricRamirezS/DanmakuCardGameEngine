@@ -1,12 +1,14 @@
 ﻿using System;
 using DanmakuCardGameEngine.Enums.Object;
+using DanmakuCardGameEngine.Models.Cards.Timing;
 
 namespace DanmakuBaseExpansion.Cards.MainDeck {
     [Serializable]
-    public class Tempest : BaseMainCard {
-        public Tempest(string id, ISeason season) : base(id,
-            "Tempest",
+    public class Voile : SingleModeMainCard, IActionMainMode {
+        public Voile(int id, ISeason season) : base(id,
+            "Voile",
             season,
-            3) { }
+            5,
+            new ActionVoile()) { }
     }
 }

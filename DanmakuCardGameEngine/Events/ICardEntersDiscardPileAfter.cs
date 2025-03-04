@@ -1,5 +1,5 @@
-﻿using DanmakuCG_Data.Models.Events.Args;
+﻿using DanmakuCardGameEngine.Events.Args;
 
-namespace DanmakuCG_Data.Models.Events;
-
-public interface ICardEntersDiscardPileAfter: IBaseEvent<CardEntersDiscardPileAfterEventArgs> { void OnCardEntersDiscardPileAfter(object? sender, CardEntersDiscardPileAfterEventArgs args); void IBaseEvent<CardEntersDiscardPileAfterEventArgs>.HandleEvent(object? sender, CardEntersDiscardPileAfterEventArgs args) { OnCardEntersDiscardPileAfter(sender, args); } }
+namespace DanmakuCardGameEngine.Events {
+    public interface ICardEntersDiscardPileAfter : IBaseEvent<CardEntersDiscardPileAfterEventArgs> { }
+}

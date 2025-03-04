@@ -1,12 +1,14 @@
 ﻿using System;
 using DanmakuCardGameEngine.Enums.Object;
+using DanmakuCardGameEngine.Models.Cards.Timing;
 
 namespace DanmakuBaseExpansion.Cards.MainDeck {
     [Serializable]
-    public class MiniHakkero : BaseMainCard {
-        public MiniHakkero(string id, ISeason season) : base(id,
-            "Mini-Hakkero",
+    public class Party : SingleModeMainCard, IActionMainMode {
+        public Party(int id, ISeason season) : base(id,
+            "Party",
             season,
-            5) { }
+            3,
+            new ActionParty()) { }
     }
 }

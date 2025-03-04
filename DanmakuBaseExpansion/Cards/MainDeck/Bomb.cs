@@ -1,14 +1,16 @@
 ﻿using System;
 using DanmakuCardGameEngine.Enums.Object;
-using DanmakuCardGameEngine.Models.Cards;
+using DanmakuCardGameEngine.Models.Cards.Timing;
 
 namespace DanmakuBaseExpansion.Cards.MainDeck {
     [Serializable]
-    public class Bomb : BaseMainCard {
-        public Bomb(string id, ISeason season) : base(
+    public class Bomb : DoubleModeMainCard, IInvocationMainMode, IReactionAltMode {
+        public Bomb(int id, ISeason season) : base(
             id,
             "Bomb",
             season,
-            4) { }
+            4,
+            new InvocationBomb(),
+            new ReactionBomb()) { }
     }
 }

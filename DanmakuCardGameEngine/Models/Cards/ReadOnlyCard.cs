@@ -1,4 +1,5 @@
 using DanmakuCardGameEngine.Enums.Object;
+using DanmakuCardGameEngine.Models.Commons;
 
 namespace DanmakuCardGameEngine.Models.Cards {
     public class ReadOnlyCard : IReadOnlyCard {
@@ -7,5 +8,6 @@ namespace DanmakuCardGameEngine.Models.Cards {
         }
 
         public ICardType CardType { get; }
+        public virtual IModifiers Modifiers => Commons.Modifiers.Empty;
     }
 }

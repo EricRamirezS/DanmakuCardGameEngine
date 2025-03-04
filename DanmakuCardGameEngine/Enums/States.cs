@@ -1,7 +1,7 @@
 ﻿using DanmakuCardGameEngine.Enums.Object;
 
 namespace DanmakuCardGameEngine.Enums {
-    public static class GameStates {
+    public static class States {
         public static readonly IState InitialSetup = new State("Initial Setup");
         public static readonly IState SetUpDecks = new State("Initial Setup");
         public static readonly IState DetermineRoles = new State("Initial Setup");

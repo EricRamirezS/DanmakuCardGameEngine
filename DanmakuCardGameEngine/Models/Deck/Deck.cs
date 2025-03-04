@@ -1,122 +1,61 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using DanmakuCardGameEngine.Models.Cards;
+using DanmakuCardGameEngine.Tools;
 
 namespace DanmakuCardGameEngine.Models.Deck {
-    public class Deck<TCard> : IDeck<TCard> where TCard : ICard {
-        private readonly List<TCard> _cards = new List<TCard>();
-        public int Count => _cards.Count;
-        public bool IsReadOnly => false;
-        public bool IsFixedSize => false;
-        public bool IsSynchronized => false;
-        public object SyncRoot => this;
+    public class Deck<TCard> : List<TCard>, IDeck<TCard> where TCard : ICard {
+        private readonly IRandomGenerator _rng;
+        public Discard<TCard> Discard = new Discard<TCard>();
 
-        public IEnumerator<TCard> GetEnumerator() => _cards.GetEnumerator();
+        public Deck() : this(new RandomGenerator()) { }
 
-        IEnumerator IEnumerable.GetEnumerator() => _cards.GetEnumerator();
+        public Deck(IRandomGenerator randomGenerator) {
+            _rng = randomGenerator;
+        }
 
-        public void CopyTo(Array array, int index) {
-            if (array == null) {
-                throw new ArgumentNullException(nameof(array));
+        public static implicit operator ReadOnlyDeck<TCard>(Deck<TCard> m) {
+            return new ReadOnlyDeck<TCard>(m.Count);
+        }
+
+        public void Shuffle() {
+            int n = Count;
+            while (n > 1) {
+                n--;
+                int k = _rng.Next(n + 1);
+                (this[k], this[n]) = (this[n], this[k]);
+            }
+        }
+
+        public TCard Draw() {
+            if (Count <= 0) {
+                AddRange(Discard);
+                Discard.Clear();
+                Shuffle();
             }
 
             try {
-                _cards.CopyTo((TCard[])array, index);
+                int lastIndex = Count - 1;
+                TCard card = this[lastIndex];
+                RemoveAt(lastIndex);
+                return card;
             }
-            catch (InvalidCastException ex) {
-                throw new ArgumentException(ex.Message, ex);
-            }
-        }
-
-        public int Add(object value) {
-            if (value == null) {
-                throw new ArgumentNullException(nameof(value));
-            }
-
-            try {
-                _cards.Add((TCard)value);
-                return 1;
-            }
-            catch (InvalidCastException ex) {
-                throw new ArgumentException(ex.Message, ex);
+            catch (ArgumentOutOfRangeException) {
+                throw new NoCardsLeftException<TCard>(this);
             }
         }
 
-        public bool Contains(object value) {
-            if (value == null) {
-                return false;
+        public IList<TCard> Draw(int numberOfCard) {
+            IList<TCard> list = new List<TCard>();
+            while (numberOfCard-- > 0) {
+                list.Add(Draw());
             }
 
-            try {
-                return _cards.Contains((TCard)value);
-            }
-            catch (InvalidCastException) {
-                return false;
-            }
+            return list;
         }
 
-        public void Clear() {
-            _cards.Clear();
+        public void AddToDiscard(TCard card) {
+            Discard.Add(card);
         }
-
-        public int IndexOf(object value) {
-            if (value == null) {
-                throw new ArgumentNullException(nameof(value));
-            }
-
-            try {
-                return _cards.IndexOf((TCard)value);
-            }
-            catch (InvalidCastException ex) {
-                throw new ArgumentException(ex.Message, ex);
-            }
-        }
-
-        public void Insert(int index, object value) {
-            if (value == null) {
-                throw new ArgumentNullException(nameof(value));
-            }
-
-            try {
-                _cards.Insert(index, (TCard)value);
-            }
-            catch (InvalidCastException ex) {
-                throw new ArgumentException(ex.Message, ex);
-            }
-        }
-
-        public void Remove(object value) {
-            if (value == null) {
-                throw new ArgumentNullException(nameof(value));
-            }
-
-            try {
-                _cards.Remove((TCard)value);
-            }
-            catch (InvalidCastException ex) {
-                throw new ArgumentException(ex.Message, ex);
-            }
-        }
-
-        public void RemoveAt(int index) => _cards.RemoveAt(index);
-
-        object IList.this[int index] {
-            get => _cards[index];
-            set {
-                if (value == null) {
-                    throw new ArgumentNullException(nameof(value));
-                }
-
-                try {
-                    _cards[index] = (TCard)value;
-                }
-                catch (InvalidCastException ex) {
-                    throw new ArgumentException(ex.Message, ex);
-                }
-            }
-        }
-
-        public TCard this[int index] => _cards[index];
     }
 }

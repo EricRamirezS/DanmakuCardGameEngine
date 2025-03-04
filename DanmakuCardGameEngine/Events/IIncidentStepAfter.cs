@@ -1,5 +1,6 @@
-﻿using DanmakuCG_Data.Models.Events.Args;
+﻿using DanmakuCardGameEngine.Events.Args;
 
-namespace DanmakuCG_Data.Models.Events;
-
-public interface IIncidentStepAfter: IBaseEvent<IncidentStepAfterEventArgs> { void OnIncidentStepAfter(object? sender, IncidentStepAfterEventArgs args); void IBaseEvent<IncidentStepAfterEventArgs>.HandleEvent(object? sender, IncidentStepAfterEventArgs args) { OnIncidentStepAfter(sender, args); } }
+namespace DanmakuCardGameEngine.Events {
+    public interface IIncidentStepAfter : IBaseEvent<IncidentStepAfterEventArgs> {
+    }
+}

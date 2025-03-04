@@ -1,25 +1,33 @@
-﻿using DanmakuBaseExpansion.Cards.IncidentDeck;
+﻿using DanmakuBaseExpansion.Cards.CharacterDeck;
 using DanmakuCardGameEngine.Models.Deck;
 
 namespace DanmakuBaseExpansion.Decks {
-    internal static class BaseIncidentDeck {
-        public static IncidentDeck Get() => new IncidentDeck() {
-            new CrisisOfFaith(),
-            new CrossingToHigan(),
-            new EndlessParty(),
-            new EternalNight(),
-            new FiveImpossibleRequests(),
-            new GreatBarrierWeakening(),
-            new GreatFairyWars(),
-            new LilyWhite(),
-            new Overdrive(),
-            new RekindleBlazingHell(),
-            new SaigyouAyakashiBlooming(),
-            new ScarletWeatherRhapsody(),
-            new SpringSnow(),
-            new UndefinedFantasticObject(),
-            new VoyageToMakai(),
-            new WorldlyDesires()
+    internal static class BaseCharacterDeck {
+        public static ICharacterDeck Get() => new CharacterDeck() {
+            new AliceMargatroid(),
+            new Cirno(),
+            new HakureiReimu(),
+            new HijiriByakuren(),
+            new HinanawiTenshi(),
+            new HongMeiling(),
+            new IbukiSuika(),
+            new IzayoiSakuya(),
+            new KamishirasawaKeine(),
+            new KawashiroNitori(),
+            new KazamiYuuka(),
+            new KirisameMarisa(),
+            new KochiyaSanae(),
+            new KomeijiSatori(),
+            new KonpakuYoumu(),
+            new MononobeNoFuto(),
+            new PatchouliKnowledge(),
+            new ReisenUdongeinInaba(),
+            new ReiujiUtsuho(),
+            new RemiliaScarlet(),
+            new ShameimaruAya(),
+            new ToyosatomimiNoMiko(),
+            new YagokoroEirin(),
+            new YakumoYukari()
         };
     }
 }

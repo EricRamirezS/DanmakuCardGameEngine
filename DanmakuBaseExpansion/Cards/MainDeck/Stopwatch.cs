@@ -1,12 +1,14 @@
 ﻿using System;
 using DanmakuCardGameEngine.Enums.Object;
+using DanmakuCardGameEngine.Models.Cards.Timing;
 
 namespace DanmakuBaseExpansion.Cards.MainDeck {
     [Serializable]
-    public class SpiritualAttack : BaseMainCard {
-        public SpiritualAttack(string id, ISeason season) : base(id,
-            "SpiritualAttack",
+    public class Stopwatch : SingleModeMainCard, IItemMainMode {
+        public Stopwatch(int id, ISeason season) : base(id,
+            "Stopwatch",
             season,
-            3) { }
+            5,
+            new ItemStopwatch()) { }
     }
 }

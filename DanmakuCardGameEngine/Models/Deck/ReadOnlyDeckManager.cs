@@ -14,5 +14,9 @@ namespace DanmakuCardGameEngine.Models.Deck {
             IList deck = Decks[typeof(TCard)];
             return (Deck<TCard>)deck;
         }
+
+        public bool ContainsDeck<TCard>() where TCard : ICard {
+            return Decks.ContainsKey(typeof(TCard));
+        }
     }
 }

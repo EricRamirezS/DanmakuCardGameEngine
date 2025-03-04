@@ -1,5 +1,6 @@
-﻿using DanmakuCG_Data.Models.Events.Args;
+﻿using DanmakuCardGameEngine.Events.Args;
 
-namespace DanmakuCG_Data.Models.Events;
-
-public interface ISpellCardCancelledBefore: IBaseEvent<SpellCardCancelledBeforeEventArgs> { void OnSpellCardCancelledBefore(object? sender, SpellCardCancelledBeforeEventArgs args); void IBaseEvent<SpellCardCancelledBeforeEventArgs>.HandleEvent(object? sender, SpellCardCancelledBeforeEventArgs args) { OnSpellCardCancelledBefore(sender, args); } }
+namespace DanmakuCardGameEngine.Events {
+    public interface ISpellCardCancelledBefore : IBaseEvent<SpellCardCancelledBeforeEventArgs> {
+    }
+}

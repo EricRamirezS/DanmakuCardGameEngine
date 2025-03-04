@@ -1,10 +1,13 @@
-﻿using DanmakuCardGameEngine.Models.Cards;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using DanmakuCardGameEngine.Models.Cards;
 using DanmakuCardGameEngine.Models.Deck;
 using DanmakuCardGameEngine.Models.Player;
 
 namespace DanmakuRunSample.Players {
     public class ConsolePlayer : Player {
-        public ConsolePlayer(ICharacterCard character, IRoleCard role) : base(character, role) { }
+        public ConsolePlayer(string name) : base(name) { }
 
         public override void DrawCard(IDeck<ICard> deck) {
             throw new System.NotImplementedException();
@@ -23,7 +26,22 @@ namespace DanmakuRunSample.Players {
         }
 
         public override object MakeChoice(params object[] choices) {
-            throw new System.NotImplementedException();
+            int option = 0;
+            for (int i = 0; i < choices.Length; i++) {
+                Console.WriteLine($"{i + 1}.- {choices[i]}");
+            }
+
+            while (option < 1 || option > choices.Length) {
+                if (!int.TryParse(Console.ReadLine(), out option)) {
+                    Console.WriteLine("Invalid option");
+                }
+            }
+
+            return choices[option - 1];
+        }
+
+        public override void ChooseCharacter(IList<ICharacterCard> characters) {
+            MainCharacterCard = (ICharacterCard)MakeChoice(characters.ToArray());
         }
     }
 }

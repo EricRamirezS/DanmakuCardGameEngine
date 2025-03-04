@@ -1,5 +1,6 @@
-﻿using DanmakuCG_Data.Models.Events.Args;
+﻿using DanmakuCardGameEngine.Events.Args;
 
-namespace DanmakuCG_Data.Models.Events;
-
-public interface IHandSwappedAfter: IBaseEvent<HandSwappedAfterEventArgs> { void OnHandSwappedAfter(object? sender, HandSwappedAfterEventArgs args); void IBaseEvent<HandSwappedAfterEventArgs>.HandleEvent(object? sender, HandSwappedAfterEventArgs args) { OnHandSwappedAfter(sender, args); } }
+namespace DanmakuCardGameEngine.Events {
+    public interface IHandSwappedAfter : IBaseEvent<HandSwappedAfterEventArgs> {
+    }
+}

@@ -14,7 +14,7 @@ namespace DanmakuBaseExpansion.Cards.MainDeck {
 
         public override CardMode CardMode => CardMode.Double;
         public override bool CanPlayAltMode() => _altMode.CanPlayAltMode();
-        public IReadOnlyList<ICardSubtypes> AltCardTypes => _altMode.AltCardTypes;
+        public override IReadOnlyList<ICardSubtypes> AltCardTypes => _altMode.AltCardTypes;
         public override void PlayAltMode() => _altMode.PlayAltMode();
     }
 }

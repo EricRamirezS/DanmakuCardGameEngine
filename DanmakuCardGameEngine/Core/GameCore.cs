@@ -1,12 +1,13 @@
-﻿using DanmakuCardGameEngine.Exceptions;
+﻿using System.Collections.Generic;
+using DanmakuCardGameEngine.Exceptions;
+using DanmakuCardGameEngine.Game;
+using DanmakuCardGameEngine.Models.Player;
 
-namespace DanmakuCardGameEngine {
-    public class GameCore : IGameCore {
-        private GameCore() { }
-
+namespace DanmakuCardGameEngine.Core {
+    public partial class GameCore : IGameCore {
         private static GameCore _instance;
 
-        public IGameCore Instance {
+        public static IGameCore Instance {
             get {
                 if (_instance == null) {
                     throw new GameNotSetException();
@@ -16,11 +17,15 @@ namespace DanmakuCardGameEngine {
             }
         }
 
-        public static IGameCore NewInstance() {
-            _instance = new GameCore();
+        public static IGameCore NewInstance(IList<IPlayer> players, IExpansionData[] expansions,
+            IDefaultData defaultData = null) {
+            _instance = new GameCore(players, expansions, defaultData?? new DefaultData());
+            _instance.Init();
             return _instance;
         }
     }
 
-    public interface IGameCore { }
+    public interface IGameCore {
+        IReadOnlyGameState GameState { get; }
+    }
 }

@@ -5,7 +5,7 @@ using DanmakuCardGameEngine.Models.Cards.Timing;
 using DanmakuCardGameEngine.Tools;
 
 namespace DanmakuBaseExpansion.Cards.MainDeck {
-    public class ActionBorrow : IMainMode {
+    internal class ActionBorrow : IMainMode {
         public IReadOnlyList<ICardSubtypes> MainCardTypes => CardUtils.EmptySubtypes;
 
         public void PlayMainMode() {

@@ -1,7 +1,7 @@
 using DanmakuCardGameEngine.Enums;
 
 namespace DanmakuBaseExpansion.Cards.IncidentDeck {
-    public class CrossingToHigan : BaseIncidentCard {
-        public CrossingToHigan() : base(2, "Crossing To Higan", Seasons.Autumn) { }
+    public class EndlessParty : BaseIncidentCard {
+        public EndlessParty() : base(3, "Endless Party", Seasons.Spring) { }
     }
 }

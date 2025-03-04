@@ -1,3 +1,4 @@
-﻿namespace DanmakuCardGameEngine.Events {
+﻿
+namespace DanmakuCardGameEngine.Events {
     public interface IDefeatEvent : IDefeatAfter, IDefeatBefore { }
 }

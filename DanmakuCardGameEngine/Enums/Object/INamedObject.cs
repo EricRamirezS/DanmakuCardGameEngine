@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace DanmakuCardGameEngine.Models.Commons {
-    public interface INamedObject : IEquatable<INamedObject>, IEqualityComparer<INamedObject> {
+namespace DanmakuCardGameEngine.Enums.Object {
+    public interface INamedObject :
+        IEquatable<INamedObject> {
         string Name { get; }
-        string FullName { get; }
     }
 }

@@ -1,7 +1,7 @@
 using DanmakuCardGameEngine.Enums;
 
 namespace DanmakuBaseExpansion.Cards.IncidentDeck {
-    public class SpringSnow : BaseIncidentCard {
-        public SpringSnow() : base(13, "SpringSnow", Seasons.Spring) { }
+    public class UndefinedFantasticObject : BaseIncidentCard {
+        public UndefinedFantasticObject() : base(14, "Undefined Fantastic Object", Seasons.Winter) { }
     }
 }

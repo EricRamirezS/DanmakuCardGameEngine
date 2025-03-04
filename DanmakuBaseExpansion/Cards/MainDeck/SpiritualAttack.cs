@@ -1,12 +1,14 @@
 ﻿using System;
 using DanmakuCardGameEngine.Enums.Object;
+using DanmakuCardGameEngine.Models.Cards.Timing;
 
 namespace DanmakuBaseExpansion.Cards.MainDeck {
     [Serializable]
-    public class SorcerersSutraScroll : BaseMainCard {
-        public SorcerersSutraScroll(string id, ISeason season) : base(id,
-            "Sorcerer's Sutra Scroll",
+    public class SpiritualAttack : SingleModeMainCard, IInvocationMainMode {
+        public SpiritualAttack(int id, ISeason season) : base(id,
+            "SpiritualAttack",
             season,
-            5) { }
+            3,
+            new InvocationSpiritualAttack()) { }
     }
 }

@@ -1,6 +1,6 @@
 using System;
 
-namespace DanmakuCardGameEngine.Models.Deck {
+namespace DanmakuCardGameEngine.Exceptions {
     public class DuplicatedDeckTypeException : Exception {
         public DuplicatedDeckTypeException(Type type) {
         }

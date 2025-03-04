@@ -1,3 +1,3 @@
-using DanmakuCardGameEngine.Events;
-
-public interface IAttackEvent : IAttackAfter, IAttackBefore{ }
+namespace DanmakuCardGameEngine.Events {
+    public interface IAttackEvent : IAttackAfter, IAttackBefore{ }
+}

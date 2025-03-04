@@ -1,5 +1,3 @@
-﻿using DanmakuCardGameEngine.Enums.Object;
-
-namespace DanmakuCardGameEngine.Models.Commons {
+﻿namespace DanmakuCardGameEngine.Enums.Object {
     public interface IModifierName : INamedObject { }
 }

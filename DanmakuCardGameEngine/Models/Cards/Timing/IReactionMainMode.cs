@@ -1,6 +1,3 @@
 ﻿namespace DanmakuCardGameEngine.Models.Cards.Timing {
-    public interface IReactionMainMode {
-        void PlayMainModeReaction();
-
-    }
+    public interface IReactionMainMode : IMainMode { }
 }

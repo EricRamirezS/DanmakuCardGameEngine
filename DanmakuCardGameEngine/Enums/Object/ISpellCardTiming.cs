@@ -1,5 +1,3 @@
-using DanmakuCardGameEngine.Enums.Object;
-
-namespace DanmakuCardGameEngine.Models.Cards {
+namespace DanmakuCardGameEngine.Enums.Object {
     public interface ISpellCardTiming : INamedObject{ }
 }

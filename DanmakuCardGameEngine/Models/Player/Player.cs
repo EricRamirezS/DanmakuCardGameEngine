@@ -1,62 +1,71 @@
 ﻿using System;
+using System.Collections.Generic;
+using DanmakuCardGameEngine.Core;
+using DanmakuCardGameEngine.Enums;
+using DanmakuCardGameEngine.Game;
 using DanmakuCardGameEngine.Models.Cards;
+using DanmakuCardGameEngine.Models.Commons;
+using DanmakuCardGameEngine.Models.Deck;
 using DanmakuCardGameEngine.Models.Player.Components;
 
 namespace DanmakuCardGameEngine.Models.Player {
-    public partial class Player : IPlayer {
-        public Player(ICharacterCard character, IRoleCard role) {
+    public abstract partial class Player : IPlayer {
+        protected Player(string name) {
             Id = Guid.NewGuid().ToString();
-            Name = character.Name;
-            CharacterCard = character;
-            RoleCard = role;
-            IsRoleRevealed = false;
+            Name = name;
+            MainCharacterCard = null;
+            RoleCard = null;
             ItemField = new ItemField(this);
+            IsRoleRevealed = false;
             Life = 4;
-            MaxLife = 4;
             IsSpellCardUsed = false;
             IsDefeated = false;
             DanmakuEffectiveCount = 0;
             DanmakuCount = 0;
-            DanmakuLimit = 1;
-            Range = 1;
-            DistanceBonus = 0;
+            Modifiers = new Modifiers();
         }
-
+        
         public string Id { get; }
-        public string Name { get; }
-        public int Life { get; }
-        public int MaxLife { get; }
-        public bool IsSpellCardUsed { get; }
-        public bool IsDefeated { get; }
-        public int DanmakuEffectiveCount { get; }
-        public int DanmakuCount { get; }
-        public int DanmakuLimit { get; }
-        public ICharacterCard CharacterCard { get; }
-        public bool IsRoleRevealed { get; }
-        public IRoleCard RoleCard { get; }
-        public IItemField ItemField { get; }
-        public int Range { get; }
-        public int DistanceBonus { get; }
+        public string Name { get; set; }
+        public int Life { get; set; }
+        public int MaxLife => GetMaxLife(GameCore.Instance.GameState);
+        
+        public bool IsSpellCardUsed { get; set; }
+        public bool IsDefeated { get; set; }
+        public int DanmakuEffectiveCount { get; set; }
+        public int DanmakuCount { get; set; }
+        public int DanmakuLimit => GetDanmakuLimit(GameCore.Instance.GameState);
+        public ICharacterCard MainCharacterCard { get; set; }
+        private List<ICharacterCard> _extraCharacterCards = new List<ICharacterCard>();
+        private IDefaultData _defaultData;
+        public IReadOnlyList<ICharacterCard> ExtraCharacterCards => _extraCharacterCards.AsReadOnly();
+        public bool IsRoleRevealed { get; set; }
+        public IRoleCard RoleCard { get; set; }
+        public IItemField ItemField { get; set; }
+        public int Range => GetRange(GameCore.Instance.GameState);
+        public int DistanceBonus => GetDistanceBonus(GameCore.Instance.GameState);
+        public IModifiers Modifiers { get; }
 
+        public abstract void DrawCard(IDeck<ICard> deck);
+        public abstract void PlayCard(ICard card);
+        public abstract void Attack(IReadOnlyPlayer player);
+        public abstract void TakeDamage(int damage);
+        public abstract object MakeChoice(params object[] choices);
+        public abstract void ChooseCharacter(IList<ICharacterCard> characterCards);
 
-        public bool Equals(IReadOnlyPlayer other) {
-            if (ReferenceEquals(null, other)) return false;
-            if (ReferenceEquals(this, other)) return true;
-            return Name == other.Name;
+        public void InitStats(IDefaultData defaultData) {
+            _defaultData = defaultData;
+            
+            IsRoleRevealed = RoleCard.Id == 1 && RoleCard.Name == "Heroine" &&
+                             RoleCard.RoleType == RoleTypes.Heroine;
+
+            Life = MaxLife;
+            IsSpellCardUsed = false;
+            IsDefeated = false;
         }
 
-        public override bool Equals(object obj) {
-            if (ReferenceEquals(null, obj)) return false;
-            if (ReferenceEquals(this, obj)) return true;
-            if (obj.GetType() != this.GetType()) return false;
-            return Equals((Player)obj);
-        }
-
-        public override int GetHashCode() {
-            unchecked {
-                int hashCode = (Name != null ? Name.GetHashCode() : 0);
-                return hashCode;
-            }
+        public IReadOnlyPlayer ToReadOnlyPlayer() {
+            return new ReadOnlyPlayer(this);
         }
     }
 }

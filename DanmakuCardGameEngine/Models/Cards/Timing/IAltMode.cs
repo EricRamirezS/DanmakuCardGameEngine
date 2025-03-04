@@ -3,6 +3,9 @@ using DanmakuCardGameEngine.Enums.Object;
 
 namespace DanmakuCardGameEngine.Models.Cards.Timing {
     public interface IAltMode : IMode {
-        IList<CardType> AltCardTypes { get; }
+        IReadOnlyList<ICardSubtypes> AltCardTypes { get; }
+
+        void PlayAltMode();
+        bool CanPlayAltMode();
     }
 }

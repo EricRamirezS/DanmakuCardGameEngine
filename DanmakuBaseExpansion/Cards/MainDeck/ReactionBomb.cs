@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using DanmakuCardGameEngine.Enums.Object;
 using DanmakuCardGameEngine.Models.Cards.Timing;
+using DanmakuCardGameEngine.Tools;
 
 namespace DanmakuBaseExpansion.Cards.MainDeck {
-    class ReactionBomb : IReactionAltMode {
-        public IReadOnlyList<ICardSubtypes> AltCardTypes => new List<ICardSubtypes>();
+    internal class ReactionBomb : IReactionAltMode {
+        public IReadOnlyList<ICardSubtypes> AltCardTypes => CardUtils.EmptySubtypes;
 
         public void PlayAltMode() {
             throw new NotImplementedException();

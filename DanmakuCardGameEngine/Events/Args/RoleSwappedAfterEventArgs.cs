@@ -1,13 +1,13 @@
-﻿using DanmakuCG_Data.Game;
-using DanmakuCG_Data.Models.Cards;
+﻿using DanmakuCardGameEngine.Models.Cards;
+using DanmakuCardGameEngine.Models.Player;
 
-namespace DanmakuCG_Data.Models.Events.Args;
-
-public class RoleSwappedAfterEventArgs : BaseEventArgs {
-    public ReadOnlyPlayer PlayerA;
-    public ReadOnlyPlayer PlayerB;
-    public RoleCard? OldRoleA;
-    public RoleCard? OldRoleB;
-    public RoleCard? NewRoleA;
-    public RoleCard? NewRoleB;
+namespace DanmakuCardGameEngine.Events.Args {
+    public class RoleSwappedAfterEventArgs : BaseEventArgs {
+        public IReadOnlyPlayer PlayerA;
+        public IReadOnlyPlayer PlayerB;
+        public IRoleCard OldRoleA;
+        public IRoleCard OldRoleB;
+        public IRoleCard NewRoleA;
+        public IRoleCard NewRoleB;
+    }
 }

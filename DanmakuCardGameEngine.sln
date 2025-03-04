@@ -2,6 +2,14 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DanmakuCardGameEngine", "DanmakuCardGameEngine\DanmakuCardGameEngine.csproj", "{09A0DF1B-76FD-4ED0-9CEC-8D6125F2DA91}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DanmakuRunSample", "DanmakuRunSample\DanmakuRunSample.csproj", "{200F3ED0-503D-474B-91B0-8806246AD958}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DanmakuBaseExpansion", "DanmakuBaseExpansion\DanmakuBaseExpansion.csproj", "{8852EC86-7360-478C-B361-88BC2ACC2868}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Expansions", "Expansions", "{5C93F3B2-B10E-452E-A56F-92E59F3FF84F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Engine", "Engine", "{4F4D0D4C-E525-42CA-B85E-58AF05468B63}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -12,5 +20,17 @@ Global
 		{09A0DF1B-76FD-4ED0-9CEC-8D6125F2DA91}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{09A0DF1B-76FD-4ED0-9CEC-8D6125F2DA91}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{09A0DF1B-76FD-4ED0-9CEC-8D6125F2DA91}.Release|Any CPU.Build.0 = Release|Any CPU
+		{200F3ED0-503D-474B-91B0-8806246AD958}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{200F3ED0-503D-474B-91B0-8806246AD958}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{200F3ED0-503D-474B-91B0-8806246AD958}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{200F3ED0-503D-474B-91B0-8806246AD958}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8852EC86-7360-478C-B361-88BC2ACC2868}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8852EC86-7360-478C-B361-88BC2ACC2868}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8852EC86-7360-478C-B361-88BC2ACC2868}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8852EC86-7360-478C-B361-88BC2ACC2868}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{8852EC86-7360-478C-B361-88BC2ACC2868} = {5C93F3B2-B10E-452E-A56F-92E59F3FF84F}
+		{09A0DF1B-76FD-4ED0-9CEC-8D6125F2DA91} = {4F4D0D4C-E525-42CA-B85E-58AF05468B63}
 	EndGlobalSection
 EndGlobal

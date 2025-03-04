@@ -1,7 +1,7 @@
 using DanmakuCardGameEngine.Enums;
 
 namespace DanmakuBaseExpansion.Cards.IncidentDeck {
-    public class Overdrive : BaseIncidentCard {
-        public Overdrive() : base(9, "Overdrive", Seasons.Spring) { }
+    public class RekindleBlazingHell : BaseIncidentCard {
+        public RekindleBlazingHell() : base(10, "Rekindle Blazing Hell", Seasons.Summer) { }
     }
 }

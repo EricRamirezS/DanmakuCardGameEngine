@@ -1,5 +1,9 @@
-﻿namespace DanmakuCardGameEngine.Enums {
-    public class ModifierNames {
-        
+﻿using DanmakuCardGameEngine.Enums.Object;
+
+namespace DanmakuCardGameEngine.Enums {
+    public static class ModifierNames {
+        public static readonly IModifierName Distance = new ModifierName("Distance");
+        public static IModifierName Range = new ModifierName("Range");
+        public static IModifierName MaxLife = new ModifierName("Max Life");
     }
 }

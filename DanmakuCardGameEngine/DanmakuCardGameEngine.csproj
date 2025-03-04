@@ -33,16 +33,399 @@
         <WarningLevel>4</WarningLevel>
     </PropertyGroup>
     <ItemGroup>
+        <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+          <HintPath>..\packages\Newtonsoft.Json.13.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+        </Reference>
         <Reference Include="System"/>
         <Reference Include="System.Core"/>
         <Reference Include="System.Xml"/>
-        <Reference Include="UnityEngine">
-            <HintPath>C:\Program Files\Unity\Hub\Editor\6000.0.12f1\Editor\Data\PlaybackEngines\windowsstandalonesupport\Variations\win64_player_nondevelopment_mono\Data\Managed\UnityEngine.dll</HintPath>
-        </Reference>
     </ItemGroup>
     <ItemGroup>
-        <Compile Include="MonoBehaviour1.cs"/>
-        <Compile Include="Properties\AssemblyInfo.cs"/>
+        <Compile Include="Core\ExpansionData.cs">
+          <DependentUpon>IExpansionData.cs</DependentUpon>
+        </Compile>
+        <Compile Include="Core\GameCore.cs" />
+        <Compile Include="Core\GameCore.starter.cs">
+          <DependentUpon>GameCore.cs</DependentUpon>
+        </Compile>
+        <Compile Include="Core\GameValidator.cs" />
+        <Compile Include="Core\IExpansionData.cs" />
+        <Compile Include="Enums\CardMode.cs" />
+        <Compile Include="Enums\CardSubtypes.cs" />
+        <Compile Include="Enums\CardTypes.cs" />
+        <Compile Include="Enums\Durations.cs" />
+        <Compile Include="Enums\States.cs" />
+        <Compile Include="Enums\ModifierNames.cs" />
+        <Compile Include="Enums\Object\CardSubtypes.cs">
+          <DependentUpon>ICardSubtypes.cs</DependentUpon>
+        </Compile>
+        <Compile Include="Enums\Object\CardType.cs">
+          <DependentUpon>ICardType.cs</DependentUpon>
+        </Compile>
+        <Compile Include="Enums\Object\Duration.cs">
+          <DependentUpon>IDuration.cs</DependentUpon>
+        </Compile>
+        <Compile Include="Enums\Object\Expansion.cs">
+          <DependentUpon>IExpansion.cs</DependentUpon>
+        </Compile>
+        <Compile Include="Enums\Object\State.cs">
+          <DependentUpon>IState.cs</DependentUpon>
+        </Compile>
+        <Compile Include="Enums\Object\ICardSubtypes.cs" />
+        <Compile Include="Enums\Object\ICardType.cs" />
+        <Compile Include="Enums\Object\IDuration.cs" />
+        <Compile Include="Enums\Object\IExpansion.cs" />
+        <Compile Include="Enums\Object\IState.cs" />
+        <Compile Include="Enums\Object\IModifierName.cs" />
+        <Compile Include="Enums\Object\INamedObject.cs" />
+        <Compile Include="Enums\Object\IRoleType.cs" />
+        <Compile Include="Enums\Object\ISeason.cs" />
+        <Compile Include="Enums\Object\ISpellCardTiming.cs" />
+        <Compile Include="Enums\Object\ModifierNames.cs">
+          <DependentUpon>IModifierName.cs</DependentUpon>
+        </Compile>
+        <Compile Include="Enums\Object\NamedObject.cs">
+          <DependentUpon>INamedObject.cs</DependentUpon>
+        </Compile>
+        <Compile Include="Enums\Object\RoleType.cs">
+          <DependentUpon>IRoleType.cs</DependentUpon>
+        </Compile>
+        <Compile Include="Enums\Object\Season.cs">
+          <DependentUpon>ISeason.cs</DependentUpon>
+        </Compile>
+        <Compile Include="Enums\Object\SpellCardTiming.cs">
+          <DependentUpon>ISpellCardTiming.cs</DependentUpon>
+        </Compile>
+        <Compile Include="Enums\RoleTypes.cs" />
+        <Compile Include="Enums\Seasons.cs" />
+        <Compile Include="Events\Args\AbilityActivatedAfterEventArgs.cs" />
+        <Compile Include="Events\Args\AbilityActivatedBeforeEventArgs.cs" />
+        <Compile Include="Events\Args\AttackAfterEventArgs.cs" />
+        <Compile Include="Events\Args\AttackBeforeEventArgs.cs" />
+        <Compile Include="Events\Args\BaseEventArgs.cs" />
+        <Compile Include="Events\Args\CancelAfterEventArgs.cs" />
+        <Compile Include="Events\Args\CancelBeforeEventArgs.cs" />
+        <Compile Include="Events\Args\CardEntersDiscardPileAfterEventArgs.cs" />
+        <Compile Include="Events\Args\CardEntersDiscardPileBeforeEventArgs.cs" />
+        <Compile Include="Events\Args\CardPlayedAfterEventArgs.cs" />
+        <Compile Include="Events\Args\CardPlayedBeforeEventArgs.cs" />
+        <Compile Include="Events\Args\CardResolvedAfterEventArgs.cs" />
+        <Compile Include="Events\Args\CardResolvedBeforeEventArgs.cs" />
+        <Compile Include="Events\Args\CardsCollectedAfterEventArgs.cs" />
+        <Compile Include="Events\Args\CardsCollectedBeforeEventArgs.cs" />
+        <Compile Include="Events\Args\DanmakuPlayedAfterEventArgs.cs" />
+        <Compile Include="Events\Args\DanmakuPlayedBeforeEventArgs.cs" />
+        <Compile Include="Events\Args\DeckShuffledAfterEventArgs.cs" />
+        <Compile Include="Events\Args\DeckShuffledBeforeEventArgs.cs" />
+        <Compile Include="Events\Args\DecreasedHealthAfterEventArgs.cs" />
+        <Compile Include="Events\Args\DecreasedHealthBeforeEventArgs.cs" />
+        <Compile Include="Events\Args\DefeatAfterEventArgs.cs" />
+        <Compile Include="Events\Args\DefeatBeforeEventArgs.cs" />
+        <Compile Include="Events\Args\DiscardAfterEventArgs.cs" />
+        <Compile Include="Events\Args\DiscardBeforeEventArgs.cs" />
+        <Compile Include="Events\Args\DiscardStepAfterEventArgs.cs" />
+        <Compile Include="Events\Args\DiscardStepBeforeEventArgs.cs" />
+        <Compile Include="Events\Args\DodgeAfterEventArgs.cs" />
+        <Compile Include="Events\Args\DodgeBeforeEventArgs.cs" />
+        <Compile Include="Events\Args\DrawAfterEventArgs.cs" />
+        <Compile Include="Events\Args\DrawBeforeEventArgs.cs" />
+        <Compile Include="Events\Args\DrawStepAfterEventArgs.cs" />
+        <Compile Include="Events\Args\DrawStepBeforeEventArgs.cs" />
+        <Compile Include="Events\Args\EmptyHandAfterEventArgs.cs" />
+        <Compile Include="Events\Args\EmptyHandBeforeEventArgs.cs" />
+        <Compile Include="Events\Args\EncounterStepAfterEventArgs.cs" />
+        <Compile Include="Events\Args\EncounterStepBeforeEventArgs.cs" />
+        <Compile Include="Events\Args\EndOfTurnAfterEventArgs.cs" />
+        <Compile Include="Events\Args\EndOfTurnBeforeEventArgs.cs" />
+        <Compile Include="Events\Args\FlipAfterEventArgs.cs" />
+        <Compile Include="Events\Args\FlipBeforeEventArgs.cs" />
+        <Compile Include="Events\Args\HandRevealedAfterEventArgs.cs" />
+        <Compile Include="Events\Args\HandRevealedBeforeEventArgs.cs" />
+        <Compile Include="Events\Args\HandSwappedAfterEventArgs.cs" />
+        <Compile Include="Events\Args\HandSwappedBeforeEventArgs.cs" />
+        <Compile Include="Events\Args\IncidentResolvedAfterEventArgs.cs" />
+        <Compile Include="Events\Args\IncidentResolvedBeforeEventArgs.cs" />
+        <Compile Include="Events\Args\IncidentStepAfterEventArgs.cs" />
+        <Compile Include="Events\Args\IncidentStepBeforeEventArgs.cs" />
+        <Compile Include="Events\Args\IncreasedHealthAfterEventArgs.cs" />
+        <Compile Include="Events\Args\IncreasedHealthBeforeEventArgs.cs" />
+        <Compile Include="Events\Args\ItemDiscardedAfterEventArgs.cs" />
+        <Compile Include="Events\Args\ItemDiscardedBeforeEventArgs.cs" />
+        <Compile Include="Events\Args\ItemPlayedAfterEventArgs.cs" />
+        <Compile Include="Events\Args\ItemPlayedBeforeEventArgs.cs" />
+        <Compile Include="Events\Args\MainStepAfterEventArgs.cs" />
+        <Compile Include="Events\Args\MainStepBeforeEventArgs.cs" />
+        <Compile Include="Events\Args\MobAttackStepAfterEventArgs.cs" />
+        <Compile Include="Events\Args\MobAttackStepBeforeEventArgs.cs" />
+        <Compile Include="Events\Args\NewIncidentAfterEventArgs.cs" />
+        <Compile Include="Events\Args\NewIncidentBeforeEventArgs.cs" />
+        <Compile Include="Events\Args\RoleRevealedAfterEventArgs.cs" />
+        <Compile Include="Events\Args\RoleRevealedBeforeEventArgs.cs" />
+        <Compile Include="Events\Args\RoleSwappedAfterEventArgs.cs" />
+        <Compile Include="Events\Args\RoleSwappedBeforeEventArgs.cs" />
+        <Compile Include="Events\Args\SpellCardActivatedAfterEventArgs.cs" />
+        <Compile Include="Events\Args\SpellCardActivatedBeforeEventArgs.cs" />
+        <Compile Include="Events\Args\SpellCardCancelledAfterEventArgs.cs" />
+        <Compile Include="Events\Args\SpellCardCancelledBeforeEventArgs.cs" />
+        <Compile Include="Events\Args\StackResolvedAfterEventArgs.cs" />
+        <Compile Include="Events\Args\StackResolvedBeforeEventArgs.cs" />
+        <Compile Include="Events\Args\StandbyAfterEventArgs.cs" />
+        <Compile Include="Events\Args\StandbyBeforeEventArgs.cs" />
+        <Compile Include="Events\Args\StartOfGameAfterEventArgs.cs" />
+        <Compile Include="Events\Args\StartOfGameBeforeEventArgs.cs" />
+        <Compile Include="Events\Args\StartOfTurnAfterEventArgs.cs" />
+        <Compile Include="Events\Args\StartOfTurnBeforeEventArgs.cs" />
+        <Compile Include="Events\Args\TurnSkippedAfterEventArgs.cs" />
+        <Compile Include="Events\Args\TurnSkippedBeforeEventArgs.cs" />
+        <Compile Include="Events\Args\TurnZeroAfterEventArgs.cs" />
+        <Compile Include="Events\Args\TurnZeroBeforeEventArgs.cs" />
+        <Compile Include="Events\IAbilityActivatedAfter.cs">
+          <DependentUpon>IAbilityActivatedEvent.cs</DependentUpon>
+        </Compile>
+        <Compile Include="Events\IAbilityActivatedBefore.cs">
+          <DependentUpon>IAbilityActivatedEvent.cs</DependentUpon>
+        </Compile>
+        <Compile Include="Events\IAbilityActivatedEvent.cs" />
+        <Compile Include="Events\IAttackAfter.cs">
+          <DependentUpon>IAttackEvent.cs</DependentUpon>
+        </Compile>
+        <Compile Include="Events\IAttackBefore.cs">
+          <DependentUpon>IAttackEvent.cs</DependentUpon>
+        </Compile>
+        <Compile Include="Events\IAttackEvent.cs" />
+        <Compile Include="Events\IBaseEvent.cs" />
+        <Compile Include="Events\IBubbleEvent.cs" />
+        <Compile Include="Events\ICancelAfter.cs">
+          <DependentUpon>ICancelEvent.cs</DependentUpon>
+        </Compile>
+        <Compile Include="Events\ICancelBefore.cs">
+          <DependentUpon>ICancelEvent.cs</DependentUpon>
+        </Compile>
+        <Compile Include="Events\ICancelEvent.cs" />
+        <Compile Include="Events\ICardEntersDiscardPileAfter.cs">
+          <DependentUpon>ICardEntersDiscardPileEvent.cs</DependentUpon>
+        </Compile>
+        <Compile Include="Events\ICardEntersDiscardPileBefore.cs">
+          <DependentUpon>ICardEntersDiscardPileEvent.cs</DependentUpon>
+        </Compile>
+        <Compile Include="Events\ICardEntersDiscardPileEvent.cs" />
+        <Compile Include="Events\ICardPlayedAfter.cs">
+          <DependentUpon>ICardPlayedEvent.cs</DependentUpon>
+        </Compile>
+        <Compile Include="Events\ICardPlayedBefore.cs">
+          <DependentUpon>ICardPlayedEvent.cs</DependentUpon>
+        </Compile>
+        <Compile Include="Events\ICardPlayedEvent.cs" />
+        <Compile Include="Events\ICardResolvedAfter.cs">
+          <DependentUpon>ICardResolvedEvent.cs</DependentUpon>
+        </Compile>
+        <Compile Include="Events\ICardResolvedBefore.cs">
+          <DependentUpon>ICardResolvedEvent.cs</DependentUpon>
+        </Compile>
+        <Compile Include="Events\ICardResolvedEvent.cs" />
+        <Compile Include="Events\ICardsCollectedAfter.cs">
+          <DependentUpon>ICardsCollectedEvent.cs</DependentUpon>
+        </Compile>
+        <Compile Include="Events\ICardsCollectedBefore.cs">
+          <DependentUpon>ICardsCollectedEvent.cs</DependentUpon>
+        </Compile>
+        <Compile Include="Events\ICardsCollectedEvent.cs" />
+        <Compile Include="Events\IDanmakuPlayedAfter.cs">
+          <DependentUpon>IDanmakuPlayedEvent.cs</DependentUpon>
+        </Compile>
+        <Compile Include="Events\IDanmakuPlayedBefore.cs">
+          <DependentUpon>IDanmakuPlayedEvent.cs</DependentUpon>
+        </Compile>
+        <Compile Include="Events\IDanmakuPlayedEvent.cs" />
+        <Compile Include="Events\IDeckShuffledAfter.cs">
+          <DependentUpon>IDeckShuffledEvent.cs</DependentUpon>
+        </Compile>
+        <Compile Include="Events\IDeckShuffledBefore.cs">
+          <DependentUpon>IDeckShuffledEvent.cs</DependentUpon>
+        </Compile>
+        <Compile Include="Events\IDeckShuffledEvent.cs" />
+        <Compile Include="Events\IDecreasedHealthAfter.cs">
+          <DependentUpon>IDecreasedHealthEvent.cs</DependentUpon>
+        </Compile>
+        <Compile Include="Events\IDecreasedHealthBefore.cs">
+          <DependentUpon>IDecreasedHealthEvent.cs</DependentUpon>
+        </Compile>
+        <Compile Include="Events\IDecreasedHealthEvent.cs" />
+        <Compile Include="Events\IDefeatAfter.cs">
+          <DependentUpon>IDefeatEvent.cs</DependentUpon>
+        </Compile>
+        <Compile Include="Events\IDefeatBefore.cs">
+          <DependentUpon>IDefeatEvent.cs</DependentUpon>
+        </Compile>
+        <Compile Include="Events\IDefeatEvent.cs" />
+        <Compile Include="Events\IDiscardAfter.cs">
+          <DependentUpon>IDiscardEvent.cs</DependentUpon>
+        </Compile>
+        <Compile Include="Events\IDiscardBefore.cs">
+          <DependentUpon>IDiscardEvent.cs</DependentUpon>
+        </Compile>
+        <Compile Include="Events\IDiscardEvent.cs" />
+        <Compile Include="Events\IDiscardStepAfter.cs" />
+        <Compile Include="Events\IDiscardStepBefore.cs" />
+        <Compile Include="Events\IDodgeAfter.cs" />
+        <Compile Include="Events\IDodgeBefore.cs" />
+        <Compile Include="Events\IDrawAfter.cs" />
+        <Compile Include="Events\IDrawBefore.cs" />
+        <Compile Include="Events\IDrawStepAfter.cs" />
+        <Compile Include="Events\IDrawStepBefore.cs" />
+        <Compile Include="Events\IEmptyHandAfter.cs" />
+        <Compile Include="Events\IEmptyHandBefore.cs" />
+        <Compile Include="Events\IEncounterStepAfter.cs" />
+        <Compile Include="Events\IEncounterStepBefore.cs" />
+        <Compile Include="Events\IEndOfTurnAfter.cs" />
+        <Compile Include="Events\IEndOfTurnBefore.cs" />
+        <Compile Include="Events\IEvents.cs" />
+        <Compile Include="Events\IFlipAfter.cs" />
+        <Compile Include="Events\IFlipBefore.cs" />
+        <Compile Include="Events\IHandRevealedAfter.cs" />
+        <Compile Include="Events\IHandRevealedBefore.cs" />
+        <Compile Include="Events\IHandSwappedAfter.cs" />
+        <Compile Include="Events\IHandSwappedBefore.cs" />
+        <Compile Include="Events\IIncidentResolvedAfter.cs" />
+        <Compile Include="Events\IIncidentResolvedBefore.cs" />
+        <Compile Include="Events\IIncidentStepAfter.cs" />
+        <Compile Include="Events\IIncidentStepBefore.cs" />
+        <Compile Include="Events\IIncreasedHealthAfter.cs" />
+        <Compile Include="Events\IIncreasedHealthBefore.cs" />
+        <Compile Include="Events\IItemDiscardedAfter.cs" />
+        <Compile Include="Events\IItemDiscardedBefore.cs" />
+        <Compile Include="Events\IItemPlayedAfter.cs" />
+        <Compile Include="Events\IItemPlayedBefore.cs" />
+        <Compile Include="Events\IMainStepAfter.cs" />
+        <Compile Include="Events\IMainStepBefore.cs" />
+        <Compile Include="Events\IMobAttackStepAfter.cs" />
+        <Compile Include="Events\IMobAttackStepBefore.cs" />
+        <Compile Include="Events\INewIncidentAfter.cs" />
+        <Compile Include="Events\INewIncidentBefore.cs" />
+        <Compile Include="Events\IRoleRevealedAfter.cs" />
+        <Compile Include="Events\IRoleRevealedBefore.cs" />
+        <Compile Include="Events\IRoleSwappedAfter.cs" />
+        <Compile Include="Events\IRoleSwappedBefore.cs" />
+        <Compile Include="Events\ISpellCardActivatedAfter.cs" />
+        <Compile Include="Events\ISpellCardActivatedBefore.cs" />
+        <Compile Include="Events\ISpellCardCancelledAfter.cs" />
+        <Compile Include="Events\ISpellCardCancelledBefore.cs" />
+        <Compile Include="Events\IStackResolvedAfter.cs" />
+        <Compile Include="Events\IStackResolvedBefore.cs" />
+        <Compile Include="Events\IStandbyAfter.cs" />
+        <Compile Include="Events\IStandbyBefore.cs" />
+        <Compile Include="Events\IStartOfTurnAfter.cs" />
+        <Compile Include="Events\IStartOfTurnBefore.cs" />
+        <Compile Include="Events\ITurnSkippedAfter.cs" />
+        <Compile Include="Events\ITurnSkippedBefore.cs" />
+        <Compile Include="Events\ITurnZeroAfter.cs" />
+        <Compile Include="Events\ITurnZeroBefore.cs" />
+        <Compile Include="Exceptions\DeckNotFoundException.cs" />
+        <Compile Include="Exceptions\DuplicatedDeckTypeException.cs" />
+        <Compile Include="Exceptions\GameNotSetException.cs" />
+        <Compile Include="Exceptions\NoCardsLeftException.cs" />
+        <Compile Include="Core\DefaultData.cs" />
+        <Compile Include="Exceptions\NoEnoughPlayersException.cs" />
+        <Compile Include="Exceptions\NoEnoughRolesException.cs" />
+        <Compile Include="Exceptions\RoleDeckEmptyException.cs" />
+        <Compile Include="Exceptions\RoleDeckNotFoundException.cs" />
+        <Compile Include="Exceptions\TooManyPlayersException.cs" />
+        <Compile Include="Game\IGameState.cs" />
+        <Compile Include="Game\IReadOnlyGameState.cs" />
+        <Compile Include="Game\IReadOnlyPlayerGameState.cs" />
+        <Compile Include="Models\Cards\Card.cs">
+          <DependentUpon>ICard.cs</DependentUpon>
+        </Compile>
+        <Compile Include="Models\Cards\HandCard.cs">
+          <DependentUpon>IHandCard.cs</DependentUpon>
+        </Compile>
+        <Compile Include="Models\Cards\ICard.cs" />
+        <Compile Include="Models\Cards\ICharacterCard.cs" />
+        <Compile Include="Models\Cards\IHandCard.cs" />
+        <Compile Include="Models\Cards\IIncidentCard.cs" />
+        <Compile Include="Models\Cards\IMainCard.cs" />
+        <Compile Include="Models\Cards\IncidentCard.cs">
+          <DependentUpon>IIncidentCard.cs</DependentUpon>
+        </Compile>
+        <Compile Include="Models\Cards\IReadOnlyCard.cs" />
+        <Compile Include="Models\Cards\IRoleCard.cs" />
+        <Compile Include="Models\Cards\MainCard.cs">
+          <DependentUpon>IMainCard.cs</DependentUpon>
+        </Compile>
+        <Compile Include="Models\Cards\ReadOnlyCard.cs">
+          <DependentUpon>IReadOnlyCard.cs</DependentUpon>
+        </Compile>
+        <Compile Include="Models\Cards\Timing\IActionAltMode.cs" />
+        <Compile Include="Models\Cards\Timing\IActionMainMode.cs" />
+        <Compile Include="Models\Cards\Timing\IAltMode.cs" />
+        <Compile Include="Models\Cards\Timing\IInstantAltMode.cs" />
+        <Compile Include="Models\Cards\Timing\IInstantMainMode.cs" />
+        <Compile Include="Models\Cards\Timing\IInvocationAltMode.cs" />
+        <Compile Include="Models\Cards\Timing\IInvocationMainMode.cs" />
+        <Compile Include="Models\Cards\Timing\IItemAltMode.cs" />
+        <Compile Include="Models\Cards\Timing\IItemMainMode.cs" />
+        <Compile Include="Models\Cards\Timing\IMainMode.cs" />
+        <Compile Include="Models\Cards\Timing\IReactionAltMode.cs" />
+        <Compile Include="Models\Cards\Timing\IReactionMainMode.cs" />
+        <Compile Include="Models\Cards\Timing\ITiming.cs" />
+        <Compile Include="Models\Cards\Type\IItemCard.cs" />
+        <Compile Include="Models\Commons\IModifier.cs" />
+        <Compile Include="Models\Commons\IResolvable.cs" />
+        <Compile Include="Models\Deck\CharacterDeck.cs">
+          <DependentUpon>ICharacterDeck.cs</DependentUpon>
+        </Compile>
+        <Compile Include="Models\Deck\Deck.cs">
+          <DependentUpon>IDeck.cs</DependentUpon>
+        </Compile>
+        <Compile Include="Models\Deck\DecksManager.cs">
+          <DependentUpon>IDecksManager.cs</DependentUpon>
+        </Compile>
+        <Compile Include="Models\Deck\Discard.cs">
+          <DependentUpon>IDiscard.cs</DependentUpon>
+        </Compile>
+        <Compile Include="Models\Deck\ICharacterDeck.cs" />
+        <Compile Include="Models\Deck\IDeck.cs" />
+        <Compile Include="Models\Deck\IDecksManager.cs" />
+        <Compile Include="Models\Deck\IDiscard.cs" />
+        <Compile Include="Models\Deck\IIncidentDeck.cs" />
+        <Compile Include="Models\Deck\IMainDeck.cs" />
+        <Compile Include="Models\Deck\IncidentDeck.cs">
+          <DependentUpon>IIncidentDeck.cs</DependentUpon>
+        </Compile>
+        <Compile Include="Models\Deck\IReadOnlyDeck.cs" />
+        <Compile Include="Models\Deck\IReadOnlyDeckManager.cs" />
+        <Compile Include="Models\Deck\IRoleDeck.cs" />
+        <Compile Include="Models\Deck\MainDeck.cs">
+          <DependentUpon>IMainDeck.cs</DependentUpon>
+        </Compile>
+        <Compile Include="Models\Deck\ReadOnlyDeck.cs">
+          <DependentUpon>IReadOnlyDeck.cs</DependentUpon>
+        </Compile>
+        <Compile Include="Models\Deck\ReadOnlyDeckManager.cs">
+          <DependentUpon>IReadOnlyDeckManager.cs</DependentUpon>
+        </Compile>
+        <Compile Include="Models\Deck\RoleDeck.cs">
+          <DependentUpon>IRoleDeck.cs</DependentUpon>
+        </Compile>
+        <Compile Include="Models\Player\Components\IHand.cs" />
+        <Compile Include="Models\Player\Components\IItemField.cs" />
+        <Compile Include="Models\Player\IPlayer.cs" />
+        <Compile Include="Models\Player\IReadOnlyPlayer.cs" />
+        <Compile Include="Models\Player\Player.cs">
+          <DependentUpon>IPlayer.cs</DependentUpon>
+        </Compile>
+        <Compile Include="Models\Player\Player.Equatable.cs">
+          <DependentUpon>Player.cs</DependentUpon>
+        </Compile>
+        <Compile Include="Models\Player\Player.Getter.cs">
+          <DependentUpon>Player.cs</DependentUpon>
+        </Compile>
+        <Compile Include="Properties\AssemblyInfo.cs" />
+        <Compile Include="Tools\CardUtils.cs" />
+        <Compile Include="Tools\IRandomGenerator.cs" />
+    </ItemGroup>
+    <ItemGroup>
+      <None Include="packages.config" />
     </ItemGroup>
     <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets"/>
     <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

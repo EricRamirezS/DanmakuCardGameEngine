@@ -1,9 +1,9 @@
-﻿using DanmakuCG_Data.Game;
-using DanmakuCG_Data.Models.Cards;
+﻿using DanmakuCardGameEngine.Models.Cards;
+using DanmakuCardGameEngine.Models.Player;
 
-namespace DanmakuCG_Data.Models.Events.Args;
-
-public class DiscardAfterEventArgs : BaseEventArgs {
-    public Card[] Cards;
-    public ReadOnlyPlayer DiscardedBy;
+namespace DanmakuCardGameEngine.Events.Args {
+    public class DiscardAfterEventArgs : BaseEventArgs {
+        public ICard[] Cards;
+        public IReadOnlyPlayer DiscardedBy;
+    }
 }

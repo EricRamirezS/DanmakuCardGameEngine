@@ -1,3 +1,3 @@
-﻿namespace DanmakuCG_Data.Models.Events.Args;
-
-public class StartOfGameAfterEventArgs : BaseEventArgs { }
+﻿namespace DanmakuCardGameEngine.Events.Args {
+    public class StartOfGameAfterEventArgs : BaseEventArgs { }
+}

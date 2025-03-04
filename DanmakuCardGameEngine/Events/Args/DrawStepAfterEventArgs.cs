@@ -1,7 +1,7 @@
-﻿using DanmakuCG_Data.Game;
+﻿using DanmakuCardGameEngine.Game;
 
-namespace DanmakuCG_Data.Models.Events.Args;
-
-public class DrawStepAfterEventArgs : BaseEventArgs {
-    public int CardsToDraw = IDefaultData.CardDraw;
+namespace DanmakuCardGameEngine.Events.Args {
+    public class DrawStepAfterEventArgs : BaseEventArgs {
+        public int CardsToDraw { get; }
+    }
 }

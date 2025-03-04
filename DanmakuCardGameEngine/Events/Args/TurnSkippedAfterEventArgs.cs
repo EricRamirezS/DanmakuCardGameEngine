@@ -1,7 +1,7 @@
-﻿using DanmakuCG_Data.Game;
+﻿using DanmakuCardGameEngine.Models.Player;
 
-namespace DanmakuCG_Data.Models.Events.Args;
-
-public class TurnSkippedAfterEventArgs : BaseEventArgs {
-    public ReadOnlyPlayer SkippingPlayer;
+namespace DanmakuCardGameEngine.Events.Args {
+    public class TurnSkippedAfterEventArgs : BaseEventArgs {
+        public IReadOnlyPlayer SkippingPlayer;
+    }
 }
