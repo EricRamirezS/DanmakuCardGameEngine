@@ -1,0 +1,232 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props"
+            Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')"/>
+    <PropertyGroup>
+        <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+        <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+        <ProjectGuid>{8852EC86-7360-478C-B361-88BC2ACC2868}</ProjectGuid>
+        <OutputType>Library</OutputType>
+        <AppDesignerFolder>Properties</AppDesignerFolder>
+        <RootNamespace>DanmakuBaseExpansion</RootNamespace>
+        <AssemblyName>DanmakuBaseExpansion</AssemblyName>
+        <TargetFrameworkVersion>v4.8.1</TargetFrameworkVersion>
+        <FileAlignment>512</FileAlignment>
+        <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    </PropertyGroup>
+    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+        <PlatformTarget>AnyCPU</PlatformTarget>
+        <DebugSymbols>true</DebugSymbols>
+        <DebugType>full</DebugType>
+        <Optimize>false</Optimize>
+        <OutputPath>bin\Debug\</OutputPath>
+        <DefineConstants>DEBUG;TRACE</DefineConstants>
+        <ErrorReport>prompt</ErrorReport>
+        <WarningLevel>4</WarningLevel>
+    </PropertyGroup>
+    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+        <PlatformTarget>AnyCPU</PlatformTarget>
+        <DebugType>pdbonly</DebugType>
+        <Optimize>true</Optimize>
+        <OutputPath>bin\Release\</OutputPath>
+        <DefineConstants>TRACE</DefineConstants>
+        <ErrorReport>prompt</ErrorReport>
+        <WarningLevel>4</WarningLevel>
+    </PropertyGroup>
+    <ItemGroup>
+        <Reference Include="System"/>
+        <Reference Include="System.Core"/>
+        <Reference Include="System.Data"/>
+        <Reference Include="System.Xml"/>
+    </ItemGroup>
+    <ItemGroup>
+        <Compile Include="Cards\CharacterDeck\0_BaseCharacterCard.cs" />
+        <Compile Include="Cards\CharacterDeck\AliceMargatroid.cs" />
+        <Compile Include="Cards\CharacterDeck\Cirno.cs" />
+        <Compile Include="Cards\CharacterDeck\HakureiReimu.cs" />
+        <Compile Include="Cards\CharacterDeck\HijiriByakuren.cs" />
+        <Compile Include="Cards\CharacterDeck\HinanawiTenshi.cs" />
+        <Compile Include="Cards\CharacterDeck\HongMeiling.cs" />
+        <Compile Include="Cards\CharacterDeck\IbukiSuika.cs" />
+        <Compile Include="Cards\CharacterDeck\IzayoiSakuya.cs" />
+        <Compile Include="Cards\CharacterDeck\KamishirasawaKeine.cs" />
+        <Compile Include="Cards\CharacterDeck\KawashiroNitori.cs" />
+        <Compile Include="Cards\CharacterDeck\KazamiYuuka.cs" />
+        <Compile Include="Cards\CharacterDeck\KirisameMarisa.cs" />
+        <Compile Include="Cards\CharacterDeck\KochiyaSanae.cs" />
+        <Compile Include="Cards\CharacterDeck\KomeijiSatori.cs" />
+        <Compile Include="Cards\CharacterDeck\KonpakuYoumu.cs" />
+        <Compile Include="Cards\CharacterDeck\MononobeNoFuto.cs" />
+        <Compile Include="Cards\CharacterDeck\PatchouliKnowledge.cs" />
+        <Compile Include="Cards\CharacterDeck\ReisenUdongeinInaba.cs" />
+        <Compile Include="Cards\CharacterDeck\ReiujiUtsuho.cs" />
+        <Compile Include="Cards\CharacterDeck\RemiliaScarlet.cs" />
+        <Compile Include="Cards\CharacterDeck\ShameimaruAya.cs" />
+        <Compile Include="Cards\CharacterDeck\ToyosatomimiNoMiko.cs" />
+        <Compile Include="Cards\CharacterDeck\YagokoroEirin.cs" />
+        <Compile Include="Cards\CharacterDeck\YakumoYukari.cs" />
+        <Compile Include="Cards\IncidentDeck\0_BaseIncidentCard.cs" />
+        <Compile Include="Cards\IncidentDeck\CrisisOfFaith.cs" />
+        <Compile Include="Cards\IncidentDeck\CrossingToHigan.cs" />
+        <Compile Include="Cards\IncidentDeck\EndlessParty.cs" />
+        <Compile Include="Cards\IncidentDeck\EternalNight.cs" />
+        <Compile Include="Cards\IncidentDeck\FiveImpossibleRequests.cs" />
+        <Compile Include="Cards\IncidentDeck\GreatBarrierWeakening.cs" />
+        <Compile Include="Cards\IncidentDeck\GreatFairyWars.cs" />
+        <Compile Include="Cards\IncidentDeck\LilyWhite.cs" />
+        <Compile Include="Cards\IncidentDeck\Overdrive.cs" />
+        <Compile Include="Cards\IncidentDeck\RekindleBlazingHell.cs" />
+        <Compile Include="Cards\IncidentDeck\SaigyouAyakashiBlooming.cs" />
+        <Compile Include="Cards\IncidentDeck\ScarletWeatherRhapsody.cs" />
+        <Compile Include="Cards\IncidentDeck\SpringSnow.cs" />
+        <Compile Include="Cards\IncidentDeck\UndefinedFantasticObject.cs" />
+        <Compile Include="Cards\IncidentDeck\VoyageToMakai.cs" />
+        <Compile Include="Cards\IncidentDeck\WorldlyDesires.cs" />
+        <Compile Include="Cards\MainDeck\0_BaseMainCard.cs" />
+        <Compile Include="Cards\MainDeck\ActionBorrow.cs">
+          <DependentUpon>Borrow.cs</DependentUpon>
+        </Compile>
+        <Compile Include="Cards\MainDeck\ActionGrimoire.cs">
+          <DependentUpon>Grimoire.cs</DependentUpon>
+        </Compile>
+        <Compile Include="Cards\MainDeck\ActionKourindou.cs">
+          <DependentUpon>Kourindou.cs</DependentUpon>
+        </Compile>
+        <Compile Include="Cards\MainDeck\ActionLaserShot.cs">
+          <DependentUpon>LaserShot.cs</DependentUpon>
+        </Compile>
+        <Compile Include="Cards\MainDeck\ActionLastWord.cs">
+          <DependentUpon>LastWord.cs</DependentUpon>
+        </Compile>
+        <Compile Include="Cards\MainDeck\ActionMasterPlan.cs">
+          <DependentUpon>MasterPlan.cs</DependentUpon>
+        </Compile>
+        <Compile Include="Cards\MainDeck\ActionMelee.cs">
+          <DependentUpon>Melee.cs</DependentUpon>
+        </Compile>
+        <Compile Include="Cards\MainDeck\ActionParty.cs">
+          <DependentUpon>Party.cs</DependentUpon>
+        </Compile>
+        <Compile Include="Cards\MainDeck\ActionSealAway.cs">
+          <DependentUpon>SealAway.cs</DependentUpon>
+        </Compile>
+        <Compile Include="Cards\MainDeck\ActionShootInRange.cs">
+          <DependentUpon>Shoot.cs</DependentUpon>
+        </Compile>
+        <Compile Include="Cards\MainDeck\ActionShootOutOfRange.cs">
+          <DependentUpon>Shoot.cs</DependentUpon>
+        </Compile>
+        <Compile Include="Cards\MainDeck\ActionTempest.cs">
+          <DependentUpon>Tempest.cs</DependentUpon>
+        </Compile>
+        <Compile Include="Cards\MainDeck\ActionVoile.cs">
+          <DependentUpon>Voile.cs</DependentUpon>
+        </Compile>
+        <Compile Include="Cards\MainDeck\DoubleModeMainCard.cs">
+          <DependentUpon>0_BaseMainCard.cs</DependentUpon>
+        </Compile>
+        <Compile Include="Cards\MainDeck\InvocationBomb.cs">
+          <DependentUpon>Bomb.cs</DependentUpon>
+        </Compile>
+        <Compile Include="Cards\MainDeck\InvocationCaptureSpellCard.cs">
+          <DependentUpon>CaptureSpellCard.cs</DependentUpon>
+        </Compile>
+        <Compile Include="Cards\MainDeck\InvocationSpiritualAttack.cs">
+          <DependentUpon>SpiritualAttack.cs</DependentUpon>
+        </Compile>
+        <Compile Include="Cards\MainDeck\ItemFocus.cs">
+          <DependentUpon>Focus.cs</DependentUpon>
+        </Compile>
+        <Compile Include="Cards\MainDeck\ItemMiniHakkero.cs">
+          <DependentUpon>MiniHakkero.cs</DependentUpon>
+        </Compile>
+        <Compile Include="Cards\MainDeck\ItemPower.cs">
+          <DependentUpon>Power.cs</DependentUpon>
+        </Compile>
+        <Compile Include="Cards\MainDeck\ItemSorcerersSutraScroll.cs">
+          <DependentUpon>SorcerersSutraScroll.cs</DependentUpon>
+        </Compile>
+        <Compile Include="Cards\MainDeck\ItemStopwatch.cs">
+          <DependentUpon>Stopwatch.cs</DependentUpon>
+        </Compile>
+        <Compile Include="Cards\MainDeck\ItemSupernaturalBorder.cs">
+          <DependentUpon>SupernaturalBorder.cs</DependentUpon>
+        </Compile>
+        <Compile Include="Cards\MainDeck\ReactionBomb.cs">
+          <DependentUpon>Bomb.cs</DependentUpon>
+        </Compile>
+        <Compile Include="Cards\MainDeck\ReactionGrazeOther.cs">
+          <DependentUpon>Graze.cs</DependentUpon>
+        </Compile>
+        <Compile Include="Cards\MainDeck\ReactionGrazeSelf.cs">
+          <DependentUpon>Graze.cs</DependentUpon>
+        </Compile>
+        <Compile Include="Cards\MainDeck\SingleModeMainCard.cs">
+          <DependentUpon>0_BaseMainCard.cs</DependentUpon>
+        </Compile>
+        <Compile Include="Cards\MainDeck\_OneUp.cs" />
+        <Compile Include="Cards\MainDeck\ActionOneUp.cs">
+          <DependentUpon>_OneUp.cs</DependentUpon>
+        </Compile>
+        <Compile Include="Cards\MainDeck\LastWord.cs" />
+        <Compile Include="Cards\MainDeck\MasterPlan.cs" />
+        <Compile Include="Cards\MainDeck\Bomb.cs" />
+        <Compile Include="Cards\MainDeck\Borrow.cs" />
+        <Compile Include="Cards\MainDeck\CaptureSpellCard.cs" />
+        <Compile Include="Cards\MainDeck\Focus.cs" />
+        <Compile Include="Cards\MainDeck\Graze.cs" />
+        <Compile Include="Cards\MainDeck\Grimoire.cs" />
+        <Compile Include="Cards\MainDeck\Kourindou.cs" />
+        <Compile Include="Cards\MainDeck\LaserShot.cs" />
+        <Compile Include="Cards\MainDeck\Melee.cs" />
+        <Compile Include="Cards\MainDeck\MiniHakkero.cs" />
+        <Compile Include="Cards\MainDeck\Party.cs" />
+        <Compile Include="Cards\MainDeck\Power.cs" />
+        <Compile Include="Cards\MainDeck\ReactionOneUp.cs">
+          <DependentUpon>_OneUp.cs</DependentUpon>
+        </Compile>
+        <Compile Include="Cards\MainDeck\SealAway.cs" />
+        <Compile Include="Cards\MainDeck\Shoot.cs" />
+        <Compile Include="Cards\MainDeck\SorcerersSutraScroll.cs" />
+        <Compile Include="Cards\MainDeck\SpiritualAttack.cs" />
+        <Compile Include="Cards\MainDeck\Stopwatch.cs" />
+        <Compile Include="Cards\MainDeck\SupernaturalBorder.cs" />
+        <Compile Include="Cards\MainDeck\Tempest.cs" />
+        <Compile Include="Cards\MainDeck\Voile.cs" />
+        <Compile Include="Cards\RoleDeck\0_BaseRoleCard.cs" />
+        <Compile Include="Cards\RoleDeck\AntiHeroine.cs" />
+        <Compile Include="Cards\RoleDeck\Challenger.cs" />
+        <Compile Include="Cards\RoleDeck\ExBoss.cs" />
+        <Compile Include="Cards\RoleDeck\ExBossUnlocked.cs" />
+        <Compile Include="Cards\RoleDeck\ExMidboss.cs" />
+        <Compile Include="Cards\RoleDeck\FinalBoss.cs" />
+        <Compile Include="Cards\RoleDeck\Heroine.cs" />
+        <Compile Include="Cards\RoleDeck\OneTruePartner.cs" />
+        <Compile Include="Cards\RoleDeck\Partner.cs" />
+        <Compile Include="Cards\RoleDeck\PhantasmBoss.cs" />
+        <Compile Include="Cards\RoleDeck\Rival.cs" />
+        <Compile Include="Cards\RoleDeck\StageBoss.cs" />
+        <Compile Include="Cards\RoleDeck\TruePhantasmBoss.cs" />
+        <Compile Include="Decks\BaseCharacterDeck.cs" />
+        <Compile Include="Decks\BaseIncidentDeck.cs" />
+        <Compile Include="Decks\BaseMainDeck.cs" />
+        <Compile Include="Decks\BaseRoleDeck.cs" />
+        <Compile Include="ExpansionData.cs" />
+        <Compile Include="Properties\AssemblyInfo.cs" />
+    </ItemGroup>
+    <ItemGroup>
+      <ProjectReference Include="..\DanmakuCardGameEngine\DanmakuCardGameEngine.csproj">
+        <Project>{09a0df1b-76fd-4ed0-9cec-8d6125f2da91}</Project>
+        <Name>DanmakuCardGameEngine</Name>
+      </ProjectReference>
+    </ItemGroup>
+    <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets"/>
+    <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+         Other similar extension points exist, see Microsoft.Common.targets.
+    <Target Name="BeforeBuild">
+    </Target>
+    <Target Name="AfterBuild">
+    </Target>
+    -->
+
+</Project>
