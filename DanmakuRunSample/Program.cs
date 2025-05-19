@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using DanmakuCardGameEngine.Core;
+using DanmakuCardGameEngine.Events;
+using DanmakuCardGameEngine.Events.Args;
 using DanmakuCardGameEngine.Models.Player;
 using DanmakuRunSample.Players;
 using DanmakuExpansion = DanmakuBaseExpansion.ExpansionData;
@@ -17,10 +19,28 @@ namespace DanmakuRunSample {
                 },
                 new IExpansionData[] { new DanmakuExpansion() }
             );
+            Test test = new Test();
+
+            gameCore.EventManager.OnGameState.Before += test.OnGameStateBefore;
+            gameCore.EventManager.OnGameState.After += test.OnGameStateAfter;
+            gameCore.Init();
 
             foreach (IReadOnlyPlayer player in gameCore.GameState.Players) {
                 Console.WriteLine($"{player}");
             }
         }
     }
+
+    internal class Test : IGameStateEvent {
+
+        public void OnGameStateBefore(GameStateEventArgs args, out bool bubbleevent) {
+            Console.WriteLine(args.GameState.State?.Name);
+            bubbleevent = true;
+        }
+        
+        public void OnGameStateAfter(GameStateEventArgs args) {
+            Console.WriteLine(args.GameState.State.Name + " end");
+        }
+    }
+
 }

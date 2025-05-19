@@ -1,11 +1,14 @@
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
+using DanmakuCardGameEngine.Core;
 using DanmakuCardGameEngine.Game;
 using DanmakuCardGameEngine.Models.Cards;
 using DanmakuCardGameEngine.Models.Deck;
+using DanmakuCardGameEngine.Models.Player.Components;
 
 namespace DanmakuCardGameEngine.Models.Player {
-    public interface IPlayer : IReadOnlyPlayer, IEquatable<IReadOnlyPlayer> {
+    public interface IPlayer : IReadOnlyPlayer, IDecisionMaker {
         new string Id { get; }
         new string Name { get; set; }
         new int Life { get; set; }
@@ -14,22 +17,29 @@ namespace DanmakuCardGameEngine.Models.Player {
         new int DanmakuEffectiveCount { get; set; }
         new int DanmakuCount { get; set; }
         new int DanmakuLimit { get; }
+        new bool IsRoleRevealed { get; set; }
+        new IHand Hand { get; }
         new ICharacterCard MainCharacterCard { get; set; }
         new IReadOnlyList<ICharacterCard> ExtraCharacterCards { get; }
-        new bool IsRoleRevealed { get; set; }
         new IRoleCard RoleCard { get; set; }
         new int Range { get; }
         new int DistanceBonus { get; }
         
-        void DrawCard(IDeck<ICard> deck);
-        void PlayCard(ICard card);
-        void Attack(IReadOnlyPlayer player);
-        void TakeDamage(int damage);
-        object MakeChoice(params object[] choices);
-        void ChooseCharacter(IList<ICharacterCard> characters);
+        IDefaultData DefaultData { get; set; }
 
-        void InitStats(IDefaultData defaultData);
+        Task DrawCard<TCard>(IDeck<TCard> deck) where TCard : ICard;
+        Task DrawCards<TCard>(IDeck<TCard> deck, int quantity) where TCard : ICard;
+        Task PlayCard(ICard card);
+        Task Attack(IReadOnlyPlayer player);
+        Task TakeDamage(int damage);
+        Task ChooseCharacter(IList<ICharacterCard> characters);
+
+        void InitStats();
 
         IReadOnlyPlayer ToReadOnlyPlayer();
+    }
+    
+    public interface IDecisionMaker {
+        Task<T> ChooseAsync<T>(IReadOnlyList<T> options, IReadOnlyGameState gameState);
     }
 }

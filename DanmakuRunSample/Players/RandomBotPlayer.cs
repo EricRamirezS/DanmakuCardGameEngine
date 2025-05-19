@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
+using DanmakuCardGameEngine.Core;
+using DanmakuCardGameEngine.Game;
 using DanmakuCardGameEngine.Models.Cards;
 using DanmakuCardGameEngine.Models.Deck;
 using DanmakuCardGameEngine.Models.Player;
@@ -9,29 +12,30 @@ namespace DanmakuRunSample.Players {
     public class RandomBotPlayer : Player {
         public RandomBotPlayer(string name) : base(name) { }
 
-        public override void DrawCard(IDeck<ICard> deck) {
+        public override Task DrawCard<TCard>(IDeck<TCard> deck) {
+            throw new NotImplementedException();
+        }
+        public override Task DrawCards<TCard>(IDeck<TCard> deck, int quantity) {
+            throw new NotImplementedException();
+        }
+        public override Task PlayCard(ICard card) {
             throw new System.NotImplementedException();
         }
 
-        public override void PlayCard(ICard card) {
+        public override Task Attack(IReadOnlyPlayer player) {
             throw new System.NotImplementedException();
         }
 
-        public override void Attack(IReadOnlyPlayer player) {
+        public override Task TakeDamage(int damage) {
             throw new System.NotImplementedException();
         }
 
-        public override void TakeDamage(int damage) {
-            throw new System.NotImplementedException();
+        public override async Task ChooseCharacter(IList<ICharacterCard> characters) {
+            MainCharacterCard = await ChooseAsync(characters.ToList().AsReadOnly(), GameCore.Instance.GameState);
         }
-
-        public override object MakeChoice(params object[] choices) {
+        public override Task<T> ChooseAsync<T>(IReadOnlyList<T> options, IReadOnlyGameState gameState) {
             Random random = new Random();
-            return choices[random.Next(0, choices.Length)];
-        }
-
-        public override void ChooseCharacter(IList<ICharacterCard> characters) {
-            MainCharacterCard = (ICharacterCard)MakeChoice(characters.ToArray());
+            return Task.FromResult(options[random.Next(0, options.Count)]);
         }
     }
 }

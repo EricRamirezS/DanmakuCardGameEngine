@@ -1,6 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using DanmakuCardGameEngine.Core;
+using DanmakuCardGameEngine.Enums;
 using DanmakuCardGameEngine.Enums.Object;
+using DanmakuCardGameEngine.Events.Args;
 using DanmakuCardGameEngine.Models.Deck;
 using DanmakuCardGameEngine.Models.Player;
 
@@ -13,6 +16,7 @@ namespace DanmakuCardGameEngine.Game {
 
         new int CurrentRoundNumber { get; set; }
         new int CurrentTurnNumber { get; set; }
+        int TurnOffSet { get; set; }
 
         IReadOnlyGameState AsReadOnly();
     }
@@ -39,9 +43,9 @@ namespace DanmakuCardGameEngine.Game {
 
         internal ReadOnlyGameState(IGameState gameState) {
             PlayerInTurn = gameState.PlayerInTurn;
-            Players = gameState.Players.Select(p => 
+            Players = gameState.Players?.Select(p =>
                 p.ToReadOnlyPlayer()
-                ).ToList().AsReadOnly();
+            ).ToList().AsReadOnly();
             DeckManager = gameState.DeckManager;
             State = gameState.State;
             CurrentRoundNumber = gameState.CurrentRoundNumber;
@@ -53,9 +57,26 @@ namespace DanmakuCardGameEngine.Game {
         public new IPlayer PlayerInTurn { get; set; }
         public new IList<IPlayer> Players { get; set; }
         public new DecksManager DeckManager { get; set; }
-        public new IState State { get; set; }
+
+        public new IState State
+        {
+            get => _state;
+            set
+            {
+                _core.EventManager.OnGameState.Invoke(
+                    new GameStateEventArgs(),
+                    () => _state = value);
+            }
+        }
+
         public new int CurrentRoundNumber { get; set; }
         public new int CurrentTurnNumber { get; set; }
+        public int TurnOffSet { get; set; }
+        private GameCore _core;
+        private IState _state = States.None;
+        public GameState(GameCore core) {
+            _core = core;
+        }
 
         public IReadOnlyGameState AsReadOnly() => new ReadOnlyGameState(this);
     }

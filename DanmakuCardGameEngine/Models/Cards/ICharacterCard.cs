@@ -5,7 +5,6 @@ using DanmakuCardGameEngine.Models.Commons;
 namespace DanmakuCardGameEngine.Models.Cards {
     public interface ICharacterCard : ICard {
         ISpellCardTiming SpellCardTiming { get; }
-        IModifiers Modifiers { get; }
     }
 
     public abstract class CharacterCard : Card, ICharacterCard {
@@ -13,6 +12,5 @@ namespace DanmakuCardGameEngine.Models.Cards {
             CardTypes.CharacterCard, id, name, season, expansion) { }
 
         public abstract ISpellCardTiming SpellCardTiming { get; }
-        public IModifiers Modifiers => Commons.Modifiers.Empty;
     }
 }

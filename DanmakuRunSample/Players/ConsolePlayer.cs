@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
+using DanmakuCardGameEngine.Core;
+using DanmakuCardGameEngine.Game;
 using DanmakuCardGameEngine.Models.Cards;
 using DanmakuCardGameEngine.Models.Deck;
 using DanmakuCardGameEngine.Models.Player;
@@ -9,39 +12,42 @@ namespace DanmakuRunSample.Players {
     public class ConsolePlayer : Player {
         public ConsolePlayer(string name) : base(name) { }
 
-        public override void DrawCard(IDeck<ICard> deck) {
+        public override Task DrawCard<TCard>(IDeck<TCard> deck) {
+            throw new NotImplementedException();
+        }
+        public override Task DrawCards<TCard>(IDeck<TCard> deck, int quantity) {
+            throw new NotImplementedException();
+        }
+        public override Task PlayCard(ICard card) {
             throw new System.NotImplementedException();
         }
 
-        public override void PlayCard(ICard card) {
+        public override Task Attack(IReadOnlyPlayer player) {
             throw new System.NotImplementedException();
         }
 
-        public override void Attack(IReadOnlyPlayer player) {
+        public override Task TakeDamage(int damage) {
             throw new System.NotImplementedException();
         }
-
-        public override void TakeDamage(int damage) {
-            throw new System.NotImplementedException();
+        
+        public override async Task ChooseCharacter(IList<ICharacterCard> characters) {
+            Console.WriteLine($"Choose character (current Role {RoleCard.Name}):");
+            MainCharacterCard = await ChooseAsync(characters.ToList().AsReadOnly(), GameCore.Instance.GameState);
         }
-
-        public override object MakeChoice(params object[] choices) {
+        
+        public override Task<T> ChooseAsync<T>(IReadOnlyList<T> options, IReadOnlyGameState gameState) {
             int option = 0;
-            for (int i = 0; i < choices.Length; i++) {
-                Console.WriteLine($"{i + 1}.- {choices[i]}");
+            for (int i = 0; i < options.Count; i++) {
+                Console.WriteLine($"{i + 1}.- {options[i]}");
             }
 
-            while (option < 1 || option > choices.Length) {
+            while (option < 1 || option > options.Count) {
                 if (!int.TryParse(Console.ReadLine(), out option)) {
                     Console.WriteLine("Invalid option");
                 }
             }
 
-            return choices[option - 1];
-        }
-
-        public override void ChooseCharacter(IList<ICharacterCard> characters) {
-            MainCharacterCard = (ICharacterCard)MakeChoice(characters.ToArray());
+            return Task.FromResult(options[option - 1]);
         }
     }
 }

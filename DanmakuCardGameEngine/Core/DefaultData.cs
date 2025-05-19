@@ -1,4 +1,4 @@
-﻿namespace DanmakuCardGameEngine.Game {
+﻿namespace DanmakuCardGameEngine.Core {
     public sealed class DefaultData : IDefaultData {
         public int DanmakuLimit { get; } = 1;
         public int MaxLife { get; } = 4;

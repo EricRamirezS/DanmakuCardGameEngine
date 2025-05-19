@@ -1,8 +1,9 @@
-﻿using DanmakuCardGameEngine.Enums.Object;
+﻿using System;
+using DanmakuCardGameEngine.Enums.Object;
 using DanmakuCardGameEngine.Models.Cards.Type;
 
 namespace DanmakuCardGameEngine.Models.Cards {
-    public interface ICard : IReadOnlyCard {
+    public interface ICard : IReadOnlyCard, IEquatable<ICard> {
         int Id { get; }
         string Name { get; }
         ISeason Season { get; }

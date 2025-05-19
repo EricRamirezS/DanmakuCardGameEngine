@@ -44,7 +44,7 @@ namespace DanmakuCardGameEngine.Core {
                         { RoleTypes.Heroine, 1 },
                         { RoleTypes.Partner, 0 },
                         { RoleTypes.StageBoss, 2 },
-                        { RoleTypes.ExtraBoss, 1 }
+                        { RoleTypes.ExtraBoss, 1 },
                     }
                 }, {
                     5,
@@ -52,7 +52,7 @@ namespace DanmakuCardGameEngine.Core {
                         { RoleTypes.Heroine, 1 },
                         { RoleTypes.Partner, 1 },
                         { RoleTypes.StageBoss, 2 },
-                        { RoleTypes.ExtraBoss, 1 }
+                        { RoleTypes.ExtraBoss, 1 },
                     }
                 }, {
                     6,
@@ -60,7 +60,7 @@ namespace DanmakuCardGameEngine.Core {
                         { RoleTypes.Heroine, 1 },
                         { RoleTypes.Partner, 1 },
                         { RoleTypes.StageBoss, 3 },
-                        { RoleTypes.ExtraBoss, 1 }
+                        { RoleTypes.ExtraBoss, 1 },
                     }
                 }, {
                     7,
@@ -68,7 +68,7 @@ namespace DanmakuCardGameEngine.Core {
                         { RoleTypes.Heroine, 1 },
                         { RoleTypes.Partner, 2 },
                         { RoleTypes.StageBoss, 3 },
-                        { RoleTypes.ExtraBoss, 1 }
+                        { RoleTypes.ExtraBoss, 1 },
                     }
                 }, {
                     8,
@@ -76,9 +76,9 @@ namespace DanmakuCardGameEngine.Core {
                         { RoleTypes.Heroine, 2 },
                         { RoleTypes.Partner, 2 },
                         { RoleTypes.StageBoss, 3 },
-                        { RoleTypes.ExtraBoss, 1 }
+                        { RoleTypes.ExtraBoss, 1 },
                     }
-                }
+                },
             };
     }
 }

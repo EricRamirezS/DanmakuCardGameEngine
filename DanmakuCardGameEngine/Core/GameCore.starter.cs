@@ -1,5 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using DanmakuCardGameEngine.Enums;
 using DanmakuCardGameEngine.Enums.Object;
 using DanmakuCardGameEngine.Game;
@@ -14,24 +16,43 @@ namespace DanmakuCardGameEngine.Core {
 
         public IList<IState> GamePhases { get; }
         public IReadOnlyGameState GameState => _gameState.AsReadOnly();
-        private readonly IGameState _gameState = new GameState();
+        public IEventManager EventManager { get; }
+        private readonly IGameState _gameState;
+        private bool _initialized = false;
+        private readonly IList<IPlayer> _players;
+        public IList<IComparablePlayer> Players => _gameState.Players.Cast<IComparablePlayer>().ToList();
 
+        public IComparablePlayer PlayerInTurn => _gameState.PlayerInTurn;
+        public IState CurrentPhase => _gameState.State;
         private GameCore(IList<IPlayer> players, IExpansionData[] expansions, IDefaultData defaultData) {
+            EventManager = new EventManager();
             _expansions = expansions;
             _defaultData = defaultData;
-            _gameState.State = States.InitialSetup;
+            _gameState = new GameState(this);
             GamePhases = new List<IState>();
             _gameState.DeckManager = new DecksManager();
-            _gameState.Players = players;
+            _players = players;
+            foreach (IPlayer player in players) {
+                player.DefaultData = _defaultData;
+            }
         }
 
-        internal void Init() {
+        public async Task Init() {
+            if (_initialized) {
+                throw new Exception("Game is already initialized");
+            }
+            _gameState.State = States.InitialSetup;
             SetUpDecks(_expansions);
             RunValidations();
             ShuffleDecks();
+            _gameState.Players = _players;
             DealRoles();
-            AssignCharacter();
+            await AssignCharacter();
             InitializeStats();
+            SetUpTurns();
+            DealInitialHand();
+            _gameState.State = States.StartOfTheGame;
+            _initialized = true;
         }
 
         private void SetUpDecks(IExpansionData[] expansions) {
@@ -47,8 +68,8 @@ namespace DanmakuCardGameEngine.Core {
         }
 
         private void RunValidations() {
-            GameValidator.ValidateNumberOfPlayers(_gameState.Players.Count);
-            GameValidator.ValidateRoles(_gameState.DeckManager.GetDeck<IRoleCard>(), _gameState.Players.Count);
+            GameValidator.ValidateNumberOfPlayers(_players.Count);
+            GameValidator.ValidateRoles(_gameState.DeckManager.GetDeck<IRoleCard>(), _players.Count);
         }
 
         private void ShuffleDecks() {
@@ -80,13 +101,17 @@ namespace DanmakuCardGameEngine.Core {
             }
         }
 
-        private void AssignCharacter() {
+        private async Task AssignCharacter() {
             _gameState.State = States.AssignCharacter;
             Deck<ICharacterCard> deck = _gameState.DeckManager.GetDeck<ICharacterCard>();
+
             int i = 0;
-            foreach (IPlayer player in _gameState.Players) {
-                player.ChooseCharacter(deck.Skip(i++ * 2).Take(2).ToList());
-            }
+
+            List<Task> tasks = (from player in _gameState.Players
+                let characterOptions = deck.Skip(i++ * 2).Take(2).ToList()
+                select player.ChooseCharacter(characterOptions)).ToList();
+
+            await Task.WhenAll(tasks);
         }
 
         private void RegisterOrUpdateDeck<TCard>(Deck<TCard> deck) where TCard : ICard {
@@ -97,8 +122,47 @@ namespace DanmakuCardGameEngine.Core {
 
 
         private void InitializeStats() {
+            _gameState.State = States.InitializeStats;
+
             foreach (IPlayer player in _gameState.Players) {
-                player.InitStats(_defaultData);
+                player.InitStats();
+            }
+        }
+
+        private void SetUpTurns() {
+            int offset = 0;
+            foreach (IPlayer player in _gameState.Players) {
+                if (player.IsRoleRevealed) {
+                    _gameState.PlayerInTurn = player;
+                    _gameState.TurnOffSet = offset;
+                    break;
+                }
+                offset++;
+            }
+        }
+
+        private void DealInitialHand() {
+            _gameState.State = States.DealInitialHand;
+            int count = _gameState.Players.Count;
+            for (int i = 0; i < _gameState.Players.Count(); i++) {
+                IPlayer player = _gameState.Players[(i + _gameState.TurnOffSet) % count];
+                Deck<IMainCard> mainCards = _gameState.DeckManager.GetDeck<IMainCard>();
+                player.Hand.Cards.AddRange(mainCards.Draw(player.MaxHandSize + AdditionalCards(i)));
+            }
+        }
+
+        private static int AdditionalCards(int i) {
+            switch (i) {
+                case 4:
+                case 5:
+                    return 1;
+                case 6:
+                case 7:
+                    return 2;
+                case 8:
+                    return 3;
+                default:
+                    return 0;
             }
         }
     }

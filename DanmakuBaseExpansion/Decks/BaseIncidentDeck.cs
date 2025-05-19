@@ -19,7 +19,7 @@ namespace DanmakuBaseExpansion.Decks {
             new SpringSnow(),
             new UndefinedFantasticObject(),
             new VoyageToMakai(),
-            new WorldlyDesires()
+            new WorldlyDesires(),
         };
     }
 }
