@@ -104,7 +104,7 @@ namespace DanmakuCardGameEngine.Events {
         }
 
         private void UnsubscribeByConvention(object listener) {
-            if (!_listenerDelegates.TryGetValue(listener, out var delegates))
+            if (!_listenerDelegates.TryGetValue(listener, out (Delegate before, Delegate after) delegates))
                 return;
 
             if (delegates.before != null)
@@ -182,6 +182,8 @@ namespace DanmakuCardGameEngine.Events {
     public class RoleRevealedEvent : BubblingEvent<RoleRevealedEventArgs> { }
 
     public class RoleSwappedEvent : BubblingEvent<RoleSwappedEventArgs> { }
+    
+    public class RoundChangeEvent : BubblingEvent<RoundChangeEventArgs> { }
 
     public class SpellCardActivatedEvent : BubblingEvent<SpellCardActivatedEventArgs> { }
 
@@ -192,6 +194,8 @@ namespace DanmakuCardGameEngine.Events {
     public class StandbyEvent : BubblingEvent<StandbyEventArgs> { }
 
     public class StartOfTurnEvent : BubblingEvent<StartOfTurnEventArgs> { }
+    
+    public class TurnChangeEvent : BubblingEvent<TurnChangeEventArgs> { }
 
     public class TurnSkippedEvent : BubblingEvent<TurnSkippedEventArgs> { }
 

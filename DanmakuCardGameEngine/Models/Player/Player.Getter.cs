@@ -1,8 +1,6 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using DanmakuCardGameEngine.Enums;
 using DanmakuCardGameEngine.Enums.Object;
-using DanmakuCardGameEngine.Models.Cards;
 using DanmakuCardGameEngine.Models.Cards.Type;
 using DanmakuCardGameEngine.Models.Commons;
 
@@ -23,9 +21,6 @@ namespace DanmakuCardGameEngine.Models.Player {
             }
             if (MainCharacterCard != null) {
                 modifiers.AddRange(MainCharacterCard.Modifiers);
-            }
-            foreach (ICharacterCard extraCharacterCard in _extraCharacterCards) {
-                modifiers.AddRange(extraCharacterCard.Modifiers);
             }
             foreach (IItemCard itemCard in ItemField) {
                 modifiers.AddRange(itemCard.Modifiers);

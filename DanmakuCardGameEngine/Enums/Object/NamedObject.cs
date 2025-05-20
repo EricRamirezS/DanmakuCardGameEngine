@@ -12,7 +12,7 @@ namespace DanmakuCardGameEngine.Enums.Object {
 
         protected NamedObject(string name, string uniqueGroup) {
             Name = name;
-            this.UniqueGroup = uniqueGroup;
+            UniqueGroup = uniqueGroup;
         }
 
         public static bool operator ==(NamedObject obj1, INamedObject obj2) {
@@ -20,9 +20,7 @@ namespace DanmakuCardGameEngine.Enums.Object {
                 return true;
             if (ReferenceEquals(obj1, null))
                 return false;
-            if (ReferenceEquals(obj2, null))
-                return false;
-            return obj1.Equals(obj2);
+            return !ReferenceEquals(obj2, null) && obj1.Equals(obj2);
         }
 
         public static bool operator !=(NamedObject obj1, INamedObject obj2) => !(obj1 == obj2);
@@ -36,12 +34,11 @@ namespace DanmakuCardGameEngine.Enums.Object {
         public override bool Equals(object obj) {
             if (ReferenceEquals(null, obj)) return false;
             if (ReferenceEquals(this, obj)) return true;
-            if (obj.GetType() != this.GetType()) return false;
-            return Equals((NamedObject)obj);
+            return obj.GetType() == GetType() && Equals((NamedObject)obj);
         }
 
         public override int GetHashCode() {
-            return (Name != null ? Name.GetHashCode() : 0);
+            return Name != null ? Name.GetHashCode() : 0;
         }
 
         public bool Equals(INamedObject other) {

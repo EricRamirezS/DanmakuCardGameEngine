@@ -1,6 +1,5 @@
 using DanmakuCardGameEngine.Enums;
 using DanmakuCardGameEngine.Enums.Object;
-using DanmakuCardGameEngine.Models.Commons;
 
 namespace DanmakuCardGameEngine.Models.Cards {
     public interface ICharacterCard : ICard {

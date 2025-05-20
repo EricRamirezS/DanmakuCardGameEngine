@@ -1,4 +1,5 @@
 using System;
+using DanmakuCardGameEngine.Enums;
 using DanmakuCardGameEngine.Enums.Object;
 
 namespace DanmakuCardGameEngine.Models.Cards {

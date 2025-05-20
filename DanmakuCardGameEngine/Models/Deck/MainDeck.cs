@@ -1,3 +1,4 @@
+
 using DanmakuCardGameEngine.Models.Cards;
 
 namespace DanmakuCardGameEngine.Models.Deck {

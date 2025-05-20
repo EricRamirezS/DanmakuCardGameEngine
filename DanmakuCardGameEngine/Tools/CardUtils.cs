@@ -3,6 +3,6 @@ using DanmakuCardGameEngine.Enums.Object;
 
 namespace DanmakuCardGameEngine.Tools {
     public static class CardUtils {
-        public static IReadOnlyList<ICardSubtypes> EmptySubtypes = new List<ICardSubtypes>().AsReadOnly();
+        public static readonly IReadOnlyList<ICardSubtypes> EmptySubtypes = new List<ICardSubtypes>().AsReadOnly();
     }
 }

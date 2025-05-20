@@ -1,11 +1,11 @@
 ﻿namespace DanmakuCardGameEngine.Core {
     public sealed class DefaultData : IDefaultData {
-        public int DanmakuLimit { get; } = 1;
-        public int MaxLife { get; } = 4;
-        public int MaxHandSize { get; } = 4;
-        public int Range { get; } = 1;
-        public int Distance { get; } = 1;
-        public int CardDraw { get; } = 2;
+        public int DanmakuLimit => 1;
+        public int MaxLife => 4;
+        public int MaxHandSize => 4;
+        public int Range => 1;
+        public int Distance => 1;
+        public int CardDraw => 2;
 
         internal DefaultData() { }
     }

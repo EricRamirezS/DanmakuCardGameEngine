@@ -3,7 +3,7 @@ using DanmakuCardGameEngine.Models.Deck;
 
 namespace DanmakuBaseExpansion.Decks {
     internal static class BaseIncidentDeck {
-        public static IIncidentDeck Get() => new IncidentDeck() {
+        public static IIncidentDeck Get() => new IncidentDeck {
             new CrisisOfFaith(),
             new CrossingToHigan(),
             new EndlessParty(),

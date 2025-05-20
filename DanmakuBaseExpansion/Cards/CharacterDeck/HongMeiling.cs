@@ -16,14 +16,14 @@ namespace DanmakuBaseExpansion.Cards.CharacterDeck {
     }
 
     internal class MeilingModifierData : ModifierData {
-        public MeilingModifierData(object source) : base(ModifierNames.MaxHand, source, 3, Durations.Active) { }
+        public MeilingModifierData(HongMeiling source) : base(ModifierNames.MaxHand, source, 3, Durations.Active) { }
 
         public override bool IsValid() {
             IGameCore core = GameCore.Instance;
 
             if (core.CurrentPhase == States.TurnZero || core.CurrentPhase == States.DealInitialHand) return false;
-            IComparablePlayer owner = core.Players.FirstOrDefault(e =>
-                e.MainCharacterCard == Source || e.ExtraCharacterCards.FirstOrDefault(f => f == Source) != null);
+            IEquatablePlayer owner = core.Players.FirstOrDefault(e =>
+                e.HasCharacter((HongMeiling)Source));
             return owner != null && !owner.Equals(core.PlayerInTurn);
         }
     }

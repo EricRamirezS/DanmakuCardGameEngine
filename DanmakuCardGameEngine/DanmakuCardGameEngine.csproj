@@ -46,6 +46,9 @@
           <DependentUpon>IExpansionData.cs</DependentUpon>
         </Compile>
         <Compile Include="Core\GameCore.cs" />
+        <Compile Include="Core\GameCore.MainGame.cs">
+          <DependentUpon>GameCore.cs</DependentUpon>
+        </Compile>
         <Compile Include="Core\GameCore.starter.cs">
           <DependentUpon>GameCore.cs</DependentUpon>
         </Compile>
@@ -187,22 +190,33 @@
         <Compile Include="Models\Deck\RoleDeck.cs">
           <DependentUpon>IRoleDeck.cs</DependentUpon>
         </Compile>
+        <Compile Include="Models\Player\Components\Hand.cs" />
         <Compile Include="Models\Player\Components\IHand.cs" />
         <Compile Include="Models\Player\Components\IItemField.cs" />
+        <Compile Include="Models\Player\Components\IReadOnlyHand.cs" />
+        <Compile Include="Models\Player\Components\ItemField.cs" />
+        <Compile Include="Models\Player\Components\ReadOnlyHand.cs" />
+        <Compile Include="Models\Player\EquatablePlayer.cs">
+          <DependentUpon>IEquatablePlayer.cs</DependentUpon>
+        </Compile>
+        <Compile Include="Models\Player\IDecisionMaker.cs" />
+        <Compile Include="Models\Player\IEquatablePlayer.cs" />
         <Compile Include="Models\Player\IPlayer.cs" />
         <Compile Include="Models\Player\IReadOnlyPlayer.cs" />
         <Compile Include="Models\Player\Player.cs">
           <DependentUpon>IPlayer.cs</DependentUpon>
         </Compile>
-        <Compile Include="Models\Player\Player.Equatable.cs">
-          <DependentUpon>Player.cs</DependentUpon>
-        </Compile>
         <Compile Include="Models\Player\Player.Getter.cs">
           <DependentUpon>Player.cs</DependentUpon>
+        </Compile>
+        <Compile Include="Models\Player\ReadOnlyPlayer.cs">
+          <DependentUpon>IReadOnlyPlayer.cs</DependentUpon>
         </Compile>
         <Compile Include="Properties\AssemblyInfo.cs" />
         <Compile Include="Tools\CardUtils.cs" />
         <Compile Include="Tools\IRandomGenerator.cs" />
+        <Compile Include="Tools\IReadOnlyConverter.cs" />
+        <Compile Include="Tools\StringExtensions.cs" />
     </ItemGroup>
     <ItemGroup>
       <None Include="packages.config" />

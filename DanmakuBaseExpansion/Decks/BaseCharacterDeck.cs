@@ -3,7 +3,7 @@ using DanmakuCardGameEngine.Models.Deck;
 
 namespace DanmakuBaseExpansion.Decks {
     internal static class BaseCharacterDeck {
-        public static ICharacterDeck Get() => new CharacterDeck() {
+        public static ICharacterDeck Get() => new CharacterDeck {
             // new AliceMargatroid(),
             new Cirno(),
             // new HakureiReimu(),

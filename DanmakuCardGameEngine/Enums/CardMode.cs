@@ -1,4 +1,4 @@
-﻿namespace DanmakuCardGameEngine.Models.Cards {
+﻿namespace DanmakuCardGameEngine.Enums {
     public enum CardMode {
         Single,
         Double,

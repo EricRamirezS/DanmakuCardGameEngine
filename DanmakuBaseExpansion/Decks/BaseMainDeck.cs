@@ -4,7 +4,7 @@ using DanmakuCardGameEngine.Models.Deck;
 
 namespace DanmakuBaseExpansion.Decks {
     internal static class BaseMainDeck {
-        public static IMainDeck Get() => new MainDeck() {
+        public static IMainDeck Get() => new MainDeck {
             // new OneUp(1, Seasons.Winter),
             // new OneUp(2, Seasons.Autumn),
             // new Bomb(3, Seasons.Summer),
@@ -37,7 +37,7 @@ namespace DanmakuBaseExpansion.Decks {
             // new LastWord(30, Seasons.Summer),
             // new MasterPlan(31, Seasons.Autumn),
             // new Melee(32, Seasons.Winter),
-            // new MiniHakkero(33, Seasons.Summer),
+            new MiniHakkero(33, Seasons.Summer),
             // new Party(34, Seasons.Spring),
             new Power(35, Seasons.Winter),
             new Power(36, Seasons.Winter),
@@ -73,14 +73,14 @@ namespace DanmakuBaseExpansion.Decks {
             new Shoot(66, Seasons.Winter),
             new Shoot(67, Seasons.Winter),
             new Shoot(68, Seasons.Winter),
-            // new SorcerersSutraScroll(69, Seasons.Autumn),
+            new SorcerersSutraScroll(69, Seasons.Autumn),
             // new SpiritualAttack(70, Seasons.Spring),
             // new SpiritualAttack(71, Seasons.Spring),
             // new SpiritualAttack(72, Seasons.Summer),
             // new SpiritualAttack(73, Seasons.Summer),
             // new SpiritualAttack(74, Seasons.Autumn),
             // new SpiritualAttack(75, Seasons.Winter),
-            // new Stopwatch(76, Seasons.Winter),
+            new Stopwatch(76, Seasons.Winter),
             // new SupernaturalBorder(77, Seasons.Spring),
             // new SupernaturalBorder(78, Seasons.Spring),
             // new Tempest(79, Seasons.Autumn),

@@ -10,7 +10,7 @@ namespace DanmakuCardGameEngine.Tools {
 
         public RandomGenerator() : this(new Random()) { }
 
-        public RandomGenerator(Random rng) {
+        private RandomGenerator(Random rng) {
             _rng = rng;
         }
 

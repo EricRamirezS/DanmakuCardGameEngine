@@ -6,11 +6,4 @@ namespace DanmakuCardGameEngine.Models.Player.Components {
         IReadOnlyPlayer Owner { get; }
     }
 
-    public class ItemField : List<IItemCard>, IItemField {
-        public ItemField(IReadOnlyPlayer owner) {
-            Owner = owner;
-        }
-
-        public IReadOnlyPlayer Owner { get; }
-    }
 }

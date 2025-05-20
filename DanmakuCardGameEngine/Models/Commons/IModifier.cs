@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using DanmakuCardGameEngine.Core;
 using DanmakuCardGameEngine.Enums;
@@ -66,7 +65,7 @@ namespace DanmakuCardGameEngine.Models.Commons {
 
         public ModifierData Apply() {
             ModifierData data = new ModifierData(ModifierName, Source, Value, Duration) {
-                Activated = true
+                Activated = true,
             };
             return data;
         }

@@ -1,20 +1,35 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using DanmakuCardGameEngine.Exceptions;
 using DanmakuCardGameEngine.Models.Cards;
 
 namespace DanmakuCardGameEngine.Models.Deck {
     public class DecksManager : ReadOnlyDeckManager, IDecksManager {
-        public Deck<TCard> GetDeck<TCard>() where TCard : ICard {
+        public IDeck<TCard> GetDeck<TCard>() where TCard : ICard {
             if (!Decks.ContainsKey(typeof(TCard))) throw new DeckNotFoundException();
 
             IList deck = Decks[typeof(TCard)];
-            return (Deck<TCard>)deck;
+            return (IDeck<TCard>)deck;
+        }
+
+        public IDeck GetDeck<TCard>(TCard sampleCard) where TCard : ICard {
+            Type cardType = sampleCard.GetType();
+            while (cardType != null && cardType != typeof(ICard)) {
+                foreach (Type iface in cardType.GetInterfaces()) {
+                    if (typeof(ICard).IsAssignableFrom(iface) && Decks.TryGetValue(iface, out IList deck)) {
+
+                        return (IDeck)deck;
+                    }
+                }
+                cardType = cardType.BaseType;
+            }
+            throw new DeckNotFoundException();
         }
 
         public TDeck GetDeck<TDeck, TCard>() where TDeck : IDeck<TCard> where TCard : ICard {
-            if (!Decks.ContainsKey(typeof(TCard))) throw new DeckNotFoundException();
+            Type cardType = typeof(TDeck);
+            if (!Decks.TryGetValue(cardType, out IList deck)) throw new DeckNotFoundException();
 
-            IList deck = Decks[typeof(TCard)];
             return (TDeck)deck;
         }
 
@@ -29,22 +44,22 @@ namespace DanmakuCardGameEngine.Models.Deck {
             }
         }
 
-        public void RegisterDeck<TCard>(Deck<TCard> deck) where TCard : ICard {
+        public void RegisterDeck<TCard>(IDeck<TCard> deck) where TCard : ICard {
             if (Decks.ContainsKey(typeof(TCard))) {
                 throw new DuplicatedDeckTypeException(typeof(TCard));
             }
 
             Decks.Add(typeof(TCard), deck);
         }
-
-        public void AddToDeck<TCard>(Deck<TCard> deck) where TCard : ICard {
-            Deck<TCard> originalDeck = GetDeck<TCard>();
+        
+        public void AddToDeck<TCard>(IDeck<TCard> deck) where TCard : ICard {
+            IDeck<TCard> originalDeck = GetDeck<TCard>();
             originalDeck.AddRange(deck);
         }
 
         public void ShuffleAllDecks() {
             foreach (IList decksValue in Decks.Values) {
-                ((IShuffleable) decksValue).Shuffle();
+                ((IShuffleable)decksValue).Shuffle();
             }
         }
     }

@@ -6,34 +6,40 @@ using DanmakuCardGameEngine.Enums;
 using DanmakuCardGameEngine.Enums.Object;
 using DanmakuCardGameEngine.Game;
 using DanmakuCardGameEngine.Models.Cards;
+using DanmakuCardGameEngine.Models.Cards.Type;
 using DanmakuCardGameEngine.Models.Deck;
 using DanmakuCardGameEngine.Models.Player;
 
 namespace DanmakuCardGameEngine.Core {
-    public partial class GameCore {
+    public partial class GameCore : IGameCore {
         private readonly IExpansionData[] _expansions;
-        private readonly IDefaultData _defaultData;
 
         public IList<IState> GamePhases { get; }
-        public IReadOnlyGameState GameState => _gameState.AsReadOnly();
+        public IReadOnlyGameState GameState => _gameState.ToReadOnly();
         public IEventManager EventManager { get; }
         private readonly IGameState _gameState;
-        private bool _initialized = false;
+        private bool _initialized;
         private readonly IList<IPlayer> _players;
-        public IList<IComparablePlayer> Players => _gameState.Players.Cast<IComparablePlayer>().ToList();
+        public IList<IEquatablePlayer> Players => _gameState.Players.Cast<IEquatablePlayer>().ToList();
 
-        public IComparablePlayer PlayerInTurn => _gameState.PlayerInTurn;
+        public IEquatablePlayer PlayerInTurn => _gameState.PlayerInTurn;
         public IState CurrentPhase => _gameState.State;
         private GameCore(IList<IPlayer> players, IExpansionData[] expansions, IDefaultData defaultData) {
             EventManager = new EventManager();
             _expansions = expansions;
-            _defaultData = defaultData;
             _gameState = new GameState(this);
-            GamePhases = new List<IState>();
+            GamePhases = new List<IState> {
+                States.StartOfTurn,
+                States.Incident,
+                States.Draw,
+                States.Main,
+                States.Discard,
+                States.EndOfTurn,
+            };
             _gameState.DeckManager = new DecksManager();
             _players = players;
             foreach (IPlayer player in players) {
-                player.DefaultData = _defaultData;
+                player.DefaultData = defaultData;
             }
         }
 
@@ -51,9 +57,12 @@ namespace DanmakuCardGameEngine.Core {
             InitializeStats();
             SetUpTurns();
             DealInitialHand();
+            await TurnZero();
             _gameState.State = States.StartOfTheGame;
             _initialized = true;
         }
+
+
 
         private void SetUpDecks(IExpansionData[] expansions) {
             _gameState.State = States.SetUpDecks;
@@ -79,10 +88,10 @@ namespace DanmakuCardGameEngine.Core {
 
         private void DealRoles() {
             _gameState.State = States.DetermineRoles;
-            Deck<IRoleCard> fullDeck = _gameState.DeckManager.GetDeck<IRoleCard>();
+            IDeck<IRoleCard> fullDeck = _gameState.DeckManager.GetDeck<IRoleCard>();
             IList<IRoleCard> usableDeck = fullDeck.Where(c => c.RequiredPlayers <= _gameState.Players.Count).ToList();
             IReadOnlyDictionary<IRoleType, int> requiredRoles =
-                GameValidator._roleDistribution[_gameState.Players.Count];
+                GameValidator.RoleDistribution[_gameState.Players.Count];
             RoleDeck tempDeck = new RoleDeck();
 
             tempDeck.AddRange(usableDeck.Where(c => c.RoleType == RoleTypes.Heroine)
@@ -103,7 +112,7 @@ namespace DanmakuCardGameEngine.Core {
 
         private async Task AssignCharacter() {
             _gameState.State = States.AssignCharacter;
-            Deck<ICharacterCard> deck = _gameState.DeckManager.GetDeck<ICharacterCard>();
+            IDeck<ICharacterCard> deck = _gameState.DeckManager.GetDeck<ICharacterCard>();
 
             int i = 0;
 
@@ -146,9 +155,10 @@ namespace DanmakuCardGameEngine.Core {
             int count = _gameState.Players.Count;
             for (int i = 0; i < _gameState.Players.Count(); i++) {
                 IPlayer player = _gameState.Players[(i + _gameState.TurnOffSet) % count];
-                Deck<IMainCard> mainCards = _gameState.DeckManager.GetDeck<IMainCard>();
-                player.Hand.Cards.AddRange(mainCards.Draw(player.MaxHandSize + AdditionalCards(i)));
+                IDeck<IMainCard> mainCards = _gameState.DeckManager.GetDeck<IMainCard>();
+                player.Hand.AddRange(mainCards.Draw(player.MaxHandSize + AdditionalCards(i + 1)));
             }
+            Console.WriteLine(GameState);
         }
 
         private static int AdditionalCards(int i) {
@@ -165,5 +175,41 @@ namespace DanmakuCardGameEngine.Core {
                     return 0;
             }
         }
+
+        private async Task TurnZero() {
+            _gameState.State = States.TurnZero;
+
+            Task[] playTasks = _gameState.Players.Select(async player =>
+            {
+                while (true) {
+                    List<IItemCard> items = player.Hand.OfType<IItemCard>().ToList();
+                    if (items.Count == 0) break;
+                    items.Add(null);
+                    IItemCard toPlay = await player.ChooseAsync(items, GameState);
+
+                    if (toPlay == null) break;
+                    player.ItemField.Add(toPlay);
+                    player.Hand.Remove(toPlay as IHandCard);
+                }
+            }).ToArray();
+
+            await Task.WhenAll(playTasks);
+
+            Task[] discardTask = _gameState.Players.Where(player => player.Hand.Count > player.MaxHandSize)
+                .Select(async player =>
+                {
+                    while (player.Hand.Count > player.MaxHandSize) {
+                        IList<IHandCard> cards = player.Hand;
+                        IHandCard toDiscard = await player.ChooseAsync(cards.ToList().AsReadOnly(), GameState);
+
+                        player.Hand.Remove(toDiscard);
+                        IDeck deck = _gameState.DeckManager.GetDeck(toDiscard);
+                        deck?.AddToDiscard(toDiscard);
+                    }
+                }).ToArray();
+
+            await Task.WhenAll(discardTask);
+        }
+
     }
 }

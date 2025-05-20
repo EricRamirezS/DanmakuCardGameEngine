@@ -7,8 +7,8 @@ namespace DanmakuBaseExpansion.Cards.CharacterDeck {
         public IzayoiSakuya() : base(8, "Izayoi Sakuya", Seasons.Winter) { }
         public override ISpellCardTiming SpellCardTiming => SpellCardTimings.Reaction;
 
-        public override IModifiers Modifiers => new Modifiers() {
-            new ModifierData(ModifierNames.AdditionalDanmaku, this, 2, Durations.Active)
+        public override IModifiers Modifiers => new Modifiers {
+            new ModifierData(ModifierNames.AdditionalDanmaku, this, 2, Durations.Active),
         };
     }
 }

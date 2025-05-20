@@ -35,11 +35,13 @@ namespace DanmakuCardGameEngine.Core {
         NewIncidentEvent OnNewIncident { get; }
         RoleRevealedEvent OnRoleRevealed { get; }
         RoleSwappedEvent OnRoleSwapped { get; }
+        RoundChangeEvent OnRoundChange { get; }
         SpellCardActivatedEvent OnSpellCardActivated { get; }
         SpellCardCancelledEvent OnSpellCardCancelled { get; }
         StackResolvedEvent OnStackResolved { get; }
         StandbyEvent OnStandby { get; }
         StartOfTurnEvent OnStartOfTurn { get; }
+        TurnChangeEvent OnTurnChange { get; }
         TurnSkippedEvent OnTurnSkipped { get; }
         TurnZeroEvent OnTurnZero { get; }
     }
@@ -82,11 +84,13 @@ namespace DanmakuCardGameEngine.Core {
         public NewIncidentEvent OnNewIncident { get; } = new NewIncidentEvent();
         public RoleRevealedEvent OnRoleRevealed { get; } = new RoleRevealedEvent();
         public RoleSwappedEvent OnRoleSwapped { get; } = new RoleSwappedEvent();
+        public RoundChangeEvent OnRoundChange { get; } = new RoundChangeEvent();
         public SpellCardActivatedEvent OnSpellCardActivated { get; } = new SpellCardActivatedEvent();
         public SpellCardCancelledEvent OnSpellCardCancelled { get; } = new SpellCardCancelledEvent();
         public StackResolvedEvent OnStackResolved { get; } = new StackResolvedEvent();
         public StandbyEvent OnStandby { get; } = new StandbyEvent();
         public StartOfTurnEvent OnStartOfTurn { get; } = new StartOfTurnEvent();
+        public TurnChangeEvent OnTurnChange { get; } = new TurnChangeEvent();
         public TurnSkippedEvent OnTurnSkipped { get; } = new TurnSkippedEvent();
         public TurnZeroEvent OnTurnZero { get; } = new TurnZeroEvent();
     }

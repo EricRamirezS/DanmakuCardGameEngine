@@ -19,15 +19,15 @@ namespace DanmakuRunSample.Players {
             throw new NotImplementedException();
         }
         public override Task PlayCard(ICard card) {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
 
         public override Task Attack(IReadOnlyPlayer player) {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
 
         public override Task TakeDamage(int damage) {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
         
         public override async Task ChooseCharacter(IList<ICharacterCard> characters) {

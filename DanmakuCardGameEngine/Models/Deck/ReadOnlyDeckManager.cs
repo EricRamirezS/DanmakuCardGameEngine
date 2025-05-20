@@ -8,11 +8,11 @@ namespace DanmakuCardGameEngine.Models.Deck {
     public abstract class ReadOnlyDeckManager : IReadOnlyDeckManager {
         protected readonly Dictionary<Type, IList> Decks = new Dictionary<Type, IList>();
 
-        public ReadOnlyDeck<TCard> GetReadOnlyDeck<TCard>() where TCard : ICard {
+        public IReadOnlyDeck<TCard> GetReadOnlyDeck<TCard>() where TCard : ICard {
             if (!Decks.ContainsKey(typeof(TCard))) throw new DeckNotFoundException();
 
             IList deck = Decks[typeof(TCard)];
-            return (Deck<TCard>)deck;
+            return ((IDeck<TCard>)deck).ToReadOnly();
         }
 
         public bool ContainsDeck<TCard>() where TCard : ICard {

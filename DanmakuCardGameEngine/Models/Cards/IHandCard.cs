@@ -1,3 +1,5 @@
+using DanmakuCardGameEngine.Enums;
+
 namespace DanmakuCardGameEngine.Models.Cards {
     public interface IHandCard : ICard {
         int PointValue { get; }

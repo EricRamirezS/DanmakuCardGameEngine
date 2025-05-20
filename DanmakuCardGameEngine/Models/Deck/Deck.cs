@@ -1,21 +1,23 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using DanmakuCardGameEngine.Exceptions;
 using DanmakuCardGameEngine.Models.Cards;
 using DanmakuCardGameEngine.Tools;
 
 namespace DanmakuCardGameEngine.Models.Deck {
     public class Deck<TCard> : List<TCard>, IDeck<TCard> where TCard : ICard {
         private readonly IRandomGenerator _rng;
-        public Discard<TCard> Discard = new Discard<TCard>();
+        public IDiscard<TCard> Discard { get; } = new Discard<TCard>();
 
-        public Deck() : this(new RandomGenerator()) { }
+        protected Deck() : this(new RandomGenerator()) { }
 
-        public Deck(IRandomGenerator randomGenerator) {
+        private Deck(IRandomGenerator randomGenerator) {
             _rng = randomGenerator;
         }
 
         public static implicit operator ReadOnlyDeck<TCard>(Deck<TCard> m) {
-            return new ReadOnlyDeck<TCard>(m.Count);
+            return new ReadOnlyDeck<TCard>(m);
         }
 
         public void Shuffle() {
@@ -56,6 +58,18 @@ namespace DanmakuCardGameEngine.Models.Deck {
 
         public void AddToDiscard(TCard card) {
             Discard.Add(card);
+        }
+
+        ICard IDeck.Draw() => Draw();
+
+        IList<ICard> IDeck.Draw(int numberOfCards) => Draw(numberOfCards).Cast<ICard>().ToList();
+
+        void IDeck.AddToDiscard(ICard card) => AddToDiscard((TCard)card);
+
+        IDiscard IDeck.GetDiscard() => Discard;
+
+        public IReadOnlyDeck<TCard> ToReadOnly() {
+            return new ReadOnlyDeck<TCard>(this);
         }
     }
 }

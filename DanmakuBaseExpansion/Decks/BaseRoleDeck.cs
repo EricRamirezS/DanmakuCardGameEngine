@@ -3,7 +3,7 @@ using DanmakuCardGameEngine.Models.Deck;
 
 namespace DanmakuBaseExpansion.Decks {
     internal static class BaseRoleDeck {
-        public static IRoleDeck Get() => new RoleDeck() {
+        public static IRoleDeck Get() => new RoleDeck {
             new Heroine(1),
             new StageBoss(2),
             new StageBoss(3),

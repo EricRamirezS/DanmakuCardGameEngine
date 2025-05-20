@@ -1,7 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
 using DanmakuCardGameEngine.Enums;
 using DanmakuCardGameEngine.Enums.Object;
+using DanmakuCardGameEngine.Exceptions;
 using DanmakuCardGameEngine.Models.Cards;
 using DanmakuCardGameEngine.Models.Deck;
 
@@ -12,9 +14,9 @@ namespace DanmakuCardGameEngine.Core {
             if (nPlayers > 8) throw new TooManyPlayersException(nPlayers);
         }
 
-        public static void ValidateRoles(Deck<IRoleCard> roles, int nPlayers) {
+        public static void ValidateRoles(IDeck<IRoleCard> roles, int nPlayers) {
             if (roles == null) throw new RoleDeckNotFoundException();
-            if (roles.Count <= 0) throw new RoleDeckEmptyException();
+            if (((IList)roles).Count <= 0) throw new RoleDeckEmptyException();
 
             IRoleCard[] heroines =
                 roles.Where(r => r.RoleType == RoleTypes.Heroine && r.RequiredPlayers <= nPlayers).ToArray();
@@ -25,7 +27,7 @@ namespace DanmakuCardGameEngine.Core {
             IRoleCard[] extraBosses =
                 roles.Where(r => r.RoleType == RoleTypes.ExtraBoss && r.RequiredPlayers <= nPlayers).ToArray();
 
-            IReadOnlyDictionary<IRoleType, int> distribution = _roleDistribution[nPlayers];
+            IReadOnlyDictionary<IRoleType, int> distribution = RoleDistribution[nPlayers];
             if (heroines.Length < distribution[RoleTypes.Heroine])
                 throw new NoEnoughRolesException(RoleTypes.Heroine, distribution[RoleTypes.Heroine]);
             if (partners.Length < distribution[RoleTypes.Partner])
@@ -36,7 +38,7 @@ namespace DanmakuCardGameEngine.Core {
                 throw new NoEnoughRolesException(RoleTypes.ExtraBoss, distribution[RoleTypes.ExtraBoss]);
         }
 
-        internal static readonly IReadOnlyDictionary<int, IReadOnlyDictionary<IRoleType, int>> _roleDistribution =
+        internal static readonly IReadOnlyDictionary<int, IReadOnlyDictionary<IRoleType, int>> RoleDistribution =
             new Dictionary<int, IReadOnlyDictionary<IRoleType, int>> {
                 {
                     4,

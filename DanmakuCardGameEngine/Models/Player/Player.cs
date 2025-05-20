@@ -11,7 +11,7 @@ using DanmakuCardGameEngine.Models.Player.Components;
 using Newtonsoft.Json;
 
 namespace DanmakuCardGameEngine.Models.Player {
-    public abstract partial class Player : ComparablePlayer, IPlayer {
+    public abstract partial class Player : EquatablePlayer, IPlayer {
         protected Player(string name) {
             Id = Guid.NewGuid().ToString();
             Name = name;
@@ -27,8 +27,8 @@ namespace DanmakuCardGameEngine.Models.Player {
             Hand = new Hand(this);
         }
 
-        public string Id { get; }
-        public string Name { get; set; }
+        public override string Id { get; }
+        public override string Name { get; }
         public int Life { get; set; }
         public int MaxLife => GetMaxLife();
         public int MaxHandSize => GetMaxHandSize();
@@ -39,15 +39,12 @@ namespace DanmakuCardGameEngine.Models.Player {
         public int DanmakuCount { get; set; }
         public int DanmakuLimit => GetDanmakuLimit();
         public bool IsRoleRevealed { get; set; }
-        IReadOnlyHand IReadOnlyPlayer.Hand => Hand;
         public int Range => GetRange();
         public int DistanceBonus => GetDistanceBonus();
         public IHand Hand { get; }
         public ICharacterCard MainCharacterCard { get; set; }
-        private List<ICharacterCard> _extraCharacterCards = new List<ICharacterCard>();
-        public IReadOnlyList<ICharacterCard> ExtraCharacterCards => _extraCharacterCards.AsReadOnly();
         public IRoleCard RoleCard { get; set; }
-        public IItemField ItemField { get; set; }
+        public IItemField ItemField { get; }
         public IModifiers Modifiers => GetModifiers();
 
         public abstract Task DrawCard<TCard>(IDeck<TCard> deck) where TCard : ICard;
@@ -56,17 +53,17 @@ namespace DanmakuCardGameEngine.Models.Player {
         public abstract Task Attack(IReadOnlyPlayer player);
         public abstract Task TakeDamage(int damage);
         public abstract Task ChooseCharacter(IList<ICharacterCard> characterCards);
+        public abstract Task<T> ChooseAsync<T>(IReadOnlyList<T> options, IReadOnlyGameState gameState);
 
-        [JsonIgnore]
-        public IDefaultData DefaultData { get; set; }
-        
+        [JsonIgnore] public IDefaultData DefaultData { get; set; }
+
         public void InitStats() {
 
             if (RoleCard.Id == 1 && RoleCard.Name == "Heroine" &&
                 RoleCard.RoleType == RoleTypes.Heroine) {
                 RevealRole();
             }
-            
+
             Life = MaxLife;
             IsSpellCardUsed = false;
             IsDefeated = false;
@@ -75,9 +72,12 @@ namespace DanmakuCardGameEngine.Models.Player {
             IsRoleRevealed = true;
         }
 
-        public IReadOnlyPlayer ToReadOnlyPlayer() {
+        public IReadOnlyPlayer ToReadOnly() {
             return new ReadOnlyPlayer(this);
         }
-        public abstract Task<T> ChooseAsync<T>(IReadOnlyList<T> options, IReadOnlyGameState gameState);
+
+        public override bool HasCharacter(ICharacterCard card) {
+            return MainCharacterCard == card;
+        }
     }
 }

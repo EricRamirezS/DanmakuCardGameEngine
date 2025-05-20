@@ -1,30 +1,31 @@
-using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using DanmakuCardGameEngine.Core;
-using DanmakuCardGameEngine.Game;
 using DanmakuCardGameEngine.Models.Cards;
+using DanmakuCardGameEngine.Models.Commons;
 using DanmakuCardGameEngine.Models.Deck;
 using DanmakuCardGameEngine.Models.Player.Components;
+using DanmakuCardGameEngine.Tools;
 
 namespace DanmakuCardGameEngine.Models.Player {
-    public interface IPlayer : IReadOnlyPlayer, IDecisionMaker {
-        new string Id { get; }
-        new string Name { get; set; }
-        new int Life { get; set; }
-        new bool IsSpellCardUsed { get; set; }
-        new bool IsDefeated { get; set; }
-        new int DanmakuEffectiveCount { get; set; }
-        new int DanmakuCount { get; set; }
-        new int DanmakuLimit { get; }
-        new bool IsRoleRevealed { get; set; }
-        new IHand Hand { get; }
-        new ICharacterCard MainCharacterCard { get; set; }
-        new IReadOnlyList<ICharacterCard> ExtraCharacterCards { get; }
-        new IRoleCard RoleCard { get; set; }
-        new int Range { get; }
-        new int DistanceBonus { get; }
-        
+    public interface IPlayer : IDecisionMaker, IReadOnlyConverter<IReadOnlyPlayer>, IEquatablePlayer {
+        int Life { get; set; }
+        int MaxLife { get; }
+        bool IsSpellCardUsed { get; set; }
+        bool IsDefeated { get; set; }
+        int DanmakuEffectiveCount { get; set; }
+        int DanmakuCount { get; set; }
+        int DanmakuLimit { get; }
+        int MaxHandSize { get; }
+        bool IsRoleRevealed { get; set; }
+        int Range { get; }
+        int DistanceBonus { get; }
+        IHand Hand { get; }
+        ICharacterCard MainCharacterCard { get; set; }
+        IRoleCard RoleCard { get; set; }
+        IItemField ItemField { get; }
+        IModifiers Modifiers { get; }
+
         IDefaultData DefaultData { get; set; }
 
         Task DrawCard<TCard>(IDeck<TCard> deck) where TCard : ICard;
@@ -35,11 +36,6 @@ namespace DanmakuCardGameEngine.Models.Player {
         Task ChooseCharacter(IList<ICharacterCard> characters);
 
         void InitStats();
+    }
 
-        IReadOnlyPlayer ToReadOnlyPlayer();
-    }
-    
-    public interface IDecisionMaker {
-        Task<T> ChooseAsync<T>(IReadOnlyList<T> options, IReadOnlyGameState gameState);
-    }
 }

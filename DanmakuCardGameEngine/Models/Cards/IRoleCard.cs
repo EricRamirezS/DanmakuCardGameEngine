@@ -1,6 +1,5 @@
 using DanmakuCardGameEngine.Enums;
 using DanmakuCardGameEngine.Enums.Object;
-using DanmakuCardGameEngine.Models.Commons;
 
 namespace DanmakuCardGameEngine.Models.Cards {
     public interface IRoleCard : ICard {
@@ -15,8 +14,8 @@ namespace DanmakuCardGameEngine.Models.Cards {
             name, season, expansion) { }
 
         public abstract IRoleType RoleType { get; }
-        public virtual IRoleType AltRoleType { get; }
-        public virtual int? RequiredPlayers { get; }
-        public virtual IRoleCard RevealedForm { get; }
+        public virtual IRoleType AltRoleType => null;
+        public virtual int? RequiredPlayers => null;
+        public virtual IRoleCard RevealedForm => null;
     }
 }

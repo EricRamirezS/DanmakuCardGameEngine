@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using DanmakuCardGameEngine.Enums.Object;
-using DanmakuCardGameEngine.Models.Cards;
+﻿using DanmakuCardGameEngine.Enums.Object;
 using DanmakuCardGameEngine.Models.Deck;
 
 namespace DanmakuCardGameEngine.Core {
     public abstract class ExpansionData : NamedObject, IExpansionData {
-        public ExpansionData(Expansion expansion) : base(expansion.Name, "Expansion") { }
+        protected ExpansionData(Expansion expansion) : base(expansion.Name, "Expansion") { }
         public virtual IRoleDeck RoleDeck { get; }
         public virtual IMainDeck MainDeck { get; }
         public virtual ICharacterDeck CharacterDeck { get; }

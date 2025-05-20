@@ -1,6 +1,11 @@
 ﻿using System;
 using DanmakuCardGameEngine.Core;
+using DanmakuCardGameEngine.Enums.Object;
 using DanmakuCardGameEngine.Game;
+
+// ReSharper disable UnusedAutoPropertyAccessor.Global
+// ReSharper disable ClassNeverInstantiated.Global
+// ReSharper disable once MemberCanBeMadeStatic.Global
 
 #pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
 
@@ -49,7 +54,14 @@ namespace DanmakuCardGameEngine.Events.Args {
 
     public sealed class FlipEventArgs : BaseEventArgs { }
 
-    public sealed class GameStateEventArgs : BaseEventArgs { }
+    public sealed class GameStateEventArgs : BaseEventArgs {
+        public GameStateEventArgs(IState previousState, IState newState) {
+            PreviousState = previousState;
+            NewState = newState;
+        }
+        public IState PreviousState { get; }
+        public IState NewState { get; }
+    }
 
     public sealed class HandRevealedEventArgs : BaseEventArgs { }
 
@@ -75,6 +87,15 @@ namespace DanmakuCardGameEngine.Events.Args {
 
     public sealed class RoleSwappedEventArgs : BaseEventArgs { }
 
+    public sealed class RoundChangeEventArgs : BaseEventArgs {
+        public RoundChangeEventArgs(int previousRound, int newRound) {
+            PreviousRound = previousRound;
+            NewRound = newRound;
+        }
+        public int PreviousRound { get; }
+        public int NewRound { get; }
+    }
+
     public sealed class SpellCardActivatedEventArgs : BaseEventArgs { }
 
     public sealed class SpellCardCancelledEventArgs : BaseEventArgs { }
@@ -84,6 +105,15 @@ namespace DanmakuCardGameEngine.Events.Args {
     public sealed class StandbyEventArgs : BaseEventArgs { }
 
     public sealed class StartOfTurnEventArgs : BaseEventArgs { }
+
+    public sealed class TurnChangeEventArgs : BaseEventArgs {
+        public TurnChangeEventArgs(int previousTurn, int newTurn) {
+            PreviousTurn = previousTurn;
+            NewTurn = newTurn;
+        }
+        public int PreviousTurn { get; }
+        public int NewTurn { get; }
+    }
 
     public sealed class TurnSkippedEventArgs : BaseEventArgs { }
 

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using DanmakuCardGameEngine.Enums;
 using DanmakuCardGameEngine.Enums.Object;
 using DanmakuCardGameEngine.Models.Cards;
 using DanmakuCardGameEngine.Models.Cards.Timing;

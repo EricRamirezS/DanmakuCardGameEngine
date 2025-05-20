@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-using DanmakuCardGameEngine.Enums;
-using DanmakuCardGameEngine.Enums.Object;
+﻿using DanmakuCardGameEngine.Enums.Object;
 using DanmakuCardGameEngine.Models.Deck;
 
 namespace DanmakuCardGameEngine.Core {
