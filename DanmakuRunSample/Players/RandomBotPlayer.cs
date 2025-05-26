@@ -12,12 +12,6 @@ namespace DanmakuRunSample.Players {
     public class RandomBotPlayer : Player {
         public RandomBotPlayer(string name) : base(name) { }
 
-        public override Task DrawCard<TCard>(IDeck<TCard> deck) {
-            throw new NotImplementedException();
-        }
-        public override Task DrawCards<TCard>(IDeck<TCard> deck, int quantity) {
-            throw new NotImplementedException();
-        }
         public override Task PlayCard(ICard card) {
             throw new NotImplementedException();
         }
@@ -30,8 +24,8 @@ namespace DanmakuRunSample.Players {
             throw new NotImplementedException();
         }
 
-        public override async Task ChooseCharacter(IList<ICharacterCard> characters) {
-            MainCharacterCard = await ChooseAsync(characters.ToList().AsReadOnly(), GameCore.Instance.GameState);
+        public override async Task<ICharacterCard> ChooseCharacter(IList<ICharacterCard> characters) {
+            return await ChooseAsync(characters.ToList().AsReadOnly(), GameCore.Instance.GameState);
         }
         public override Task<T> ChooseAsync<T>(IReadOnlyList<T> options, IReadOnlyGameState gameState) {
             Random random = new Random();

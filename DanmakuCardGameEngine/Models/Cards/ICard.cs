@@ -1,4 +1,5 @@
 ﻿using System;
+using DanmakuCardGameEngine.Core;
 using DanmakuCardGameEngine.Enums.Object;
 using DanmakuCardGameEngine.Models.Commons;
 using DanmakuCardGameEngine.Tools;
@@ -11,5 +12,8 @@ namespace DanmakuCardGameEngine.Models.Cards {
         IExpansion Expansion { get; }
         ICardType CardType { get; }
         IModifiers Modifiers { get; }
+
+        void Subscribe(IEventManager eventManager);
+        void Unsubscribe(IEventManager eventManager);
     }
 }

@@ -12,12 +12,6 @@ namespace DanmakuRunSample.Players {
     public class ConsolePlayer : Player {
         public ConsolePlayer(string name) : base(name) { }
 
-        public override Task DrawCard<TCard>(IDeck<TCard> deck) {
-            throw new NotImplementedException();
-        }
-        public override Task DrawCards<TCard>(IDeck<TCard> deck, int quantity) {
-            throw new NotImplementedException();
-        }
         public override Task PlayCard(ICard card) {
             throw new NotImplementedException();
         }
@@ -30,9 +24,10 @@ namespace DanmakuRunSample.Players {
             throw new NotImplementedException();
         }
         
-        public override async Task ChooseCharacter(IList<ICharacterCard> characters) {
-            Console.WriteLine($"Choose character (current Role {RoleCard.Name}):");
-            MainCharacterCard = await ChooseAsync(characters.ToList().AsReadOnly(), GameCore.Instance.GameState);
+        public override async Task<ICharacterCard> ChooseCharacter(IList<ICharacterCard> characters) {
+            Console.WriteLine(GameCore.Instance.GameState);
+            ICharacterCard characterCard = await ChooseAsync(characters.ToList().AsReadOnly(), GameCore.Instance.GameState);
+            return characterCard;
         }
         
         public override Task<T> ChooseAsync<T>(IReadOnlyList<T> options, IReadOnlyGameState gameState) {

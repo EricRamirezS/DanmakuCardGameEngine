@@ -1,3 +1,4 @@
+using DanmakuCardGameEngine.Core;
 using DanmakuCardGameEngine.Enums.Object;
 using DanmakuCardGameEngine.Models.Commons;
 
@@ -5,6 +6,8 @@ namespace DanmakuCardGameEngine.Models.Cards {
     public class Card : ICard {
         public ICardType CardType { get; }
         public virtual IModifiers Modifiers => Commons.Modifiers.Empty;
+        public virtual void Subscribe(IEventManager eventManager) { }
+        public virtual void Unsubscribe(IEventManager eventManager) { }
         public int Id { get; }
         public string Name { get; }
         public ISeason Season { get; }

@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using DanmakuCardGameEngine.Enums.Object;
 using DanmakuCardGameEngine.Exceptions;
 using DanmakuCardGameEngine.Game;
+using DanmakuCardGameEngine.Models.Cards;
 using DanmakuCardGameEngine.Models.Player;
 
 namespace DanmakuCardGameEngine.Core {
@@ -33,10 +34,11 @@ namespace DanmakuCardGameEngine.Core {
         IReadOnlyGameState GameState { get; }
         IList<IEquatablePlayer> Players { get; }
         IEquatablePlayer PlayerInTurn { get; }
-        IState CurrentPhase { get; }
+        IState CurrentPhase { get; set; }
         IEventManager EventManager { get; }
 
         Task Init();
         Task StartGame();
+        Task DrawCards<TCard>(IPlayer player, int quantity) where TCard : IHandCard;
     }
 }

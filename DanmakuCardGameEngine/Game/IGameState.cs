@@ -12,7 +12,7 @@ using DanmakuCardGameEngine.Models.Player;
 using DanmakuCardGameEngine.Tools;
 
 namespace DanmakuCardGameEngine.Game {
-    public interface IGameState: IReadOnlyConverter<IReadOnlyGameState> {
+    public interface IGameState : IReadOnlyConverter<IReadOnlyGameState> {
         IPlayer PlayerInTurn { get; set; }
         IList<IPlayer> Players { get; set; }
         DecksManager DeckManager { get; set; }
@@ -57,7 +57,7 @@ namespace DanmakuCardGameEngine.Game {
         public override string ToString() {
             {
                 StringBuilder sb = new StringBuilder();
-                int totalPlayers = Players.Count;
+                int totalPlayers = Players?.Count ?? -1;
                 int columnsPerRow;
                 if (totalPlayers <= 4)
                     columnsPerRow = 2;
@@ -71,6 +71,9 @@ namespace DanmakuCardGameEngine.Game {
                 int fullWidth = (width + 1) * columnsPerRow;
                 sb.AppendLine("╔" + $" Game State: {State} ".PadCenter(fullWidth - 1, '═') + "╗");
                 sb.AppendLine($"║ Players: {totalPlayers}".PadRight(fullWidth) + "║");
+                sb.AppendLine($"║ Player in Turn: {PlayerInTurn?.Name ?? "???"}".PadRight(fullWidth) + "║");
+                sb.AppendLine($"║ Round: {CurrentRoundNumber}".PadRight(fullWidth) + "║");
+                sb.AppendLine($"║ Turn: {CurrentTurnNumber}".PadRight(fullWidth) + "║");
 
                 for (int row = 0; row < rows; row++) {
                     int start = row * columnsPerRow;
@@ -117,14 +120,14 @@ namespace DanmakuCardGameEngine.Game {
                         return $" [{itemsStr}]".PadRight(width);
                     })) + "║");
 
-                        sb.AppendLine("╠" + string.Join("╩", Enumerable.Repeat(new string('═', width), count)) + "╣");
+                    sb.AppendLine("╠" + string.Join("╩", Enumerable.Repeat(new string('═', width), count)) + "╣");
                 }
 
-                sb.AppendLine("╠".PadRight(fullWidth, '═')+"╣");
+                sb.AppendLine("╠".PadRight(fullWidth, '═') + "╣");
                 sb.AppendLine($"║ Active Incident: {"None"}".PadRight(fullWidth) + "║");
                 int discard = DeckManager?.GetReadOnlyDeck<IMainCard>()?.Discard?.Count ?? 0;
                 sb.AppendLine($"║ Discard Pile: {discard} cards".PadRight(fullWidth) + "║");
-                sb.AppendLine("╚".PadRight(fullWidth, '═')+"╝");
+                sb.AppendLine("╚".PadRight(fullWidth, '═') + "╝");
 
                 return sb.ToString();
             }
@@ -168,8 +171,7 @@ namespace DanmakuCardGameEngine.Game {
         public int CurrentTurnNumber
         {
             get => _currentTurnNumber;
-            set
-            {
+            set {
                 _core.EventManager.OnTurnChange.Invoke(
                     new TurnChangeEventArgs(
                         _currentTurnNumber,

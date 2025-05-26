@@ -25,20 +25,21 @@ namespace DanmakuCardGameEngine.Enums.Object {
 
         public static bool operator !=(NamedObject obj1, INamedObject obj2) => !(obj1 == obj2);
 
-        public bool Equals(NamedObject other) {
-            if (ReferenceEquals(null, other)) return false;
-            if (ReferenceEquals(this, other)) return true;
-            return GetType() == other.GetType() && Name == other.Name && UniqueGroup == other.UniqueGroup;
+        protected bool Equals(NamedObject other) {
+            return Name == other.Name && UniqueGroup == other.UniqueGroup;
         }
 
         public override bool Equals(object obj) {
-            if (ReferenceEquals(null, obj)) return false;
+            if (obj is null) return false;
             if (ReferenceEquals(this, obj)) return true;
-            return obj.GetType() == GetType() && Equals((NamedObject)obj);
+            if (obj.GetType() != GetType()) return false;
+            return Equals((NamedObject)obj);
         }
 
         public override int GetHashCode() {
-            return Name != null ? Name.GetHashCode() : 0;
+            unchecked {
+                return (Name != null ? Name.GetHashCode() : 0) * 397 ^ (UniqueGroup != null ? UniqueGroup.GetHashCode() : 0);
+            }
         }
 
         public bool Equals(INamedObject other) {

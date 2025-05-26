@@ -1,14 +1,14 @@
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using DanmakuCardGameEngine.Core;
 using DanmakuCardGameEngine.Models.Cards;
 using DanmakuCardGameEngine.Models.Commons;
-using DanmakuCardGameEngine.Models.Deck;
 using DanmakuCardGameEngine.Models.Player.Components;
 using DanmakuCardGameEngine.Tools;
 
 namespace DanmakuCardGameEngine.Models.Player {
-    public interface IPlayer : IDecisionMaker, IReadOnlyConverter<IReadOnlyPlayer>, IEquatablePlayer {
+    public interface IPlayer : IDecisionMaker, IReadOnlyConverter<IReadOnlyPlayer>, IEquatablePlayer, IEquatable<IReadOnlyPlayer>{
         int Life { get; set; }
         int MaxLife { get; }
         bool IsSpellCardUsed { get; set; }
@@ -28,12 +28,11 @@ namespace DanmakuCardGameEngine.Models.Player {
 
         IDefaultData DefaultData { get; set; }
 
-        Task DrawCard<TCard>(IDeck<TCard> deck) where TCard : ICard;
-        Task DrawCards<TCard>(IDeck<TCard> deck, int quantity) where TCard : ICard;
+        Task DrawCards<TCard>(int quantity) where TCard : IHandCard;
         Task PlayCard(ICard card);
         Task Attack(IReadOnlyPlayer player);
         Task TakeDamage(int damage);
-        Task ChooseCharacter(IList<ICharacterCard> characters);
+        Task<ICharacterCard> ChooseCharacter(IList<ICharacterCard> characters);
 
         void InitStats();
     }

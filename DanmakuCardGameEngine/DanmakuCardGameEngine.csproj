@@ -46,10 +46,13 @@
           <DependentUpon>IExpansionData.cs</DependentUpon>
         </Compile>
         <Compile Include="Core\GameCore.cs" />
+        <Compile Include="Core\GameCore.GameMethods.cs">
+          <DependentUpon>GameCore.cs</DependentUpon>
+        </Compile>
         <Compile Include="Core\GameCore.MainGame.cs">
           <DependentUpon>GameCore.cs</DependentUpon>
         </Compile>
-        <Compile Include="Core\GameCore.starter.cs">
+        <Compile Include="Core\GameCore.Setup.cs">
           <DependentUpon>GameCore.cs</DependentUpon>
         </Compile>
         <Compile Include="Core\GameValidator.cs" />

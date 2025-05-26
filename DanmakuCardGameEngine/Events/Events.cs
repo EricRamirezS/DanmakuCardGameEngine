@@ -1,14 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Reflection;
+using System.Threading.Tasks;
 using DanmakuCardGameEngine.Events.Args;
 
 namespace DanmakuCardGameEngine.Events {
-    public delegate void BubblingEventHandler<in TArgs>(TArgs args, out bool bubbleEvent);
+    public delegate void BubblingEventHandler<in TArgs>(TArgs args, out bool bubbleEvent) where TArgs : BaseEventArgs;
 
-    public delegate void SimpleEventHandler<in TArgs>(TArgs args);
+    public delegate void SimpleEventHandler<in TArgs>(TArgs args) where TArgs : BaseEventArgs;
 
-    public class BubblingEvent<TArgs> {
+    public class BubblingEvent<TArgs> where TArgs : BaseEventArgs {
 
         private event BubblingEventHandler<TArgs> BeforeHandlers;
         private event SimpleEventHandler<TArgs> AfterHandlers;
@@ -16,7 +17,7 @@ namespace DanmakuCardGameEngine.Events {
         private readonly Dictionary<object, (Delegate before, Delegate after)> _listenerDelegates =
             new Dictionary<object, (Delegate before, Delegate after)>();
 
-        public void Invoke(TArgs args, Action execution) {
+        public Task Invoke(TArgs args, Action execution) {
             bool continueBubbling = true;
 
             if (BeforeHandlers != null) {
@@ -29,13 +30,14 @@ namespace DanmakuCardGameEngine.Events {
                 }
             }
 
-            if (!continueBubbling || AfterHandlers == null) return;
-
+            if (!continueBubbling) return Task.CompletedTask;
             execution?.Invoke();
-
+            if (AfterHandlers == null) return Task.CompletedTask;
+            
             foreach (Delegate handler in AfterHandlers.GetInvocationList()) {
                 ((SimpleEventHandler<TArgs>)handler).Invoke(args);
             }
+            return Task.CompletedTask;
 
         }
 
@@ -182,7 +184,7 @@ namespace DanmakuCardGameEngine.Events {
     public class RoleRevealedEvent : BubblingEvent<RoleRevealedEventArgs> { }
 
     public class RoleSwappedEvent : BubblingEvent<RoleSwappedEventArgs> { }
-    
+
     public class RoundChangeEvent : BubblingEvent<RoundChangeEventArgs> { }
 
     public class SpellCardActivatedEvent : BubblingEvent<SpellCardActivatedEventArgs> { }
@@ -194,7 +196,7 @@ namespace DanmakuCardGameEngine.Events {
     public class StandbyEvent : BubblingEvent<StandbyEventArgs> { }
 
     public class StartOfTurnEvent : BubblingEvent<StartOfTurnEventArgs> { }
-    
+
     public class TurnChangeEvent : BubblingEvent<TurnChangeEventArgs> { }
 
     public class TurnSkippedEvent : BubblingEvent<TurnSkippedEventArgs> { }

@@ -47,12 +47,14 @@ namespace DanmakuCardGameEngine.Models.Player {
         public IItemField ItemField { get; }
         public IModifiers Modifiers => GetModifiers();
 
-        public abstract Task DrawCard<TCard>(IDeck<TCard> deck) where TCard : ICard;
-        public abstract Task DrawCards<TCard>(IDeck<TCard> deck, int quantity) where TCard : ICard;
+        public async Task DrawCards<TCard>(int quantity) where TCard : IHandCard {
+            await GameCore.Instance.DrawCards<TCard>(this, quantity);
+        }
+
         public abstract Task PlayCard(ICard card);
         public abstract Task Attack(IReadOnlyPlayer player);
         public abstract Task TakeDamage(int damage);
-        public abstract Task ChooseCharacter(IList<ICharacterCard> characterCards);
+        public abstract Task<ICharacterCard> ChooseCharacter(IList<ICharacterCard> characterCards);
         public abstract Task<T> ChooseAsync<T>(IReadOnlyList<T> options, IReadOnlyGameState gameState);
 
         [JsonIgnore] public IDefaultData DefaultData { get; set; }
@@ -78,6 +80,33 @@ namespace DanmakuCardGameEngine.Models.Player {
 
         public override bool HasCharacter(ICharacterCard card) {
             return MainCharacterCard == card;
+        }
+
+        public bool Equals(IReadOnlyPlayer other) {
+            return base.Equals(other);
+        }
+        public override bool Equals(object obj) {
+            return base.Equals(obj);
+        }
+        public override int GetHashCode() {
+            unchecked {
+                int hashCode = base.GetHashCode();
+                hashCode = (hashCode * 397) ^ (Id != null ? Id.GetHashCode() : 0);
+                hashCode = (hashCode * 397) ^ (Name != null ? Name.GetHashCode() : 0);
+                return hashCode;
+            }
+        }
+        public static bool operator ==(Player left, IReadOnlyPlayer right) {
+            return AreEquals(left, right);
+        }
+        public static bool operator !=(Player left, IReadOnlyPlayer right) {
+            return !AreEquals(left, right);
+        }
+        public static bool operator ==(IReadOnlyPlayer left, Player right) {
+            return AreEquals(left, right);
+        }
+        public static bool operator !=(IReadOnlyPlayer left, Player right) {
+            return !AreEquals(left, right);
         }
     }
 }

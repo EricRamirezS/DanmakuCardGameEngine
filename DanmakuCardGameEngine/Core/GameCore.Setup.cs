@@ -23,11 +23,17 @@ namespace DanmakuCardGameEngine.Core {
         public IList<IEquatablePlayer> Players => _gameState.Players.Cast<IEquatablePlayer>().ToList();
 
         public IEquatablePlayer PlayerInTurn => _gameState.PlayerInTurn;
-        public IState CurrentPhase => _gameState.State;
+
+        public IState CurrentPhase
+        {
+            get => _gameState.State;
+            set => _gameState.State = value;
+        }
+
         private GameCore(IList<IPlayer> players, IExpansionData[] expansions, IDefaultData defaultData) {
+            _gameState = new GameState(this);
             EventManager = new EventManager();
             _expansions = expansions;
-            _gameState = new GameState(this);
             GamePhases = new List<IState> {
                 States.StartOfTurn,
                 States.Incident,
@@ -58,10 +64,9 @@ namespace DanmakuCardGameEngine.Core {
             SetUpTurns();
             DealInitialHand();
             await TurnZero();
-            _gameState.State = States.StartOfTheGame;
             _initialized = true;
+            _gameState.State = States.StartOfTheGame;
         }
-
 
 
         private void SetUpDecks(IExpansionData[] expansions) {
@@ -116,9 +121,20 @@ namespace DanmakuCardGameEngine.Core {
 
             int i = 0;
 
-            List<Task> tasks = (from player in _gameState.Players
-                let characterOptions = deck.Skip(i++ * 2).Take(2).ToList()
-                select player.ChooseCharacter(characterOptions)).ToList();
+            List<Task> tasks = new List<Task>();
+
+            foreach (IPlayer player in _players) {
+                List<ICharacterCard> characterOptions = deck.Skip(i++ * 2).Take(2).ToList();
+                Task<ICharacterCard> task = player.ChooseCharacter(characterOptions);
+                Task setterTask = task.ContinueWith((result) =>
+                {
+                    ICharacterCard card = result.Result;
+                    player.MainCharacterCard = card;
+                    card.ChooseCharacter(player);
+                });
+                tasks.Add(task);
+                tasks.Add(setterTask);
+            }
 
             await Task.WhenAll(tasks);
         }

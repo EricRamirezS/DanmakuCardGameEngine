@@ -9,7 +9,7 @@ namespace DanmakuCardGameEngine.Models.Deck {
         protected readonly Dictionary<Type, IList> Decks = new Dictionary<Type, IList>();
 
         public IReadOnlyDeck<TCard> GetReadOnlyDeck<TCard>() where TCard : ICard {
-            if (!Decks.ContainsKey(typeof(TCard))) throw new DeckNotFoundException();
+            if (!Decks.ContainsKey(typeof(TCard))) return null;
 
             IList deck = Decks[typeof(TCard)];
             return ((IDeck<TCard>)deck).ToReadOnly();
