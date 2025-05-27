@@ -150,7 +150,7 @@ namespace DanmakuCardGameEngine.Game {
                         _state,
                         value
                     ),
-                    () => _state = value);
+                    (args) => _state = args.NewState);
             }
         }
 
@@ -164,7 +164,7 @@ namespace DanmakuCardGameEngine.Game {
                         _currentRoundNumber,
                         value
                     ),
-                    () => _currentRoundNumber = value);
+                    (args) => _currentRoundNumber = args.NewRound);
             }
         }
 
@@ -177,7 +177,7 @@ namespace DanmakuCardGameEngine.Game {
                         _currentTurnNumber,
                         value
                     ),
-                    () => _currentTurnNumber = value);
+                    args => _currentTurnNumber = args.NewTurn);
             }
         }
 

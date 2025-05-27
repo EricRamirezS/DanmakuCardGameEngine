@@ -17,5 +17,6 @@ namespace DanmakuCardGameEngine.Enums {
         public static readonly IState Main = new State("Main");
         public static readonly IState Discard = new State("Discard");
         public static readonly IState EndOfTurn = new State("End of Turn");
+        public static readonly IState SkipTurn = new State("Skip Turn");
     }
 }

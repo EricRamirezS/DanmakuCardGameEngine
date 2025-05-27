@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using DanmakuCardGameEngine.Exceptions;
 using DanmakuCardGameEngine.Models.Cards;
 using DanmakuCardGameEngine.Tools;
@@ -56,15 +57,16 @@ namespace DanmakuCardGameEngine.Models.Deck {
             return list;
         }
 
-        public void AddToDiscard(TCard card) {
+        public Task AddToDiscard(TCard card) {
             Discard.Add(card);
+            return Task.CompletedTask;
         }
 
         ICard IDeck.Draw() => Draw();
 
         IList<ICard> IDeck.Draw(int numberOfCards) => Draw(numberOfCards).Cast<ICard>().ToList();
 
-        void IDeck.AddToDiscard(ICard card) => AddToDiscard((TCard)card);
+        Task IDeck.AddToDiscard(ICard card) => AddToDiscard((TCard)card);
 
         IDiscard IDeck.GetDiscard() => Discard;
 

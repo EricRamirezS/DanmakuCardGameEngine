@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using DanmakuCardGameEngine.Models.Cards;
 using DanmakuCardGameEngine.Tools;
 
@@ -11,13 +12,13 @@ namespace DanmakuCardGameEngine.Models.Deck {
 
         new IList<TCard> Draw(int numberOfCard);
         void AddRange(IEnumerable<TCard> collection);
-        void AddToDiscard(TCard card);
+        Task AddToDiscard(TCard card);
     }
 
     public interface IDeck: IList, IShuffleable {
         ICard Draw();
         IList<ICard> Draw(int numberOfCards);
-        void AddToDiscard(ICard card);
+        Task AddToDiscard(ICard card);
         IDiscard GetDiscard();
     }
     

@@ -28,8 +28,10 @@ namespace DanmakuCardGameEngine.Models.Cards {
         }
 
         public IReadOnlyCard ToReadOnly() {
-            return new ReadOnlyCard(CardType);
+            return new ReadOnlyCard(this);
         }
+
+        /// <inheritdoc />
         public override string ToString() {
             return $"{Name} ({Id})";
         }

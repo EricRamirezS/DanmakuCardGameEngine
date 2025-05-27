@@ -6,7 +6,6 @@ using DanmakuCardGameEngine.Models.Player;
 namespace DanmakuCardGameEngine.Models.Cards {
     public interface ICharacterCard : ICard {
         ISpellCardTiming SpellCardTiming { get; }
-        IPlayer Owner { get; }
         bool AbilityAvailable { get; }
         bool SpellCardAvailable { get; }
         void ChooseCharacter(IPlayer owner);
@@ -19,7 +18,7 @@ namespace DanmakuCardGameEngine.Models.Cards {
             CardTypes.CharacterCard, id, name, season, expansion) { }
 
         public abstract ISpellCardTiming SpellCardTiming { get; }
-        public IPlayer Owner { get; private set; }
+        protected IPlayer Owner { get; private set; }
         public virtual bool AbilityAvailable { get; private set; }
         public virtual bool SpellCardAvailable { get; private set; }
 

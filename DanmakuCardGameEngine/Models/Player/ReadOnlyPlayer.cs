@@ -11,16 +11,16 @@ namespace DanmakuCardGameEngine.Models.Player {
             return card == MainCharacterCard;
         }
 
-        public int Life { get; }
-        public int MaxLife { get; }
+        public byte Life { get; }
+        public byte MaxLife { get; }
         public bool IsDefeated { get; }
-        public int MaxHandSize { get; }
+        public byte MaxHandSize { get; }
         public bool IsSpellCardUsed { get; }
-        public int DanmakuEffectiveCount { get; }
-        public int DanmakuCount { get; }
-        public int DanmakuLimit { get; }
-        public int Range { get; }
-        public int DistanceBonus { get; }
+        public byte DanmakuEffectiveCount { get; }
+        public byte DanmakuCount { get; }
+        public byte DanmakuLimit { get; }
+        public byte Range { get; }
+        public byte DistanceBonus { get; }
         public bool IsRoleRevealed { get; }
         public IReadOnlyHand Hand { get; }
         public IRoleCard RoleCard { get; }

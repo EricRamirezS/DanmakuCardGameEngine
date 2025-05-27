@@ -5,16 +5,16 @@ using DanmakuCardGameEngine.Models.Player.Components;
 namespace DanmakuCardGameEngine.Models.Player {
 
     public interface IReadOnlyPlayer : IEquatablePlayer {
-        int Life { get; }
-        int MaxLife { get; }
+        byte Life { get; }
+        byte MaxLife { get; }
         bool IsDefeated { get; }
-        int MaxHandSize { get; }
+        byte MaxHandSize { get; }
         bool IsSpellCardUsed { get; }
-        int DanmakuEffectiveCount { get; }
-        int DanmakuCount { get; }
-        int DanmakuLimit { get; }
-        int Range { get; }
-        int DistanceBonus { get; }
+        byte DanmakuEffectiveCount { get; }
+        byte DanmakuCount { get; }
+        byte DanmakuLimit { get; }
+        byte Range { get; }
+        byte DistanceBonus { get; }
         bool IsRoleRevealed { get; }
         ICharacterCard MainCharacterCard { get; }
         IReadOnlyHand Hand { get; }

@@ -22,6 +22,7 @@
         <DefineConstants>DEBUG;TRACE</DefineConstants>
         <ErrorReport>prompt</ErrorReport>
         <WarningLevel>4</WarningLevel>
+        <DocumentationFile>bin\Debug\DanmakuCardGameEngine.xml</DocumentationFile>
     </PropertyGroup>
     <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
         <PlatformTarget>AnyCPU</PlatformTarget>
@@ -31,6 +32,7 @@
         <DefineConstants>TRACE</DefineConstants>
         <ErrorReport>prompt</ErrorReport>
         <WarningLevel>4</WarningLevel>
+        <DocumentationFile>bin\Release\DanmakuCardGameEngine.xml</DocumentationFile>
     </PropertyGroup>
     <ItemGroup>
         <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
@@ -193,12 +195,18 @@
         <Compile Include="Models\Deck\RoleDeck.cs">
           <DependentUpon>IRoleDeck.cs</DependentUpon>
         </Compile>
-        <Compile Include="Models\Player\Components\Hand.cs" />
+        <Compile Include="Models\Player\Components\Hand.cs">
+          <DependentUpon>IHand.cs</DependentUpon>
+        </Compile>
         <Compile Include="Models\Player\Components\IHand.cs" />
         <Compile Include="Models\Player\Components\IItemField.cs" />
         <Compile Include="Models\Player\Components\IReadOnlyHand.cs" />
-        <Compile Include="Models\Player\Components\ItemField.cs" />
-        <Compile Include="Models\Player\Components\ReadOnlyHand.cs" />
+        <Compile Include="Models\Player\Components\ItemField.cs">
+          <DependentUpon>IItemField.cs</DependentUpon>
+        </Compile>
+        <Compile Include="Models\Player\Components\ReadOnlyHand.cs">
+          <DependentUpon>IReadOnlyHand.cs</DependentUpon>
+        </Compile>
         <Compile Include="Models\Player\EquatablePlayer.cs">
           <DependentUpon>IEquatablePlayer.cs</DependentUpon>
         </Compile>

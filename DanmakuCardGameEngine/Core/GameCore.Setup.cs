@@ -58,6 +58,9 @@ namespace DanmakuCardGameEngine.Core {
             RunValidations();
             ShuffleDecks();
             _gameState.Players = _players;
+            foreach (IExpansionData expansionData in _expansions) {
+                expansionData.Init();
+            }
             DealRoles();
             await AssignCharacter();
             InitializeStats();

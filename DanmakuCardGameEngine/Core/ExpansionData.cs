@@ -11,5 +11,6 @@ namespace DanmakuCardGameEngine.Core {
         public abstract Expansion Expansion { get; }
         public virtual void RegisterOtherDecks(IDecksManager decksManager) {
         }
+        public virtual void Init(){}
     }
 }
