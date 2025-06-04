@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using DanmakuCardGameEngine.Exceptions;
 using DanmakuCardGameEngine.Models.Cards;
 
 namespace DanmakuCardGameEngine.Models.Deck {

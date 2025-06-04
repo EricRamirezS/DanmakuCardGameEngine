@@ -5,7 +5,7 @@ using DanmakuCardGameEngine.Models.Cards.Timing;
 using DanmakuCardGameEngine.Tools;
 
 namespace DanmakuBaseExpansion.Cards.MainDeck {
-    internal class InvocationCaptureSpellCard : IInvocationMainMode {
+    internal class InvocationCaptureSpellCard : IInvocationMainTiming {
         public IReadOnlyList<ICardSubtypes> MainCardTypes => CardUtils.EmptySubtypes;
         public void PlayMainMode() {
             throw new NotImplementedException();

@@ -84,7 +84,6 @@
         <Compile Include="Cards\IncidentDeck\UndefinedFantasticObject.cs" />
         <Compile Include="Cards\IncidentDeck\VoyageToMakai.cs" />
         <Compile Include="Cards\IncidentDeck\WorldlyDesires.cs" />
-        <Compile Include="Cards\MainDeck\0_BaseMainCard.cs" />
         <Compile Include="Cards\MainDeck\ActionBorrow.cs">
           <DependentUpon>Borrow.cs</DependentUpon>
         </Compile>
@@ -124,9 +123,8 @@
         <Compile Include="Cards\MainDeck\ActionVoile.cs">
           <DependentUpon>Voile.cs</DependentUpon>
         </Compile>
-        <Compile Include="Cards\MainDeck\DoubleModeMainCard.cs">
-          <DependentUpon>0_BaseMainCard.cs</DependentUpon>
-        </Compile>
+        <Compile Include="Cards\MainDeck\BaseImplementation\DoubleModeBaseMainCard.cs" />
+        <Compile Include="Cards\MainDeck\BaseImplementation\SingleModeBaseMainCard.cs" />
         <Compile Include="Cards\MainDeck\InvocationBomb.cs">
           <DependentUpon>Bomb.cs</DependentUpon>
         </Compile>
@@ -162,9 +160,6 @@
         </Compile>
         <Compile Include="Cards\MainDeck\ReactionGrazeSelf.cs">
           <DependentUpon>Graze.cs</DependentUpon>
-        </Compile>
-        <Compile Include="Cards\MainDeck\SingleModeMainCard.cs">
-          <DependentUpon>0_BaseMainCard.cs</DependentUpon>
         </Compile>
         <Compile Include="Cards\MainDeck\_OneUp.cs" />
         <Compile Include="Cards\MainDeck\ActionOneUp.cs">

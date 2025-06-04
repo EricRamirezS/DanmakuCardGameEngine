@@ -4,7 +4,7 @@ using DanmakuCardGameEngine.Enums.Object;
 using DanmakuCardGameEngine.Models.Cards.Timing;
 
 namespace DanmakuBaseExpansion.Cards.MainDeck {
-    public class ActionTempest : IActionMainMode {
+    public class ActionTempest : IActionMainTiming {
         public IReadOnlyList<ICardSubtypes> MainCardTypes { get; }
         public void PlayMainMode() {
             throw new NotImplementedException();

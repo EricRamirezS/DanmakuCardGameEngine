@@ -1,0 +1,9 @@
+﻿using DanmakuCardGameEngine.Events.EventObjects;
+
+namespace DanmakuCardGameEngine.Events {
+    /// <summary>
+    /// Combines the <see cref="ICancelEventBefore"/> and <see cref="ICancelEventAfter"/> interfaces,
+    /// allowing a single subscriber to handle both phases of the <see cref="CancelEvent"/>.
+    /// </summary>
+    public interface ICancelEvent : ICancelEventBefore, ICancelEventAfter { }
+}

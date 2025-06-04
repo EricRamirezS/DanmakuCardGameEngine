@@ -108,13 +108,193 @@
         </Compile>
         <Compile Include="Enums\RoleTypes.cs" />
         <Compile Include="Enums\Seasons.cs" />
+        <Compile Include="Events\Args\AbilityActivatedEventArgs.cs" />
+        <Compile Include="Events\Args\AttackEventArgs.cs" />
         <Compile Include="Events\Args\BaseEventArgs.cs" />
+        <Compile Include="Events\Args\CancelEventArgs.cs" />
+        <Compile Include="Events\Args\CardPlayedEventArgs.cs" />
+        <Compile Include="Events\Args\CardResolvedEventArgs.cs" />
+        <Compile Include="Events\Args\CardRevealedEventArgs.cs" />
+        <Compile Include="Events\Args\CardsCollectedEventArgs.cs" />
+        <Compile Include="Events\Args\CardsEnterDiscardPileEventArgs.cs" />
+        <Compile Include="Events\Args\DanmakuPlayedEventArgs.cs" />
+        <Compile Include="Events\Args\DeckShuffledEventArgs.cs" />
+        <Compile Include="Events\Args\DecreasedHealthEventArgs.cs" />
+        <Compile Include="Events\Args\DefeatEventArgs.cs" />
+        <Compile Include="Events\Args\DiscardEventArgs.cs" />
+        <Compile Include="Events\Args\DiscardStepEventArgs.cs" />
+        <Compile Include="Events\Args\DodgeEventArgs.cs" />
+        <Compile Include="Events\Args\DrawEventArgs.cs" />
+        <Compile Include="Events\Args\DrawStepEventArgs.cs" />
+        <Compile Include="Events\Args\EmptyHandEventArgs.cs" />
+        <Compile Include="Events\Args\EndOfTurnEventArgs.cs" />
+        <Compile Include="Events\Args\FlipEventArgs.cs" />
+        <Compile Include="Events\Args\GameStateEventArgs.cs" />
+        <Compile Include="Events\Args\HandRevealedEventArgs.cs" />
+        <Compile Include="Events\Args\HandSwappedEventArgs.cs" />
+        <Compile Include="Events\Args\IncidentResolvedEventArgs.cs" />
+        <Compile Include="Events\Args\IncidentStepEventArgs.cs" />
+        <Compile Include="Events\Args\IncreasedHealthEventArgs.cs" />
+        <Compile Include="Events\Args\ItemDiscardedEventArgs.cs" />
+        <Compile Include="Events\Args\ItemPlayedEventArgs.cs" />
+        <Compile Include="Events\Args\MainStepEventArgs.cs" />
+        <Compile Include="Events\Args\NewIncidentEventArgs.cs" />
+        <Compile Include="Events\Args\RoleRevealedEventArgs.cs" />
+        <Compile Include="Events\Args\RoleSwappedEventArgs.cs" />
+        <Compile Include="Events\Args\RoundChangeEventArgs.cs" />
+        <Compile Include="Events\Args\SpellCardActivatedEventArgs.cs" />
+        <Compile Include="Events\Args\SpellCardCancelledEventArgs.cs" />
+        <Compile Include="Events\Args\StackResolvedEventArgs.cs" />
+        <Compile Include="Events\Args\StartOfTurnEventArgs.cs" />
+        <Compile Include="Events\Args\TurnChangeEventArgs.cs" />
+        <Compile Include="Events\Args\TurnSkippedEventArgs.cs" />
+        <Compile Include="Events\Args\TurnZeroEventArgs.cs" />
+        <Compile Include="Events\EventObjects\AbilityActivatedEvent.cs" />
+        <Compile Include="Events\EventObjects\AttackEvent.cs" />
+        <Compile Include="Events\EventObjects\BubblingEvent.cs" />
+        <Compile Include="Events\EventObjects\BubblingEventHandler.cs" />
+        <Compile Include="Events\EventObjects\CancelEvent.cs" />
+        <Compile Include="Events\EventObjects\CardPlayedEvent.cs" />
+        <Compile Include="Events\EventObjects\CardResolvedEvent.cs" />
+        <Compile Include="Events\EventObjects\CardsCollectedEvent.cs" />
+        <Compile Include="Events\EventObjects\CardsEnterDiscardPileEvent.cs" />
+        <Compile Include="Events\EventObjects\DanmakuPlayedEvent.cs" />
+        <Compile Include="Events\EventObjects\DeckShuffledEvent.cs" />
+        <Compile Include="Events\EventObjects\DecreasedHealthEvent.cs" />
+        <Compile Include="Events\EventObjects\DefeatEvent.cs" />
+        <Compile Include="Events\EventObjects\DiscardEvent.cs" />
+        <Compile Include="Events\EventObjects\DiscardStepEvent.cs" />
+        <Compile Include="Events\EventObjects\DodgeEvent.cs" />
+        <Compile Include="Events\EventObjects\DrawEvent.cs" />
+        <Compile Include="Events\EventObjects\DrawStepEvent.cs" />
+        <Compile Include="Events\EventObjects\EmptyHandEvent.cs" />
+        <Compile Include="Events\EventObjects\EndOfTurnEvent.cs" />
+        <Compile Include="Events\EventObjects\FlipEvent.cs" />
+        <Compile Include="Events\EventObjects\GameStateEvent.cs" />
+        <Compile Include="Events\EventObjects\HandRevealedEvent.cs" />
+        <Compile Include="Events\EventObjects\HandSwappedEvent.cs" />
+        <Compile Include="Events\EventObjects\IncidentResolvedEvent.cs" />
+        <Compile Include="Events\EventObjects\IncidentStepEvent.cs" />
+        <Compile Include="Events\EventObjects\IncreasedHealthEvent.cs" />
+        <Compile Include="Events\EventObjects\ItemDiscardedEvent.cs" />
+        <Compile Include="Events\EventObjects\ItemPlayedEvent.cs" />
+        <Compile Include="Events\EventObjects\MainStepEvent.cs" />
+        <Compile Include="Events\EventObjects\NewIncidentEvent.cs" />
+        <Compile Include="Events\EventObjects\RoleRevealedEvent.cs" />
+        <Compile Include="Events\EventObjects\RoleSwappedEvent.cs" />
+        <Compile Include="Events\EventObjects\RoundChangeEvent.cs" />
+        <Compile Include="Events\EventObjects\SimpleEventHandler.cs" />
+        <Compile Include="Events\EventObjects\SpellCardActivatedEvent.cs" />
+        <Compile Include="Events\EventObjects\SpellCardCancelledEvent.cs" />
+        <Compile Include="Events\EventObjects\StackResolvedEvent.cs" />
+        <Compile Include="Events\EventObjects\StartOfTurnEvent.cs" />
+        <Compile Include="Events\EventObjects\TurnChangeEvent.cs" />
+        <Compile Include="Events\EventObjects\TurnSkippedEvent.cs" />
+        <Compile Include="Events\EventObjects\TurnZeroEvent.cs" />
         <Compile Include="Events\Events.cs" />
+        <Compile Include="Events\IAbilityActivatedEvent.cs" />
+        <Compile Include="Events\IAbilityActivatedEventAfter.cs">
+          <DependentUpon>IAbilityActivatedEvent.cs</DependentUpon>
+        </Compile>
+        <Compile Include="Events\IAbilityActivatedEventBefore.cs">
+          <DependentUpon>IAbilityActivatedEvent.cs</DependentUpon>
+        </Compile>
+        <Compile Include="Events\IAttackEvent.cs" />
+        <Compile Include="Events\IAttackEventAfter.cs">
+          <DependentUpon>IAttackEvent.cs</DependentUpon>
+        </Compile>
+        <Compile Include="Events\IAttackEventBefore.cs">
+          <DependentUpon>IAttackEvent.cs</DependentUpon>
+        </Compile>
+        <Compile Include="Events\ICancelEvent.cs" />
+        <Compile Include="Events\ICancelEventAfter.cs">
+          <DependentUpon>ICancelEvent.cs</DependentUpon>
+        </Compile>
+        <Compile Include="Events\ICancelEventBefore.cs">
+          <DependentUpon>ICancelEvent.cs</DependentUpon>
+        </Compile>
+        <Compile Include="Events\ICardEntersDiscardPileEvent.cs" />
+        <Compile Include="Events\ICardEntersDiscardPileEventAfter.cs">
+          <DependentUpon>ICardEntersDiscardPileEvent.cs</DependentUpon>
+        </Compile>
+        <Compile Include="Events\ICardEntersDiscardPileEventBefore.cs">
+          <DependentUpon>ICardEntersDiscardPileEvent.cs</DependentUpon>
+        </Compile>
+        <Compile Include="Events\ICardPlayedEvent.cs" />
+        <Compile Include="Events\ICardPlayedEventAfter.cs">
+          <DependentUpon>ICardPlayedEvent.cs</DependentUpon>
+        </Compile>
+        <Compile Include="Events\ICardPlayedEventBefore.cs">
+          <DependentUpon>ICardPlayedEvent.cs</DependentUpon>
+        </Compile>
+        <Compile Include="Events\ICardResolvedEvent.cs" />
+        <Compile Include="Events\ICardResolvedEventAfter.cs">
+          <DependentUpon>ICardResolvedEvent.cs</DependentUpon>
+        </Compile>
+        <Compile Include="Events\ICardResolvedEventBefore.cs">
+          <DependentUpon>ICardResolvedEvent.cs</DependentUpon>
+        </Compile>
+        <Compile Include="Events\ICardsCollectedEvent.cs" />
+        <Compile Include="Events\ICardsCollectedEventAfter.cs">
+          <DependentUpon>ICardsCollectedEvent.cs</DependentUpon>
+        </Compile>
+        <Compile Include="Events\ICardsCollectedEventBefore.cs">
+          <DependentUpon>ICardsCollectedEvent.cs</DependentUpon>
+        </Compile>
+        <Compile Include="Events\IDanmakuPlayedEvent.cs" />
+        <Compile Include="Events\IDanmakuPlayedEventAfter.cs">
+          <DependentUpon>IDanmakuPlayedEvent.cs</DependentUpon>
+        </Compile>
+        <Compile Include="Events\IDanmakuPlayedEventBefore.cs">
+          <DependentUpon>IDanmakuPlayedEvent.cs</DependentUpon>
+        </Compile>
+        <Compile Include="Events\IDeckShuffledEvent.cs" />
+        <Compile Include="Events\IDeckShuffledEventAfter.cs">
+          <DependentUpon>IDeckShuffledEvent.cs</DependentUpon>
+        </Compile>
+        <Compile Include="Events\IDeckShuffledEventBefore.cs">
+          <DependentUpon>IDeckShuffledEvent.cs</DependentUpon>
+        </Compile>
+        <Compile Include="Events\IDecreasedHealthEvent.cs" />
+        <Compile Include="Events\IDecreasedHealthEventAfter.cs">
+          <DependentUpon>IDecreasedHealthEvent.cs</DependentUpon>
+        </Compile>
+        <Compile Include="Events\IDecreasedHealthEventBefore.cs">
+          <DependentUpon>IDecreasedHealthEvent.cs</DependentUpon>
+        </Compile>
+        <Compile Include="Events\IDefeatEvent.cs" />
+        <Compile Include="Events\IDefeatEventAfter.cs">
+          <DependentUpon>IDefeatEvent.cs</DependentUpon>
+        </Compile>
+        <Compile Include="Events\IDefeatEventBefore.cs">
+          <DependentUpon>IDefeatEvent.cs</DependentUpon>
+        </Compile>
+        <Compile Include="Events\IDiscardEvent.cs" />
+        <Compile Include="Events\IDiscardEventAfter.cs">
+          <DependentUpon>IDiscardEvent.cs</DependentUpon>
+        </Compile>
+        <Compile Include="Events\IDiscardEventBefore.cs">
+          <DependentUpon>IDiscardEvent.cs</DependentUpon>
+        </Compile>
+        <Compile Include="Events\IDiscardStepEvent.cs" />
+        <Compile Include="Events\IDiscardStepEventAfter.cs">
+          <DependentUpon>IDiscardStepEvent.cs</DependentUpon>
+        </Compile>
+        <Compile Include="Events\IDiscardStepEventBefore.cs">
+          <DependentUpon>IDiscardStepEvent.cs</DependentUpon>
+        </Compile>
+        <Compile Include="Events\IDodgeEvent.cs" />
+        <Compile Include="Events\IDodgeEventAfter.cs">
+          <DependentUpon>IDodgeEvent.cs</DependentUpon>
+        </Compile>
+        <Compile Include="Events\IDodgeEventBefore.cs">
+          <DependentUpon>IDodgeEvent.cs</DependentUpon>
+        </Compile>
         <Compile Include="Exceptions\DeckNotFoundException.cs" />
+        <Compile Include="Core\DefaultData.cs" />
         <Compile Include="Exceptions\DuplicatedDeckTypeException.cs" />
         <Compile Include="Exceptions\GameNotSetException.cs" />
         <Compile Include="Exceptions\NoCardsLeftException.cs" />
-        <Compile Include="Core\DefaultData.cs" />
         <Compile Include="Exceptions\NoEnoughPlayersException.cs" />
         <Compile Include="Exceptions\NoEnoughRolesException.cs" />
         <Compile Include="Exceptions\RoleDeckEmptyException.cs" />
@@ -123,6 +303,9 @@
         <Compile Include="Game\IGameState.cs" />
         <Compile Include="Models\Cards\Card.cs">
           <DependentUpon>ICard.cs</DependentUpon>
+        </Compile>
+        <Compile Include="Models\Cards\CharacterCard.cs">
+          <DependentUpon>ICharacterCard.cs</DependentUpon>
         </Compile>
         <Compile Include="Models\Cards\HandCard.cs">
           <DependentUpon>IHandCard.cs</DependentUpon>
@@ -143,18 +326,19 @@
         <Compile Include="Models\Cards\ReadOnlyCard.cs">
           <DependentUpon>IReadOnlyCard.cs</DependentUpon>
         </Compile>
-        <Compile Include="Models\Cards\Timing\IActionAltMode.cs" />
-        <Compile Include="Models\Cards\Timing\IActionMainMode.cs" />
-        <Compile Include="Models\Cards\Timing\IAltMode.cs" />
-        <Compile Include="Models\Cards\Timing\IInstantAltMode.cs" />
-        <Compile Include="Models\Cards\Timing\IInstantMainMode.cs" />
-        <Compile Include="Models\Cards\Timing\IInvocationAltMode.cs" />
-        <Compile Include="Models\Cards\Timing\IInvocationMainMode.cs" />
-        <Compile Include="Models\Cards\Timing\IItemAltMode.cs" />
-        <Compile Include="Models\Cards\Timing\IItemMainMode.cs" />
-        <Compile Include="Models\Cards\Timing\IMainMode.cs" />
-        <Compile Include="Models\Cards\Timing\IReactionAltMode.cs" />
-        <Compile Include="Models\Cards\Timing\IReactionMainMode.cs" />
+        <Compile Include="Models\Cards\RoleCard.cs">
+          <DependentUpon>IRoleCard.cs</DependentUpon>
+        </Compile>
+        <Compile Include="Models\Cards\Timing\IActionAltTiming.cs" />
+        <Compile Include="Models\Cards\Timing\IActionMainTiming.cs" />
+        <Compile Include="Models\Cards\Timing\IAltTiming.cs" />
+        <Compile Include="Models\Cards\Timing\IInvocationAltTiming.cs" />
+        <Compile Include="Models\Cards\Timing\IInvocationMainTiming.cs" />
+        <Compile Include="Models\Cards\Timing\IItemAltTiming.cs" />
+        <Compile Include="Models\Cards\Timing\IItemMainTiming.cs" />
+        <Compile Include="Models\Cards\Timing\IMainTiming.cs" />
+        <Compile Include="Models\Cards\Timing\IReactionAltTiming.cs" />
+        <Compile Include="Models\Cards\Timing\IReactionMainTiming.cs" />
         <Compile Include="Models\Cards\Timing\ITiming.cs" />
         <Compile Include="Models\Cards\Type\IItemCard.cs" />
         <Compile Include="Models\Commons\IModifier.cs" />
@@ -228,6 +412,150 @@
         <Compile Include="Tools\IRandomGenerator.cs" />
         <Compile Include="Tools\IReadOnlyConverter.cs" />
         <Compile Include="Tools\StringExtensions.cs" />
+        <Compile Update="Events\ITurnZeroEventAfter.cs">
+          <DependentUpon>ITurnZeroEvent.cs</DependentUpon>
+        </Compile>
+        <Compile Update="Events\ITurnZeroEventBefore.cs">
+          <DependentUpon>ITurnZeroEvent.cs</DependentUpon>
+        </Compile>
+        <Compile Update="Events\ITurnSkippedEventAfter.cs">
+          <DependentUpon>ITurnSkippedEvent.cs</DependentUpon>
+        </Compile>
+        <Compile Update="Events\ITurnSkippedEventBefore.cs">
+          <DependentUpon>ITurnSkippedEvent.cs</DependentUpon>
+        </Compile>
+        <Compile Update="Events\ITurnChangeEventAfter.cs">
+          <DependentUpon>ITurnChangeEvent.cs</DependentUpon>
+        </Compile>
+        <Compile Update="Events\ITurnChangeEventBefore.cs">
+          <DependentUpon>ITurnChangeEvent.cs</DependentUpon>
+        </Compile>
+        <Compile Update="Events\IStartOfTurnEventAfter.cs">
+          <DependentUpon>IStartOfTurnEvent.cs</DependentUpon>
+        </Compile>
+        <Compile Update="Events\IStartOfTurnEventBefore.cs">
+          <DependentUpon>IStartOfTurnEvent.cs</DependentUpon>
+        </Compile>
+        <Compile Update="Events\IStackResolvedEventAfter.cs">
+          <DependentUpon>IStackResolvedEvent.cs</DependentUpon>
+        </Compile>
+        <Compile Update="Events\IStackResolvedEventBefore.cs">
+          <DependentUpon>IStackResolvedEvent.cs</DependentUpon>
+        </Compile>
+        <Compile Update="Events\ISpellCardCancelledEventAfter.cs">
+          <DependentUpon>ISpellCardCancelledEvent.cs</DependentUpon>
+        </Compile>
+        <Compile Update="Events\ISpellCardCancelledEventBefore.cs">
+          <DependentUpon>ISpellCardCancelledEvent.cs</DependentUpon>
+        </Compile>
+        <Compile Update="Events\ISpellCardActivatedEventAfter.cs">
+          <DependentUpon>ISpellCardActivatedEvent.cs</DependentUpon>
+        </Compile>
+        <Compile Update="Events\ISpellCardActivatedEventBefore.cs">
+          <DependentUpon>ISpellCardActivatedEvent.cs</DependentUpon>
+        </Compile>
+        <Compile Update="Events\IRoleSwappedEventAfter.cs">
+          <DependentUpon>IRoleSwappedEvent.cs</DependentUpon>
+        </Compile>
+        <Compile Update="Events\IRoleSwappedEventBefore.cs">
+          <DependentUpon>IRoleSwappedEvent.cs</DependentUpon>
+        </Compile>
+        <Compile Update="Events\IRoleRevealedEventAfter.cs">
+          <DependentUpon>IRoleRevealedEvent.cs</DependentUpon>
+        </Compile>
+        <Compile Update="Events\IRoleRevealedEventBefore.cs">
+          <DependentUpon>IRoleRevealedEvent.cs</DependentUpon>
+        </Compile>
+        <Compile Update="Events\INewIncidentEventAfter.cs">
+          <DependentUpon>INewIncidentEvent.cs</DependentUpon>
+        </Compile>
+        <Compile Update="Events\INewIncidentEventBefore.cs">
+          <DependentUpon>INewIncidentEvent.cs</DependentUpon>
+        </Compile>
+        <Compile Update="Events\IMainStepEventAfter.cs">
+          <DependentUpon>IMainStepEvent.cs</DependentUpon>
+        </Compile>
+        <Compile Update="Events\IMainStepEventBefore.cs">
+          <DependentUpon>IMainStepEvent.cs</DependentUpon>
+        </Compile>
+        <Compile Update="Events\IItemPlayedEventAfter.cs">
+          <DependentUpon>IItemPlayedEvent.cs</DependentUpon>
+        </Compile>
+        <Compile Update="Events\IItemPlayedEventBefore.cs">
+          <DependentUpon>IItemPlayedEvent.cs</DependentUpon>
+        </Compile>
+        <Compile Update="Events\IItemDiscardedEventAfter.cs">
+          <DependentUpon>IItemDiscardedEvent.cs</DependentUpon>
+        </Compile>
+        <Compile Update="Events\IItemDiscardedEventBefore.cs">
+          <DependentUpon>IItemDiscardedEvent.cs</DependentUpon>
+        </Compile>
+        <Compile Update="Events\IIncreasedHealthEventAfter.cs">
+          <DependentUpon>IIncreasedHealthEvent.cs</DependentUpon>
+        </Compile>
+        <Compile Update="Events\IIncreasedHealthEventBefore.cs">
+          <DependentUpon>IIncreasedHealthEvent.cs</DependentUpon>
+        </Compile>
+        <Compile Update="Events\IIncidentStepEventAfter.cs">
+          <DependentUpon>IIncidentStepEvent.cs</DependentUpon>
+        </Compile>
+        <Compile Update="Events\IIncidentStepEventBefore.cs">
+          <DependentUpon>IIncidentStepEvent.cs</DependentUpon>
+        </Compile>
+        <Compile Update="Events\IIncidentResolvedEventAfter.cs">
+          <DependentUpon>IIncidentResolvedEvent.cs</DependentUpon>
+        </Compile>
+        <Compile Update="Events\IIncidentResolvedEventBefore.cs">
+          <DependentUpon>IIncidentResolvedEvent.cs</DependentUpon>
+        </Compile>
+        <Compile Update="Events\IHandSwappedEventAfter.cs">
+          <DependentUpon>IHandSwappedEvent.cs</DependentUpon>
+        </Compile>
+        <Compile Update="Events\IHandSwappedEventBefore.cs">
+          <DependentUpon>IHandSwappedEvent.cs</DependentUpon>
+        </Compile>
+        <Compile Update="Events\IHandRevealedEventAfter.cs">
+          <DependentUpon>IHandRevealedEvent.cs</DependentUpon>
+        </Compile>
+        <Compile Update="Events\IHandRevealedEventBefore.cs">
+          <DependentUpon>IHandRevealedEvent.cs</DependentUpon>
+        </Compile>
+        <Compile Update="Events\IGameStateEventAfter.cs">
+          <DependentUpon>IGameStateEvent.cs</DependentUpon>
+        </Compile>
+        <Compile Update="Events\IGameStateEventBefore.cs">
+          <DependentUpon>IGameStateEvent.cs</DependentUpon>
+        </Compile>
+        <Compile Update="Events\IFlipEventAfter.cs">
+          <DependentUpon>IFlipEvent.cs</DependentUpon>
+        </Compile>
+        <Compile Update="Events\IFlipEventBefore.cs">
+          <DependentUpon>IFlipEvent.cs</DependentUpon>
+        </Compile>
+        <Compile Update="Events\IEndOfTurnEventAfter.cs">
+          <DependentUpon>IEndOfTurnEvent.cs</DependentUpon>
+        </Compile>
+        <Compile Update="Events\IEndOfTurnEventBefore.cs">
+          <DependentUpon>IEndOfTurnEvent.cs</DependentUpon>
+        </Compile>
+        <Compile Update="Events\IEmptyHandEventAfter.cs">
+          <DependentUpon>IEmptyHandEvent.cs</DependentUpon>
+        </Compile>
+        <Compile Update="Events\IEmptyHandEventBefore.cs">
+          <DependentUpon>IEmptyHandEvent.cs</DependentUpon>
+        </Compile>
+        <Compile Update="Events\IDrawStepEventAfter.cs">
+          <DependentUpon>IDrawStepEvent.cs</DependentUpon>
+        </Compile>
+        <Compile Update="Events\IDrawStepEventBefore.cs">
+          <DependentUpon>IDrawStepEvent.cs</DependentUpon>
+        </Compile>
+        <Compile Update="Events\IDrawEventAfter.cs">
+          <DependentUpon>IDrawEvent.cs</DependentUpon>
+        </Compile>
+        <Compile Update="Events\IDrawEventBefore.cs">
+          <DependentUpon>IDrawEvent.cs</DependentUpon>
+        </Compile>
     </ItemGroup>
     <ItemGroup>
       <None Include="packages.config" />

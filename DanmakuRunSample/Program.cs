@@ -32,6 +32,7 @@ namespace DanmakuRunSample {
 
     internal class Test : IGameStateEventAfter {
         public void OnGameStateAfter(GameStateEventArgs args) {
+            Console.Clear();
             Console.WriteLine(args.GameState);
         }
     }

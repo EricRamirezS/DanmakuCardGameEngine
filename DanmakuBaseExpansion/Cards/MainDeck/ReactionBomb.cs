@@ -5,7 +5,7 @@ using DanmakuCardGameEngine.Models.Cards.Timing;
 using DanmakuCardGameEngine.Tools;
 
 namespace DanmakuBaseExpansion.Cards.MainDeck {
-    internal class ReactionBomb : IReactionAltMode {
+    internal class ReactionBomb : IReactionAltTiming {
         public IReadOnlyList<ICardSubtypes> AltCardTypes => CardUtils.EmptySubtypes;
 
         public void PlayAltMode() {

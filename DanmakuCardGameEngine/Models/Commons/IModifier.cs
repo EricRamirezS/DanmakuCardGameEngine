@@ -162,12 +162,12 @@ namespace DanmakuCardGameEngine.Models.Commons {
 
         /// <inheritdoc />
         public IList<IModifierData> GetModifiersByName(IModifierName modifierName) {
-            return FindAll(e => e.ModifierName == modifierName).ToList();
+            return FindAll(e => e.ModifierName == modifierName);
         }
 
         /// <inheritdoc />
         public IList<IModifierData> GetActiveModifiersByName(IModifierName modifierName) {
-            return FindAll(e => e.ModifierName == modifierName && e.IsValid()).ToList();
+            return FindAll(e => e.ModifierName == modifierName && e.IsValid());
         }
     }
 }

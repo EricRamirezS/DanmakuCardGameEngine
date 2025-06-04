@@ -14,22 +14,50 @@ namespace DanmakuCardGameEngine.Core {
     public partial class GameCore : IGameCore {
         private readonly IExpansionData[] _expansions;
 
+        /// <summary>
+        /// Gets a read-only list of the predefined game phases.
+        /// </summary>
         public IList<IState> GamePhases { get; }
+        /// <inheritdoc />
         public IReadOnlyGameState GameState => _gameState.ToReadOnly();
+        /// <inheritdoc />
         public IEventManager EventManager { get; }
+        // The mutable game state object.
         private readonly IGameState _gameState;
+        // Flag indicating whether the game has been fully initialized.
         private bool _initialized;
+        // The internal list of mutable player objects.
         private readonly IList<IPlayer> _players;
+        /// <inheritdoc />
+        /// <summary>
+        /// Gets a read-only list of all players in the game, cast to their equatable interface.
+        /// </summary>
         public IList<IEquatablePlayer> Players => _gameState.Players.Cast<IEquatablePlayer>().ToList();
 
+        /// <inheritdoc />
+        /// <summary>
+        /// Gets the player whose turn it currently is, cast to their equatable interface.
+        /// </summary>
         public IEquatablePlayer PlayerInTurn => _gameState.PlayerInTurn;
 
+        /// <inheritdoc />
+        /// <summary>
+        /// Gets or sets the current phase of the game. Setting this property updates the internal game state.
+        /// </summary>
         public IState CurrentPhase
         {
             get => _gameState.State;
             set => _gameState.State = value;
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="GameCore"/> class.
+        /// This constructor is private to enforce the Singleton pattern,
+        /// ensuring that instances are created only via the <see cref="NewInstance"/> method.
+        /// </summary>
+        /// <param name="players">The initial list of players for the game.</param>
+        /// <param name="expansions">The expansions to be included in this game session.</param>
+        /// <param name="defaultData">The default statistical data to apply to players.</param>
         private GameCore(IList<IPlayer> players, IExpansionData[] expansions, IDefaultData defaultData) {
             _gameState = new GameState(this);
             EventManager = new EventManager();
@@ -49,6 +77,14 @@ namespace DanmakuCardGameEngine.Core {
             }
         }
 
+        /// <inheritdoc />
+        /// <summary>
+        /// Asynchronously initializes the game, performing all necessary setup steps
+        /// including deck setup, validations, role dealing, character assignment,
+        /// stat initialization, turn setup, initial hand dealing, and a special "turn zero" phase.
+        /// </summary>
+        /// <returns>A <see cref="Task"/> representing the asynchronous initialization operation.</returns>
+        /// <exception cref="Exception">Thrown if the game is already initialized.</exception>
         public async Task Init() {
             if (_initialized) {
                 throw new Exception("Game is already initialized");
@@ -72,6 +108,11 @@ namespace DanmakuCardGameEngine.Core {
         }
 
 
+        /// <summary>
+        /// Sets up all decks by registering or updating them with the game's deck manager.
+        /// This method iterates through provided expansions and adds their respective decks.
+        /// </summary>
+        /// <param name="expansions">The array of <see cref="IExpansionData"/> containing the decks to set up.</param>
         private void SetUpDecks(IExpansionData[] expansions) {
             _gameState.State = States.SetUpDecks;
             foreach (IExpansionData expansion in expansions) {
@@ -84,16 +125,26 @@ namespace DanmakuCardGameEngine.Core {
             }
         }
 
+        /// <summary>
+        /// Runs initial game setup validations, such as checking the number of players
+        /// and the validity of role distribution.
+        /// </summary>
         private void RunValidations() {
             GameValidator.ValidateNumberOfPlayers(_players.Count);
             GameValidator.ValidateRoles(_gameState.DeckManager.GetDeck<IRoleCard>(), _players.Count);
         }
 
+        /// <summary>
+        /// Shuffles all decks currently managed by the game's deck manager.
+        /// </summary>
         private void ShuffleDecks() {
             _gameState.DeckManager.ShuffleAllDecks();
         }
 
-
+        /// <summary>
+        /// Deals role cards to players based on the game's player count and role distribution rules.
+        /// This method filters available roles and shuffles them before dealing one to each player.
+        /// </summary>
         private void DealRoles() {
             _gameState.State = States.DetermineRoles;
             IDeck<IRoleCard> fullDeck = _gameState.DeckManager.GetDeck<IRoleCard>();
@@ -118,6 +169,11 @@ namespace DanmakuCardGameEngine.Core {
             }
         }
 
+        /// <summary>
+        /// Asynchronously assigns character cards to each player.
+        /// Each player is presented with a choice of character cards, and their selection is then assigned.
+        /// </summary>
+        /// <returns>A <see cref="Task"/> representing the asynchronous character assignment operation.</returns>
         private async Task AssignCharacter() {
             _gameState.State = States.AssignCharacter;
             IDeck<ICharacterCard> deck = _gameState.DeckManager.GetDeck<ICharacterCard>();
@@ -142,13 +198,21 @@ namespace DanmakuCardGameEngine.Core {
             await Task.WhenAll(tasks);
         }
 
+        /// <summary>
+        /// Registers a deck with the game's deck manager, or adds its contents to an existing deck
+        /// if a deck of the same card type is already registered.
+        /// </summary>
+        /// <typeparam name="TCard">The type of cards in the deck to register or update.</typeparam>
+        /// <param name="deck">The deck instance to register or add contents from.</param>
         private void RegisterOrUpdateDeck<TCard>(Deck<TCard> deck) where TCard : ICard {
             if (deck == null) return;
             if (_gameState.DeckManager.ContainsDeck<TCard>()) _gameState.DeckManager.AddToDeck(deck);
             else _gameState.DeckManager.RegisterDeck(deck);
         }
 
-
+        /// <summary>
+        /// Initializes the statistics for all players in the game.
+        /// </summary>
         private void InitializeStats() {
             _gameState.State = States.InitializeStats;
 
@@ -157,6 +221,10 @@ namespace DanmakuCardGameEngine.Core {
             }
         }
 
+        /// <summary>
+        /// Sets up the initial turn order, typically by finding the first player
+        /// whose role is revealed (e.g., the Heroine).
+        /// </summary>
         private void SetUpTurns() {
             int offset = 0;
             foreach (IPlayer player in _gameState.Players) {
@@ -169,6 +237,10 @@ namespace DanmakuCardGameEngine.Core {
             }
         }
 
+        /// <summary>
+        /// Deals the initial hand of cards to each player.
+        /// The number of cards drawn depends on the player's max hand size and any additional cards based on player index.
+        /// </summary>
         private void DealInitialHand() {
             _gameState.State = States.DealInitialHand;
             int count = _gameState.Players.Count;
@@ -180,6 +252,12 @@ namespace DanmakuCardGameEngine.Core {
             Console.WriteLine(GameState);
         }
 
+        /// <summary>
+        /// Calculates the number of additional cards a player should draw during initial hand dealing,
+        /// based on their sequential index (1-based).
+        /// </summary>
+        /// <param name="i">The 1-based index of the player.</param>
+        /// <returns>The number of additional cards to draw.</returns>
         private static int AdditionalCards(int i) {
             switch (i) {
                 case 4:
@@ -195,6 +273,11 @@ namespace DanmakuCardGameEngine.Core {
             }
         }
 
+        /// <summary>
+        /// Asynchronously executes a special "Turn Zero" phase, where players can optionally
+        /// play item cards from their hand and then discard down to their maximum hand size.
+        /// </summary>
+        /// <returns>A <see cref="Task"/> representing the asynchronous "Turn Zero" operation.</returns>
         private async Task TurnZero() {
             _gameState.State = States.TurnZero;
 

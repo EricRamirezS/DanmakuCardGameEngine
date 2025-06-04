@@ -1,4 +1,6 @@
-﻿using DanmakuCardGameEngine.Models.Cards;
+﻿using System;
+using System.Collections.Generic;
+using DanmakuCardGameEngine.Models.Cards;
 
 namespace DanmakuCardGameEngine.Models.Player {
     /// <summary>
@@ -105,7 +107,7 @@ namespace DanmakuCardGameEngine.Models.Player {
         /// </remarks>
         public int GetHashCode(IEquatablePlayer obj) {
             unchecked {
-                return ((obj.Id != null ? obj.Id.GetHashCode() : 0) * 397) ^ (obj.Name != null ? obj.Name.GetHashCode() : 0);
+                return (obj.Id != null ? obj.Id.GetHashCode() : 0) * 397 ^ (obj.Name != null ? obj.Name.GetHashCode() : 0);
             }
         }
     }

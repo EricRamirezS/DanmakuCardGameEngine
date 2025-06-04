@@ -1,4 +1,5 @@
 using DanmakuCardGameEngine.Events;
+using DanmakuCardGameEngine.Events.EventObjects;
 
 namespace DanmakuCardGameEngine.Core {
     /// <summary>

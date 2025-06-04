@@ -1,4 +1,5 @@
 ﻿using System;
+using DanmakuBaseExpansion.Cards.MainDeck.BaseImplementation;
 using DanmakuCardGameEngine.Enums;
 using DanmakuCardGameEngine.Enums.Object;
 using DanmakuCardGameEngine.Models.Cards.Timing;
@@ -7,7 +8,7 @@ using DanmakuCardGameEngine.Models.Commons;
 
 namespace DanmakuBaseExpansion.Cards.MainDeck {
     [Serializable]
-    public class Stopwatch : SingleModeMainCard, IItemMainMode, IItemCard {
+    public class Stopwatch : SingleModeBaseMainCard, IItemMainTiming, IItemCard {
         public Stopwatch(int id, ISeason season) : base(id,
             "Stopwatch",
             season,

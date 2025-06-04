@@ -1,11 +1,12 @@
-﻿using DanmakuCardGameEngine.Enums;
+﻿using DanmakuBaseExpansion.Cards.MainDeck.BaseImplementation;
+using DanmakuCardGameEngine.Enums;
 using DanmakuCardGameEngine.Enums.Object;
 using DanmakuCardGameEngine.Models.Cards.Timing;
 using DanmakuCardGameEngine.Models.Cards.Type;
 using DanmakuCardGameEngine.Models.Commons;
 
 namespace DanmakuBaseExpansion.Cards.MainDeck {
-    public class Focus : SingleModeMainCard, IItemMainMode, IItemCard {
+    public class Focus : SingleModeBaseMainCard, IItemMainTiming, IItemCard {
         public Focus(int id, ISeason season) : base(
             id,
             "Focus",

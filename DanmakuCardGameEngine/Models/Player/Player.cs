@@ -173,8 +173,8 @@ namespace DanmakuCardGameEngine.Models.Player {
         public override int GetHashCode() {
             unchecked {
                 int hashCode = base.GetHashCode(); // Start with base hash code
-                hashCode = (hashCode * 397) ^ (Id != null ? Id.GetHashCode() : 0); // Include Id hash code
-                hashCode = (hashCode * 397) ^ (Name != null ? Name.GetHashCode() : 0); // Include Name hash code
+                hashCode = hashCode * 397 ^ (Id != null ? Id.GetHashCode() : 0); // Include Id hash code
+                hashCode = hashCode * 397 ^ (Name != null ? Name.GetHashCode() : 0); // Include Name hash code
                 return hashCode;
             }
         }

@@ -4,7 +4,7 @@ using DanmakuCardGameEngine.Models.Cards.Timing;
 using DanmakuCardGameEngine.Tools;
 
 namespace DanmakuBaseExpansion.Cards.MainDeck {
-    internal class InvocationBomb : IInvocationMainMode {
+    internal class InvocationBomb : IInvocationMainTiming {
         public IReadOnlyList<ICardSubtypes> MainCardTypes => CardUtils.EmptySubtypes;
 
         public void PlayMainMode() {

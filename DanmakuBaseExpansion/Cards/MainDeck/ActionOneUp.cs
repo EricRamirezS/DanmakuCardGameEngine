@@ -5,7 +5,7 @@ using DanmakuCardGameEngine.Models.Cards.Timing;
 using CardSubtypes = DanmakuCardGameEngine.Enums.CardSubtypes;
 
 namespace DanmakuBaseExpansion.Cards.MainDeck {
-    internal class ActionOneUp : IActionMainMode {
+    internal class ActionOneUp : IActionMainTiming {
         public IReadOnlyList<ICardSubtypes> MainCardTypes => new List<ICardSubtypes> { CardSubtypes.Healing };
 
         public void PlayMainMode() {

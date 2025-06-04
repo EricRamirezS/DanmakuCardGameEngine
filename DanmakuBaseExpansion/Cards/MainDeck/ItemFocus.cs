@@ -4,7 +4,7 @@ using DanmakuCardGameEngine.Models.Cards.Timing;
 using CardSubtypes = DanmakuCardGameEngine.Enums.CardSubtypes;
 
 namespace DanmakuBaseExpansion.Cards.MainDeck {
-    public class ItemFocus :  IItemMainMode {
+    public class ItemFocus :  IItemMainTiming {
         public IReadOnlyList<ICardSubtypes> MainCardTypes => new List<ICardSubtypes> { CardSubtypes.Defense };
 
         public void PlayMainMode() {

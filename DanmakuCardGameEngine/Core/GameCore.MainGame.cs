@@ -2,14 +2,20 @@
 using System.Linq;
 using System.Threading.Tasks;
 using DanmakuCardGameEngine.Enums;
-using DanmakuCardGameEngine.Events;
 using DanmakuCardGameEngine.Events.Args;
+using DanmakuCardGameEngine.Events.EventObjects;
 using DanmakuCardGameEngine.Models.Cards;
 using DanmakuCardGameEngine.Models.Player;
 using DanmakuCardGameEngine.Models.Player.Components;
 
 namespace DanmakuCardGameEngine.Core {
     public partial class GameCore {
+        /// <inheritdoc />
+        /// <summary>
+        /// Asynchronously starts the game, transitioning the game state to <see cref="States.StartOfTheGame"/>.
+        /// This method is intended to be called after <see cref="Init()"/> has completed.
+        /// </summary>
+        /// <returns>A <see cref="Task"/> representing the asynchronous game start operation.</returns>
         public async Task StartGame() {
             if (!_initialized) {
                 throw new Exception("Game not initialized. Call Init() first.");
@@ -96,14 +102,14 @@ namespace DanmakuCardGameEngine.Core {
         private async void HandleMainStep(MainStepEventArgs mainStepEventArgs) {
             // throw new NotImplementedException();
         }
-        
+
         private async void HandleDiscardStep(DiscardStepEventArgs discardStepEventArgs) {
             try {
                 do {
                     for (int i = 0; i < _players.Count; i++) {
                         IPlayer current = _players[(i + _gameState.TurnOffSet) % _players.Count];
                         if (current.IsDefeated) continue;
-                    
+
                         while (current.Hand.Count > current.MaxHandSize) {
                             IHand cards = current.Hand;
                             IHandCard toDiscard = await current.ChooseAsync(cards.ToList().AsReadOnly(), GameState);

@@ -7,6 +7,7 @@ namespace DanmakuCardGameEngine.Models.Player.Components {
     /// It provides both mutable (<see cref="IList{T}"/>) and read-only (<see cref="IReadOnlyList{T}"/>)
     /// list functionalities for the item cards and is associated with a read-only player owner.
     /// </summary>
+    // ReSharper disable once PossibleInterfaceMemberAmbiguity
     public interface IItemField : IList<IItemCard>, IReadOnlyList<IItemCard> {
         /// <summary>
         /// Gets the read-only representation of the player who owns this item field.

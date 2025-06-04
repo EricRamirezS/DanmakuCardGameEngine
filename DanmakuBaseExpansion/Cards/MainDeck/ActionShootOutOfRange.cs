@@ -4,7 +4,7 @@ using DanmakuCardGameEngine.Enums.Object;
 using DanmakuCardGameEngine.Models.Cards.Timing;
 
 namespace DanmakuBaseExpansion.Cards.MainDeck {
-    public class ActionShootOutOfRange : IActionAltMode {
+    public class ActionShootOutOfRange : IActionAltTiming {
         public IReadOnlyList<ICardSubtypes> AltCardTypes { get; }
         public void PlayAltMode() {
             throw new NotImplementedException();

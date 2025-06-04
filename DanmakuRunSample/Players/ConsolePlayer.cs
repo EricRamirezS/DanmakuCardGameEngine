@@ -5,7 +5,6 @@ using System.Threading.Tasks;
 using DanmakuCardGameEngine.Core;
 using DanmakuCardGameEngine.Game;
 using DanmakuCardGameEngine.Models.Cards;
-using DanmakuCardGameEngine.Models.Deck;
 using DanmakuCardGameEngine.Models.Player;
 
 namespace DanmakuRunSample.Players {
@@ -25,6 +24,7 @@ namespace DanmakuRunSample.Players {
         }
         
         public override async Task<ICharacterCard> ChooseCharacter(IList<ICharacterCard> characters) {
+            Console.Clear();
             Console.WriteLine(GameCore.Instance.GameState);
             ICharacterCard characterCard = await ChooseAsync(characters.ToList().AsReadOnly(), GameCore.Instance.GameState);
             return characterCard;

@@ -4,7 +4,7 @@ using DanmakuCardGameEngine.Enums.Object;
 using DanmakuCardGameEngine.Models.Cards.Timing;
 
 namespace DanmakuBaseExpansion.Cards.MainDeck {
-    public class ReactionGrazeOther : IReactionAltMode {
+    public class ReactionGrazeOther : IReactionAltTiming {
         public IReadOnlyList<ICardSubtypes> AltCardTypes { get; }
         public void PlayAltMode() {
             throw new NotImplementedException();
