@@ -6,6 +6,16 @@ using DanmakuCardGameEngine.Models.Cards.Type;
 using DanmakuCardGameEngine.Models.Commons;
 
 namespace DanmakuBaseExpansion.Cards.MainDeck {
+    /// <summary>
+    /// <b>Focus</b><br/>
+    /// <b>Deck:</b> Main deck<br/>
+    /// <b>Point value:</b> 3<br/>
+    /// <b>Card Types:</b> Item, <see cref="DanmakuCardGameEngine.Enums.CardSubtypes.Defense"/>
+    /// </summary>
+    /// <remarks>
+    /// You have +2 <see cref="DanmakuCardGameEngine.Enums.ModifierNames.Distance"/>.<br/>
+    /// You can only activate one Defense card in play at a time.
+    /// </remarks>
     public class Focus : SingleModeBaseMainCard, IItemMainTiming, IItemCard {
         public Focus(int id, ISeason season) : base(
             id,

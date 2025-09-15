@@ -2,12 +2,12 @@
 
 namespace DanmakuCardGameEngine.Enums {
     public static class CardSubtypes {
-        public static readonly ICardSubtypes Healing = new Object.CardSubtypes("Healing");
-        public static readonly ICardSubtypes Invocation = new Object.CardSubtypes("Invocation");
-        public static readonly ICardSubtypes Defense = new Object.CardSubtypes("Defense");
-        public static readonly ICardSubtypes Dodge = new Object.CardSubtypes("Dodge");
-        public static readonly ICardSubtypes Danmaku = new Object.CardSubtypes("Danmaku");
-        public static readonly ICardSubtypes Artifact = new Object.CardSubtypes("Artifact");
-        public static readonly ICardSubtypes Power = new Object.CardSubtypes("Power");
+        public static readonly ICardSubtype Healing = new CardSubtype("Healing");
+        public static readonly ICardSubtype Invocation = new CardSubtype("Invocation");
+        public static readonly ICardSubtype Defense = new CardSubtype("Defense");
+        public static readonly ICardSubtype Dodge = new CardSubtype("Dodge");
+        public static readonly ICardSubtype Danmaku = new CardSubtype("Danmaku");
+        public static readonly ICardSubtype Artifact = new CardSubtype("Artifact");
+        public static readonly ICardSubtype Power = new CardSubtype("Power");
     }
 }

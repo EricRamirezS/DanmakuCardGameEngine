@@ -15,7 +15,7 @@ namespace DanmakuBaseExpansion.Cards.MainDeck.BaseImplementation {
 
         public override bool CanPlayMainMode() => _mainTiming.CanPlayMainMode();
 
-        public override IReadOnlyList<ICardSubtypes> MainCardTypes => _mainTiming.MainCardTypes;
+        public override IReadOnlyList<ICardSubtype> MainCardTypes => _mainTiming.MainCardTypes;
 
         public override void PlayMainMode() => _mainTiming.PlayMainMode();
     }

@@ -6,7 +6,7 @@ using CardSubtypes = DanmakuCardGameEngine.Enums.CardSubtypes;
 
 namespace DanmakuBaseExpansion.Cards.MainDeck {
     internal class ActionOneUp : IActionMainTiming {
-        public IReadOnlyList<ICardSubtypes> MainCardTypes => new List<ICardSubtypes> { CardSubtypes.Healing };
+        public IReadOnlyList<ICardSubtype> MainCardTypes => new List<ICardSubtype> { CardSubtypes.Healing };
 
         public void PlayMainMode() {
             throw new NotImplementedException();

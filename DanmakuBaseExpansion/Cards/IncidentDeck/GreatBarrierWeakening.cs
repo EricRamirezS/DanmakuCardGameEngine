@@ -1,3 +1,4 @@
+using DanmakuBaseExpansion.Cards.IncidentDeck.BaseImplementation;
 using DanmakuCardGameEngine.Enums;
 
 namespace DanmakuBaseExpansion.Cards.IncidentDeck {

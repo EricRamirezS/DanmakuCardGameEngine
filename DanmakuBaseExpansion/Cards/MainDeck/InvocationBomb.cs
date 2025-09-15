@@ -5,7 +5,7 @@ using DanmakuCardGameEngine.Tools;
 
 namespace DanmakuBaseExpansion.Cards.MainDeck {
     internal class InvocationBomb : IInvocationMainTiming {
-        public IReadOnlyList<ICardSubtypes> MainCardTypes => CardUtils.EmptySubtypes;
+        public IReadOnlyList<ICardSubtype> MainCardTypes => CardUtils.EmptySubtypes;
 
         public void PlayMainMode() {
             throw new System.NotImplementedException();

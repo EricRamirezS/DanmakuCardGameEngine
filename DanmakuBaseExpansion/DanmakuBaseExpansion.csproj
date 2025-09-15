@@ -42,8 +42,8 @@
         <Reference Include="System.Xml"/>
     </ItemGroup>
     <ItemGroup>
-        <Compile Include="Cards\CharacterDeck\0_BaseCharacterCard.cs" />
         <Compile Include="Cards\CharacterDeck\AliceMargatroid.cs" />
+        <Compile Include="Cards\CharacterDeck\BaseImplementation\BaseCharacterCard.cs" />
         <Compile Include="Cards\CharacterDeck\Cirno.cs" />
         <Compile Include="Cards\CharacterDeck\HakureiReimu.cs" />
         <Compile Include="Cards\CharacterDeck\HijiriByakuren.cs" />
@@ -67,7 +67,7 @@
         <Compile Include="Cards\CharacterDeck\ToyosatomimiNoMiko.cs" />
         <Compile Include="Cards\CharacterDeck\YagokoroEirin.cs" />
         <Compile Include="Cards\CharacterDeck\YakumoYukari.cs" />
-        <Compile Include="Cards\IncidentDeck\0_BaseIncidentCard.cs" />
+        <Compile Include="Cards\IncidentDeck\BaseImplementation\BaseIncidentCard.cs" />
         <Compile Include="Cards\IncidentDeck\CrisisOfFaith.cs" />
         <Compile Include="Cards\IncidentDeck\CrossingToHigan.cs" />
         <Compile Include="Cards\IncidentDeck\EndlessParty.cs" />
@@ -190,20 +190,20 @@
         <Compile Include="Cards\MainDeck\SupernaturalBorder.cs" />
         <Compile Include="Cards\MainDeck\Tempest.cs" />
         <Compile Include="Cards\MainDeck\Voile.cs" />
-        <Compile Include="Cards\RoleDeck\0_BaseRoleCard.cs" />
         <Compile Include="Cards\RoleDeck\AntiHeroine.cs" />
+        <Compile Include="Cards\RoleDeck\BaseImplementation\BaseRoleCard.cs" />
         <Compile Include="Cards\RoleDeck\Challenger.cs" />
         <Compile Include="Cards\RoleDeck\ExBoss.cs" />
-        <Compile Include="Cards\RoleDeck\ExBossUnlocked.cs" />
         <Compile Include="Cards\RoleDeck\ExMidboss.cs" />
         <Compile Include="Cards\RoleDeck\FinalBoss.cs" />
         <Compile Include="Cards\RoleDeck\Heroine.cs" />
         <Compile Include="Cards\RoleDeck\OneTruePartner.cs" />
         <Compile Include="Cards\RoleDeck\Partner.cs" />
         <Compile Include="Cards\RoleDeck\PhantasmBoss.cs" />
+        <Compile Include="Cards\RoleDeck\RevealedRole\ExBossUnlocked.cs" />
+        <Compile Include="Cards\RoleDeck\RevealedRole\TruePhantasmBoss.cs" />
         <Compile Include="Cards\RoleDeck\Rival.cs" />
         <Compile Include="Cards\RoleDeck\StageBoss.cs" />
-        <Compile Include="Cards\RoleDeck\TruePhantasmBoss.cs" />
         <Compile Include="Decks\BaseCharacterDeck.cs" />
         <Compile Include="Decks\BaseIncidentDeck.cs" />
         <Compile Include="Decks\BaseMainDeck.cs" />

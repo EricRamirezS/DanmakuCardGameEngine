@@ -15,7 +15,7 @@ namespace DanmakuCardGameEngine.Models.Cards.Timing {
         /// <summary>
         /// Gets a read-only list of card subtypes that are typically associated with cards playable in Main Mode.
         /// </summary>
-        IReadOnlyList<ICardSubtypes> MainCardTypes { get; }
+        IReadOnlyList<ICardSubtype> MainCardTypes { get; }
 
         /// <summary>
         /// Initiates the action of playing the card in Main Mode.

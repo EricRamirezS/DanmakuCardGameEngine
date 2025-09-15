@@ -25,12 +25,12 @@ namespace DanmakuCardGameEngine.Models.Cards {
         /// <summary>
         /// Gets a read-only list of card subtypes that are typically associated with the card's Main Mode usage.
         /// </summary>
-        IReadOnlyList<ICardSubtypes> MainCardTypes { get; }
+        IReadOnlyList<ICardSubtype> MainCardTypes { get; }
 
         /// <summary>
         /// Gets a read-only list of card subtypes that are typically associated with the card's Alternate Mode usage.
         /// This is particularly relevant for "Split cards" that have distinct functionalities for each mode.
         /// </summary>
-        IReadOnlyList<ICardSubtypes> AltCardTypes { get; }
+        IReadOnlyList<ICardSubtype> AltCardTypes { get; }
     }
 }

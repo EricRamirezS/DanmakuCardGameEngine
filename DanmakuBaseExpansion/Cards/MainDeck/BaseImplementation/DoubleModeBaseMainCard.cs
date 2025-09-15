@@ -14,11 +14,11 @@ namespace DanmakuBaseExpansion.Cards.MainDeck.BaseImplementation {
         }
 
         public override bool CanPlayMainMode() => _mainTiming.CanPlayMainMode();
-        public override IReadOnlyList<ICardSubtypes> MainCardTypes => _mainTiming.MainCardTypes;
+        public override IReadOnlyList<ICardSubtype> MainCardTypes => _mainTiming.MainCardTypes;
         public override void PlayMainMode() => _mainTiming.PlayMainMode();
 
         public override bool CanPlayAltMode() => _altTiming.CanPlayAltMode();
-        public override IReadOnlyList<ICardSubtypes> AltCardTypes => _altTiming.AltCardTypes;
+        public override IReadOnlyList<ICardSubtype> AltCardTypes => _altTiming.AltCardTypes;
         public override void PlayAltMode() => _altTiming.PlayAltMode();
     }
 }

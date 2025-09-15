@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using DanmakuBaseExpansion.Cards.CharacterDeck.BaseImplementation;
 using DanmakuCardGameEngine.Core;
 using DanmakuCardGameEngine.Enums;
 using DanmakuCardGameEngine.Enums.Object;
@@ -12,7 +13,7 @@ using DanmakuCardGameEngine.Models.Player;
 namespace DanmakuBaseExpansion.Cards.CharacterDeck {
     public class HongMeiling : BaseCharacterCard, IStartOfTurnEventAfter, ITurnSkippedEventAfter {
         public HongMeiling() : base(6, "Hong Meiling", Seasons.Summer) { }
-        public override ISpellCardTiming SpellCardTiming => SpellCardTimings.Reaction;
+        public override ICardTiming CardTiming => CardTimings.Reaction;
 
         public override IModifiers Modifiers => new Modifiers {
             new MeilingModifierData(this),

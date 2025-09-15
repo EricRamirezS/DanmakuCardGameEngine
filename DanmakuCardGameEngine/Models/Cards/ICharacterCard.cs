@@ -11,7 +11,7 @@ namespace DanmakuCardGameEngine.Models.Cards {
         /// <summary>
         /// Gets the timing rules associated with this Character Card's Spell Card.
         /// </summary>
-        ISpellCardTiming SpellCardTiming { get; }
+        ICardTiming CardTiming { get; }
 
         /// <summary>
         /// Gets a value indicating whether the character's unique ability is currently available for use.

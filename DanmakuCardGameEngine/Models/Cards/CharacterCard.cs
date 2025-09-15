@@ -22,7 +22,7 @@ namespace DanmakuCardGameEngine.Models.Cards {
             CardTypes.CharacterCard, id, name, season, expansion) { }
 
         /// <inheritdoc />
-        public abstract ISpellCardTiming SpellCardTiming { get; }
+        public abstract ICardTiming CardTiming { get; }
 
         /// <summary>
         /// Gets the player who currently controls this character card.

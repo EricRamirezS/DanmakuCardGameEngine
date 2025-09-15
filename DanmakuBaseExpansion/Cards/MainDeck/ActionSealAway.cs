@@ -5,7 +5,7 @@ using DanmakuCardGameEngine.Models.Cards.Timing;
 
 namespace DanmakuBaseExpansion.Cards.MainDeck {
     public class ActionSealAway : IActionMainTiming {
-        public IReadOnlyList<ICardSubtypes> MainCardTypes { get; }
+        public IReadOnlyList<ICardSubtype> MainCardTypes { get; }
         public void PlayMainMode() {
             throw new NotImplementedException();
         }

@@ -27,10 +27,10 @@ namespace DanmakuCardGameEngine.Models.Cards {
         public abstract void PlayAltMode();
 
         /// <inheritdoc />
-        public abstract IReadOnlyList<ICardSubtypes> MainCardTypes { get; }
+        public abstract IReadOnlyList<ICardSubtype> MainCardTypes { get; }
 
         /// <inheritdoc />
-        public abstract IReadOnlyList<ICardSubtypes> AltCardTypes { get; }
+        public abstract IReadOnlyList<ICardSubtype> AltCardTypes { get; }
     }
 
     /// <summary>
@@ -68,7 +68,7 @@ namespace DanmakuCardGameEngine.Models.Cards {
         /// Gets a read-only empty list of card subtypes for the Alternate Mode.
         /// This is because single-mode cards do not have an alternate play mode.
         /// </summary>
-        public override sealed IReadOnlyList<ICardSubtypes> AltCardTypes => new List<ICardSubtypes>();
+        public override sealed IReadOnlyList<ICardSubtype> AltCardTypes => new List<ICardSubtype>();
 
         /// <inheritdoc />
         /// <summary>

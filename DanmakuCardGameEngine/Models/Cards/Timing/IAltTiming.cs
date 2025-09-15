@@ -15,7 +15,7 @@ namespace DanmakuCardGameEngine.Models.Cards.Timing {
         /// <summary>
         /// Gets a read-only list of card subtypes that are typically associated with cards playable in Alternate Mode.
         /// </summary>
-        IReadOnlyList<ICardSubtypes> AltCardTypes { get; }
+        IReadOnlyList<ICardSubtype> AltCardTypes { get; }
 
         /// <summary>
         /// Initiates the action of playing the card in Alternate Mode.
