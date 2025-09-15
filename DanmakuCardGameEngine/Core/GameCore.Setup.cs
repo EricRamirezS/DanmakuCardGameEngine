@@ -22,6 +22,7 @@ namespace DanmakuCardGameEngine.Core {
         public IReadOnlyGameState GameState => _gameState.ToReadOnly();
         /// <inheritdoc />
         public IEventManager EventManager { get; }
+        IGameActions IGameCore.GameActions { get; }
         // The mutable game state object.
         private readonly IGameState _gameState;
         // Flag indicating whether the game has been fully initialized.
@@ -39,6 +40,8 @@ namespace DanmakuCardGameEngine.Core {
         /// Gets the player whose turn it currently is, cast to their equatable interface.
         /// </summary>
         public IEquatablePlayer PlayerInTurn => _gameState.PlayerInTurn;
+
+        public GameActions GameActions { get; set; }
 
         /// <inheritdoc />
         /// <summary>
@@ -61,6 +64,7 @@ namespace DanmakuCardGameEngine.Core {
         private GameCore(IList<IPlayer> players, IExpansionData[] expansions, IDefaultData defaultData) {
             _gameState = new GameState(this);
             EventManager = new EventManager();
+            GameActions = new GameActions(this, _gameState);
             _expansions = expansions;
             GamePhases = new List<IState> {
                 States.StartOfTurn,
@@ -105,6 +109,10 @@ namespace DanmakuCardGameEngine.Core {
             await TurnZero();
             _initialized = true;
             _gameState.State = States.StartOfTheGame;
+        }
+        
+        public Task DrawCards<TCard>(IPlayer player, int quantity) where TCard : IHandCard {
+            return GameActions.DrawCards<TCard>(player, quantity);
         }
 
 

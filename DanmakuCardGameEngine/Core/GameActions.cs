@@ -1,13 +1,22 @@
 ﻿using System.Linq;
 using System.Threading.Tasks;
 using DanmakuCardGameEngine.Events.Args;
+using DanmakuCardGameEngine.Game;
 using DanmakuCardGameEngine.Models.Cards;
 using DanmakuCardGameEngine.Models.Deck;
 using DanmakuCardGameEngine.Models.Player;
 
 namespace DanmakuCardGameEngine.Core {
-    public partial class GameCore {
+    public class GameActions : IGameActions {
+        
+        private IGameCore _gameCore;
+        private readonly IGameState _gameState;
+        private IEventManager EventManager => _gameCore.EventManager;
+        internal GameActions(IGameCore gameCore, IGameState gameState) {
+            _gameCore = gameCore;
+            _gameState = gameState;
 
+        }
         /// <inheritdoc />
         /// <summary>
         /// Asynchronously draws a specified quantity of cards of a particular type for a given player.
@@ -48,5 +57,10 @@ namespace DanmakuCardGameEngine.Core {
             IDeck deck = _gameState.DeckManager.GetDeck(card);
             await deck?.AddToDiscard(card);
         }
+
+    }
+
+    public interface IGameActions {
+        
     }
 }

@@ -32,7 +32,7 @@ namespace DanmakuCardGameEngine.Core {
                 return _instance;
             }
         }
-
+        
         /// <summary>
         /// Creates a new singleton instance of the <see cref="IGameCore"/> and initializes it.
         /// This method should be called once at the start of the application to set up the game.
@@ -75,6 +75,11 @@ namespace DanmakuCardGameEngine.Core {
         /// </summary>
         IEventManager EventManager { get; }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        IGameActions GameActions { get; }
+        
         /// <summary>
         /// Asynchronously initializes the game, setting up players, decks, and initial game state.
         /// </summary>

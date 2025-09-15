@@ -45,7 +45,7 @@ namespace DanmakuCardGameEngine.Core {
 
         private async Task ExecuteTurn() {
             _gameState.State = States.StartOfTurn;
-            while (true) {
+            while (CurrentPhase != States.EndOfTurn && CurrentPhase != States.SkipTurn) {
                 switch (CurrentPhase) {
                     case var s when s == States.StartOfTurn:
                         await InvokePhase(
@@ -82,9 +82,6 @@ namespace DanmakuCardGameEngine.Core {
                     case var s when s == States.SkipTurn:
                         break;
                 }
-                if (_gameState.State == States.EndOfTurn || _gameState.State == States.SkipTurn) {
-                    break;
-                }
             }
         }
         private async void HandleStartOfTurnStep(StartOfTurnEventArgs startOfTurnEventArgs) {
@@ -93,6 +90,7 @@ namespace DanmakuCardGameEngine.Core {
             player.DanmakuCount = 0;
             player.IsSpellCardUsed = false;
         }
+        
         private async void HandleIncidentStep(IncidentStepEventArgs incidentStepEventArgs) {
             // throw new NotImplementedException();
         }
@@ -113,7 +111,7 @@ namespace DanmakuCardGameEngine.Core {
                         while (current.Hand.Count > current.MaxHandSize) {
                             IHand cards = current.Hand;
                             IHandCard toDiscard = await current.ChooseAsync(cards.ToList().AsReadOnly(), GameState);
-                            await DiscardCard(current, toDiscard);
+                            await GameActions.DiscardCard(current, toDiscard);
                         }
                     }
                 } while (_players.Any(p => p.Hand.Count > p.MaxHandSize));
