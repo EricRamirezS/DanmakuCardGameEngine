@@ -110,13 +110,6 @@ namespace DanmakuCardGameEngine.Models.Player {
         /// <param name="damage">The amount of damage to take.</param>
         /// <returns>A <see cref="Task"/> representing the asynchronous operation.</returns>
         Task TakeDamage(int damage);
-        /// <summary>
-        /// Asynchronously prompts the player to choose a character card from a given list.
-        /// </summary>
-        /// <param name="characters">A list of character cards from which to choose.</param>
-        /// <returns>A <see cref="Task{ICharacterCard}"/> representing the asynchronous operation,
-        /// which will complete with the chosen character card.</returns>
-        Task<ICharacterCard> ChooseCharacter(IList<ICharacterCard> characters);
 
         /// <summary>
         /// Initializes or re-initializes the player's core statistics and components.

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading;
 using System.Threading.Tasks;
 using DanmakuCardGameEngine.Core;
 using DanmakuCardGameEngine.Enums;
@@ -112,9 +113,9 @@ namespace DanmakuCardGameEngine.Models.Player {
         /// <inheritdoc />
         public abstract Task TakeDamage(int damage);
         /// <inheritdoc />
-        public abstract Task<ICharacterCard> ChooseCharacter(IList<ICharacterCard> characterCards);
+        public abstract Task<T> ChooseAsync<T>(IReadOnlyList<T> options, IReadOnlyGameState gameState, CancellationToken cancellationToken = default);
         /// <inheritdoc />
-        public abstract Task<T> ChooseAsync<T>(IReadOnlyList<T> options, IReadOnlyGameState gameState);
+        public abstract T Choose<T>(IReadOnlyList<T> options, IReadOnlyGameState gameState);
 
         /// <inheritdoc />
         public void InitStats() {

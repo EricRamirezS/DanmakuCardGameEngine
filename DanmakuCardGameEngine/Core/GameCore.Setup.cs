@@ -110,7 +110,8 @@ namespace DanmakuCardGameEngine.Core {
             _initialized = true;
             _gameState.State = States.StartOfTheGame;
         }
-        
+
+        /// <inheritdoc />
         public Task DrawCards<TCard>(IPlayer player, int quantity) where TCard : IHandCard {
             return GameActions.DrawCards<TCard>(player, quantity);
         }
@@ -192,7 +193,7 @@ namespace DanmakuCardGameEngine.Core {
 
             foreach (IPlayer player in _players) {
                 List<ICharacterCard> characterOptions = deck.Skip(i++ * 2).Take(2).ToList();
-                Task<ICharacterCard> task = player.ChooseCharacter(characterOptions);
+                Task<ICharacterCard> task = player.ChooseAsync(characterOptions, GameState);
                 Task setterTask = task.ContinueWith((result) =>
                 {
                     ICharacterCard card = result.Result;

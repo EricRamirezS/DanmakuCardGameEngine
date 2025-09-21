@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
-using DanmakuCardGameEngine.Core;
 using DanmakuCardGameEngine.Game;
 using DanmakuCardGameEngine.Models.Cards;
 using DanmakuCardGameEngine.Models.Player;
@@ -22,15 +21,32 @@ namespace DanmakuRunSample.Players {
         public override Task TakeDamage(int damage) {
             throw new NotImplementedException();
         }
-        
-        public override async Task<ICharacterCard> ChooseCharacter(IList<ICharacterCard> characters) {
-            Console.Clear();
-            Console.WriteLine(GameCore.Instance.GameState);
-            ICharacterCard characterCard = await ChooseAsync(characters.ToList().AsReadOnly(), GameCore.Instance.GameState);
-            return characterCard;
+
+        public async override Task<T> ChooseAsync<T>(
+            IReadOnlyList<T> options,
+            IReadOnlyGameState gameState,
+            CancellationToken cancellationToken = default) {
+            for (int i = 0; i < options.Count; i++) {
+                Console.WriteLine($"{i + 1}.- {options[i]}");
+            }
+
+            while (true) {
+                cancellationToken.ThrowIfCancellationRequested();
+
+                string input = await Task.Run(Console.ReadLine, cancellationToken);
+
+                if (int.TryParse(input, out int option) &&
+                    option >= 1 &&
+                    option <= options.Count) {
+                    return options[option - 1];
+                }
+
+                Console.WriteLine("Invalid option");
+            }
         }
-        
-        public override Task<T> ChooseAsync<T>(IReadOnlyList<T> options, IReadOnlyGameState gameState) {
+
+
+        public override T Choose<T>(IReadOnlyList<T> options, IReadOnlyGameState gameState) {
             int option = 0;
             for (int i = 0; i < options.Count; i++) {
                 Console.WriteLine($"{i + 1}.- {options[i]}");
@@ -42,7 +58,7 @@ namespace DanmakuRunSample.Players {
                 }
             }
 
-            return Task.FromResult(options[option - 1]);
+            return options[option - 1];
         }
     }
 }
